@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMetaSoul × Seasea · 战略合作提案</title>
+  <meta name="description" content="数据智能底座 × AI 增长操作系统 — DMetaSoul 与 Seasea 的共赢合作提案">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --indigo: #0B1B3A;
+      --boardroom: #F7F9FC;
+      --white: #FFFFFF;
+      --cobalt: #0048FF;
+      --lumen: #2BB8FF;
+      --navy: #1E3A8A;
+      --graphite: #0A0F1E;
+      --slate: #475569;
+      --green: #00B66E;
+      --amber: #E0A82E;
+      --mist: #E2E8F0;
+      --gradient: linear-gradient(135deg, #1E3A8A, #0048FF, #2BB8FF);
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--indigo);
+      color: var(--graphite);
+      overflow: hidden;
+      width: 100%;
+      height: 100vh;
+      min-height: 580px;
+    }
+
+    .deck {
+      width: 100%;
+      height: 100vh;
+      min-height: 580px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      padding: 48px 64px 40px;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+
+    .slide.prev {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    .slide--hero { background: var(--indigo); color: var(--boardroom); }
+    .slide--light { background: var(--boardroom); color: var(--graphite); }
+    .slide--white { background: var(--white); color: var(--graphite); }
+    .slide--dark { background: var(--indigo); color: var(--boardroom); }
+
+    .t-display {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .t-display em {
+      font-style: italic;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .t-h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+    .t-h3 {
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .t-body { font-size: 15px; line-height: 1.65; color: var(--slate); }
+    .t-body--light { font-size: 15px; line-height: 1.65; color: rgba(247,249,252,0.7); }
+    .t-mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    .t-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+    .t-label--light { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,249,252,0.5); }
+
+    .accent-line {
+      width: 64px; height: 3px;
+      background: var(--gradient);
+      border-radius: 2px;
+      margin: 16px 0 24px;
+    }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px; margin-top: 32px; }
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .stat-card--light {
+      background: var(--white);
+      border: 1px solid var(--mist);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 32px;
+      font-weight: 500;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 13px; margin-top: 6px; opacity: 0.7; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 28px; flex: 1; }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px; }
+
+    .opp-card {
+      background: var(--white);
+      border: 1px solid var(--mist);
+      border-radius: 12px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .opp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient);
+    }
+    .opp-stars { color: var(--cobalt); font-size: 14px; margin-bottom: 8px; }
+    .opp-title { font-weight: 600; font-size: 16px; margin-bottom: 10px; color: var(--indigo); }
+    .opp-desc { font-size: 13px; line-height: 1.6; color: var(--slate); }
+    .opp-value {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--cobalt);
+      background: rgba(0,72,255,0.06);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .timeline { margin-top: 24px; }
+    .tl-phase { display: flex; gap: 20px; margin-bottom: 20px; }
+    .tl-marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 48px;
+    }
+    .tl-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+    .tl-line { width: 2px; flex: 1; background: var(--mist); margin-top: 4px; }
+    .tl-content { flex: 1; padding-bottom: 8px; }
+    .tl-when { font-size: 12px; font-weight: 600; color: var(--cobalt); text-transform: uppercase; letter-spacing: 0.06em; }
+    .tl-what { font-size: 14px; margin-top: 4px; color: var(--graphite); line-height: 1.5; }
+
+    .rating-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .rating-a { background: rgba(0,182,110,0.1); color: var(--green); }
+
+    .nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 56px;
+      background: rgba(11,27,58,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      z-index: 100;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-dots { display: flex; gap: 8px; }
+    .nav-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.25s;
+      border: none;
+      padding: 0;
+    }
+    .nav-dot.active {
+      background: var(--cobalt);
+      width: 24px;
+      border-radius: 4px;
+    }
+    .nav-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { border-color: var(--cobalt); color: var(--white); }
+    .nav-label { color: rgba(255,255,255,0.4); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+
+    .watermark {
+      position: absolute;
+      bottom: 64px; right: 32px;
+      font-size: 10px;
+      color: rgba(0,0,0,0.12);
+      letter-spacing: 0.04em;
+    }
+    .slide--hero .watermark, .slide--dark .watermark { color: rgba(255,255,255,0.12); }
+
+    .vp-block {
+      padding: 20px 24px;
+      border-left: 3px solid;
+      border-image: var(--gradient) 1;
+      background: rgba(0,72,255,0.03);
+      margin-bottom: 16px;
+      border-radius: 0 8px 8px 0;
+    }
+    .vp-block h4 { font-size: 15px; font-weight: 600; color: var(--indigo); margin-bottom: 6px; }
+    .vp-block p { font-size: 13px; color: var(--slate); line-height: 1.55; }
+
+    .q-list { list-style: none; counter-reset: q; margin-top: 20px; }
+    .q-list li {
+      counter-increment: q;
+      padding: 14px 16px 14px 48px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 15px;
+      line-height: 1.5;
+      color: rgba(247,249,252,0.85);
+    }
+    .q-list li::before {
+      content: counter(q, decimal-leading-zero);
+      position: absolute;
+      left: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--lumen);
+    }
+
+    .side-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .tag-dms { background: rgba(0,72,255,0.08); color: var(--cobalt); }
+    .tag-sea { background: rgba(0,182,110,0.08); color: var(--green); }
+    .tag-both { background: rgba(224,168,46,0.1); color: var(--amber); }
+
+    .mb-8 { margin-bottom: 8px; }
+    .mb-12 { margin-bottom: 12px; }
+
+    @media (max-width: 900px) {
+      .slide { padding: 32px 24px 32px; }
+      .two-col { grid-template-columns: 1fr; gap: 24px; }
+      .three-col { grid-template-columns: 1fr; }
+      .t-display { font-size: 28px; }
+      .t-h2 { font-size: 22px; }
+      .stat-num { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 0: Cover -->
+  <div class="slide slide--hero active" data-i="0">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;max-width:720px;">
+      <p class="t-label--light" style="margin-bottom:20px;">DMetaSoul × Seasea · 战略合作提案 · 2026年6月</p>
+      <h1 class="t-display" style="font-size:48px;">
+        数据智能底座 ×<br>AI <em>增长操作系统</em>
+      </h1>
+      <div class="accent-line"></div>
+      <p class="t-body--light" style="max-width:540px;">
+        当湖仓一体的数据引擎遇上 AI-native 的增长中枢——<br>
+        一次关于「基础设施 × 应用层」的共赢对话。
+      </p>
+      <div class="stats" style="max-width:560px;">
+        <div class="stat-card">
+          <div class="stat-num">10&times;</div>
+          <div class="stat-label">LakeSoul Upsert 性能优势</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">$25M</div>
+          <div class="stat-label">Seasea H2 2026 ARR 目标</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8+</div>
+          <div class="stat-label">ModelAPI 模型供应商</div>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 1: DMetaSoul Snapshot -->
+  <div class="slide slide--light" data-i="1">
+    <p class="t-label mb-8">01 · 认识彼此</p>
+    <h2 class="t-h2" style="color:var(--indigo);">DMetaSoul — 国产 Databricks 的战略定位</h2>
+    <div class="accent-line"></div>
+    <div class="two-col">
+      <div>
+        <p class="t-body" style="margin-bottom:20px;">
+          数元灵科技定位为云原生湖仓一体平台 + AI 落地基础设施，核心产品 <strong>LakeSoul</strong> 是 Linux 基金会孵化项目，工信部信创认证。
+        </p>
+        <div class="vp-block">
+          <h4>LakeSoul 湖仓引擎</h4>
+          <p>Upsert 比 Delta Lake / Iceberg / Hudi 快 10&times;；Rust NativeIO 直接对接 AI 框架；百亿文件元数据支撑</p>
+        </div>
+        <div class="vp-block">
+          <h4>LakeInsight 智能底座</h4>
+          <p>实时数据开发版 · AI开发版 · 大模型知识库版——三大产品形态覆盖数据到智能全链路</p>
+        </div>
+        <div class="vp-block">
+          <h4>MetaSpore ML 平台</h4>
+          <p>一站式机器学习平台，支撑推荐、风控、预测等核心业务场景</p>
+        </div>
+      </div>
+      <div>
+        <p class="t-label mb-12">核心团队</p>
+        <div class="opp-card" style="margin-bottom:16px;">
+          <div class="opp-title">朱亚东 · CEO / 创始人</div>
+          <div class="opp-desc">中科院博士 · 前阿里手淘推荐算法负责人 · MIT Tech 2017 十大创新 · 前汇量科技港股上市副总裁</div>
+        </div>
+        <div class="opp-card" style="margin-bottom:16px;">
+          <div class="opp-title">陈绪 · CTO</div>
+          <div class="opp-desc">中科院硕士 · 前阿里 XPS 超大规模分布式训练平台负责人 · 前汇量科技平台架构师</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-title">姜宇 · CFO</div>
+          <div class="opp-desc">前热云科技 CFO · 完成近亿元融资 · 主导科创板 IPO · 熟稔资本市场全链路</div>
+        </div>
+        <p class="t-label" style="margin-top:20px;">标杆客户</p>
+        <p class="t-body" style="margin-top:6px;">头部航空集团 · 首都机场集团 · 互联网金融助贷 · 珠宝电商</p>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 2: Seasea Snapshot -->
+  <div class="slide slide--white" data-i="2">
+    <p class="t-label mb-8">02 · 认识彼此</p>
+    <h2 class="t-h2" style="color:var(--indigo);">Seasea — AI-Native 增长操作系统</h2>
+    <div class="accent-line"></div>
+    <div class="two-col">
+      <div>
+        <p class="t-body" style="margin-bottom:24px;">
+          Seasea 定位为 AI 时代的操作合伙人，构建递归式 AI 增长操作系统——<br>不是咨询方案，而是可运行的决策基底。
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0;">
+          <div class="stat-card--light">
+            <div class="side-tag tag-sea">Musein.ai</div>
+            <p style="font-size:13px;color:var(--slate);line-height:1.5;">AI 创意平台 · C端付费 · 目标日均 $1K 收入</p>
+          </div>
+          <div class="stat-card--light">
+            <div class="side-tag tag-sea">ModelAPI.co</div>
+            <p style="font-size:13px;color:var(--slate);line-height:1.5;">多模型 API 网关 · L3 AI Infra · 目标月 GMV $15K</p>
+          </div>
+          <div class="stat-card--light" style="grid-column:span 2;">
+            <div class="side-tag tag-sea">Seasea.cc</div>
+            <p style="font-size:13px;color:var(--slate);line-height:1.5;">GTM OS + Legal OS · 企业咨询 · Retainer $15K&rarr;$80K/mo</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="t-label mb-12">战略主轴 · H2 2026</p>
+        <div style="background:var(--indigo);border-radius:12px;padding:28px;color:var(--boardroom);">
+          <p style="font-size:14px;opacity:0.6;margin-bottom:16px;">Group ARR 目标</p>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:36px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">$25,000,000</p>
+          <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+                <span>ModelAPI 供应商扩展</span><span style="color:var(--lumen);">5 &rarr; 8 家</span>
+              </div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;">
+                <div style="width:62%;height:100%;background:var(--gradient);border-radius:2px;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+                <span>GTM OS 新客</span><span style="color:var(--lumen);">目标 &ge;3 家</span>
+              </div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;">
+                <div style="width:33%;height:100%;background:var(--gradient);border-radius:2px;"></div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+                <span>Musein 路由占比</span><span style="color:var(--lumen);">&rarr; 80%</span>
+              </div>
+              <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;">
+                <div style="width:55%;height:100%;background:var(--gradient);border-radius:2px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 3: Strategic Alignment -->
+  <div class="slide slide--dark" data-i="3">
+    <p class="t-label--light mb-8">03 · 战略契合</p>
+    <h2 class="t-h2">为什么是我们——互补架构图</h2>
+    <div class="accent-line"></div>
+    <div style="display:flex;gap:40px;margin-top:20px;flex:1;align-items:center;">
+      <div style="flex:1;">
+        <svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1E3A8A"/>
+              <stop offset="50%" stop-color="#0048FF"/>
+              <stop offset="100%" stop-color="#2BB8FF"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="20" width="200" height="280" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <text x="110" y="52" text-anchor="middle" fill="#2BB8FF" font-family="Inter,sans-serif" font-size="12" font-weight="600" letter-spacing="0.06em">DMETASOUL</text>
+          <rect x="30" y="70" width="160" height="36" rx="6" fill="rgba(0,72,255,0.15)"/>
+          <text x="110" y="93" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">LakeSoul 湖仓引擎</text>
+          <rect x="30" y="116" width="160" height="36" rx="6" fill="rgba(0,72,255,0.15)"/>
+          <text x="110" y="139" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">LakeInsight 智能底座</text>
+          <rect x="30" y="162" width="160" height="36" rx="6" fill="rgba(0,72,255,0.15)"/>
+          <text x="110" y="185" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">MetaSpore ML 平台</text>
+          <rect x="30" y="210" width="160" height="36" rx="6" fill="rgba(0,72,255,0.1)"/>
+          <text x="110" y="233" text-anchor="middle" fill="rgba(247,249,252,0.7)" font-family="Inter,sans-serif" font-size="11">航空 · 机场 · 金融 · 电商</text>
+          <text x="110" y="275" text-anchor="middle" fill="rgba(247,249,252,0.4)" font-family="Inter,sans-serif" font-size="10" font-style="italic">数据层 · 基础设施</text>
+
+          <rect x="310" y="20" width="200" height="280" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <text x="410" y="52" text-anchor="middle" fill="#00B66E" font-family="Inter,sans-serif" font-size="12" font-weight="600" letter-spacing="0.06em">SEASEA</text>
+          <rect x="330" y="70" width="160" height="36" rx="6" fill="rgba(0,182,110,0.12)"/>
+          <text x="410" y="93" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">ModelAPI 推理网关</text>
+          <rect x="330" y="116" width="160" height="36" rx="6" fill="rgba(0,182,110,0.12)"/>
+          <text x="410" y="139" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">Musein AI 创意平台</text>
+          <rect x="330" y="162" width="160" height="36" rx="6" fill="rgba(0,182,110,0.12)"/>
+          <text x="410" y="185" text-anchor="middle" fill="#F7F9FC" font-family="Inter,sans-serif" font-size="12" font-weight="500">GTM OS 增长系统</text>
+          <rect x="330" y="210" width="160" height="36" rx="6" fill="rgba(0,182,110,0.08)"/>
+          <text x="410" y="233" text-anchor="middle" fill="rgba(247,249,252,0.7)" font-family="Inter,sans-serif" font-size="11">SaaS · C端 · 出海客户</text>
+          <text x="410" y="275" text-anchor="middle" fill="rgba(247,249,252,0.4)" font-family="Inter,sans-serif" font-size="10" font-style="italic">应用层 · 增长引擎</text>
+
+          <line x1="190" y1="88" x2="330" y2="88" stroke="url(#g1)" stroke-width="2" stroke-dasharray="6,4"/>
+          <line x1="190" y1="134" x2="330" y2="88" stroke="url(#g1)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6"/>
+          <line x1="190" y1="180" x2="330" y2="134" stroke="url(#g1)" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.6"/>
+
+          <rect x="220" y="140" width="80" height="28" rx="14" fill="url(#g1)"/>
+          <text x="260" y="158" text-anchor="middle" fill="white" font-family="Inter,sans-serif" font-size="10" font-weight="600">共赢连接</text>
+        </svg>
+      </div>
+      <div style="flex:1;">
+        <div style="margin-bottom:20px;">
+          <div class="side-tag" style="color:var(--lumen);background:rgba(43,184,255,0.1);">DMetaSoul 提供</div>
+          <p class="t-body--light" style="margin-top:8px;">湖仓数据底座 · 信创认证 · 国企客户通道 · 大模型知识库场景 · 开源社区影响力</p>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div class="side-tag tag-sea" style="color:var(--green);background:rgba(0,182,110,0.1);">Seasea 提供</div>
+          <p class="t-body--light" style="margin-top:8px;">多模型推理网关 · 国产模型统一接入 · AI Native Growth 方法论 · 海外市场与资本网络</p>
+        </div>
+        <div>
+          <div class="side-tag tag-both" style="color:var(--amber);background:rgba(224,168,46,0.1);">共同创造</div>
+          <p class="t-body--light" style="margin-top:8px;">数据&rarr;智能&rarr;增长的端到端闭环 · 信创+全球化双轨道 · 互为标杆案例</p>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 4: Opportunity Matrix -->
+  <div class="slide slide--light" data-i="4">
+    <p class="t-label mb-8">04 · 合作机会矩阵</p>
+    <h2 class="t-h2" style="color:var(--indigo);">三层合作 · 由近及远</h2>
+    <div class="accent-line"></div>
+    <div class="three-col" style="flex:1;">
+      <div class="opp-card" style="display:flex;flex-direction:column;">
+        <div class="opp-stars">&#9733;&#9733;&#9733;&#9733; P0 · 立即启动</div>
+        <div class="opp-title">ModelAPI 推理网关合作</div>
+        <div class="opp-desc" style="flex:1;">
+          LakeInsight AI开发版 + 大模型知识库版需要大模型推理 API。ModelAPI 作为多模型统一网关，提供百川、Qwen、DeepSeek 等国产模型的即插即用接入。
+          <br><br>
+          <strong>亚东视角：</strong>降低多模型适配工程量，专注湖仓核心能力；信创场景一站式覆盖。
+          <br><br>
+          <strong>Seasea 视角：</strong>获得真实企业客户 + 国企渠道背书。
+        </div>
+        <div class="opp-value">月 GMV $2K&ndash;15K</div>
+      </div>
+      <div class="opp-card" style="display:flex;flex-direction:column;">
+        <div class="opp-stars">&#9733;&#9733;&#9733; P1 · 短期验证</div>
+        <div class="opp-title">AI-Native 市场进入策略</div>
+        <div class="opp-desc" style="flex:1;">
+          DMetaSoul 技术壁垒强但增长漏斗不完整。Seasea GTM OS 可为 LakeSoul 构建：开源社区&rarr;企业付费转化漏斗、技术布道策略、企业客户 Pipeline。
+          <br><br>
+          <strong>亚东视角：</strong>补齐「对标 Databricks」的市场能力短板。
+          <br><br>
+          <strong>Seasea 视角：</strong>数据基础设施 SaaS 行业标杆案例。
+        </div>
+        <div class="opp-value">Retainer $5K&ndash;15K/mo</div>
+      </div>
+      <div class="opp-card" style="display:flex;flex-direction:column;">
+        <div class="opp-stars">&#9733;&#9733; P2 · 中长期探索</div>
+        <div class="opp-title">联合行业解决方案</div>
+        <div class="opp-desc" style="flex:1;">
+          DMetaSoul 负责数据管道+行为分析(湖仓层)，Musein 负责 AI 内容生成(应用层)——面向航空品牌视频、金融产品宣传、电商商品自动化。
+          <br><br>
+          <strong>亚东视角：</strong>丰富 LakeInsight 的应用场景，增强客户粘性。
+          <br><br>
+          <strong>Seasea 视角：</strong>Musein B端场景验证与渠道拓展。
+        </div>
+        <div class="opp-value">2026 Q3+ 评估</div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 5: Value for Zhu Yadong -->
+  <div class="slide slide--white" data-i="5">
+    <p class="t-label mb-8">05 · 亚东视角的核心收益</p>
+    <h2 class="t-h2" style="color:var(--indigo);">为什么这次合作对 DMetaSoul 有价值</h2>
+    <div class="accent-line"></div>
+    <div class="two-col" style="flex:1;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="stat-card--light">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;">1</div>
+            <h4 style="font-size:15px;font-weight:600;color:var(--indigo);">降低模型适配成本</h4>
+          </div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.6;">通过 ModelAPI 统一接口，LakeInsight 不必逐一对接百川/Qwen/DeepSeek 等模型厂商 API，工程团队聚焦湖仓核心能力。</p>
+        </div>
+        <div class="stat-card--light">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;">2</div>
+            <h4 style="font-size:15px;font-weight:600;color:var(--indigo);">补齐增长引擎</h4>
+          </div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.6;">LakeSoul 技术领先但市场增长是短板。Seasea GTM OS 可直接赋能——增长漏斗重建、技术布道策略、KOL 归因分析。</p>
+        </div>
+        <div class="stat-card--light">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;">3</div>
+            <h4 style="font-size:15px;font-weight:600;color:var(--indigo);">拓宽应用场景</h4>
+          </div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.6;">Musein 的 AI 视频/创意能力与 LakeInsight 的数据底座结合，为航空/金融客户提供「数据&rarr;内容」端到端方案，提升客户 ARPU。</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="stat-card--light">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;">4</div>
+            <h4 style="font-size:15px;font-weight:600;color:var(--indigo);">资本网络对接</h4>
+          </div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.6;">共同投资人谷雪梅（商海领航）+ 史济苗（动量领航）提供天然信任基础。Aaron 的投资人网络可为 Series A 提供增值对接。</p>
+        </div>
+        <div class="stat-card--light">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:16px;font-weight:700;">5</div>
+            <h4 style="font-size:15px;font-weight:600;color:var(--indigo);">全球化视野</h4>
+          </div>
+          <p style="font-size:13px;color:var(--slate);line-height:1.6;">Seasea 具备跨境 SaaS 出海 + 中东/东南亚市场经验。当 LakeSoul 需要国际化拓展时，这是现成的增长合伙人。</p>
+        </div>
+        <div style="background:var(--indigo);border-radius:12px;padding:24px;color:var(--boardroom);">
+          <p style="font-size:12px;opacity:0.5;margin-bottom:8px;">综合评级</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <div><span class="rating-badge rating-a">A-</span><span style="font-size:12px;margin-left:6px;">关系网络价值</span></div>
+            <div><span class="rating-badge" style="background:rgba(43,184,255,0.15);color:var(--lumen);">B+</span><span style="font-size:12px;margin-left:6px;">短期商业收入</span></div>
+            <div><span class="rating-badge" style="background:rgba(43,184,255,0.15);color:var(--lumen);">B</span><span style="font-size:12px;margin-left:6px;">技术参考价值</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 6: Roadmap -->
+  <div class="slide slide--light" data-i="6">
+    <p class="t-label mb-8">06 · 行动路线图</p>
+    <h2 class="t-h2" style="color:var(--indigo);">共赢时间轴 · 三个里程碑</h2>
+    <div class="accent-line"></div>
+    <div class="two-col" style="flex:1;">
+      <div class="timeline">
+        <div class="tl-phase">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-when">本周 · 6月17&ndash;20日</div>
+            <div class="tl-what">
+              <strong>意图校准会议 (30 min)</strong><br>
+              核心议题：业务合作优先；确认 LakeInsight 模型 API 调用量与痛点；避免陷入融资渠道角色
+            </div>
+          </div>
+        </div>
+        <div class="tl-phase">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-when">2026年7月</div>
+            <div class="tl-what">
+              <strong>ModelAPI POC 试用</strong><br>
+              开通 DMetaSoul 开发者账户 ($500 试用额度)；接入国产模型 Demo；跟踪实际消耗数据
+            </div>
+          </div>
+        </div>
+        <div class="tl-phase">
+          <div class="tl-marker"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-when">2026年7月</div>
+            <div class="tl-what">
+              <strong>GTM Discovery 评估</strong><br>
+              若 DMetaSoul 有明确预算和决策 owner，启动付费 Discovery；否则保留为长期技术/人脉资产
+            </div>
+          </div>
+        </div>
+        <div class="tl-phase">
+          <div class="tl-marker"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-when">2026年 Q3+</div>
+            <div class="tl-what">
+              <strong>联合行业方案</strong><br>
+              ModelAPI 合作稳定后，探索航空/金融客户的 Musein B端应用；评估「数据层 + 创意层」端到端方案
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--indigo);border-radius:12px;padding:28px;color:var(--boardroom);">
+          <p class="t-label--light" style="margin-bottom:16px;">成功标准 · 首轮合作</p>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;align-items:baseline;gap:12px;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:24px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;min-width:80px;">$2K+</span>
+              <span style="font-size:13px;opacity:0.7;">DMetaSoul 月 ModelAPI 消耗</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:12px;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:24px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;min-width:80px;">2&ndash;4周</span>
+              <span style="font-size:13px;opacity:0.7;">从首次会议到 POC 完成</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:12px;">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:24px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;min-width:80px;">&ge;3个</span>
+              <span style="font-size:13px;opacity:0.7;">国产模型成功接入验证</span>
+            </div>
+          </div>
+        </div>
+        <div class="opp-card" style="margin-top:20px;">
+          <div class="opp-title">信任锚点</div>
+          <div class="opp-desc">
+            <strong>谷雪梅</strong>（商海领航）— 前阿里菜鸟CTO，AI基础设施背景与 DMetaSoul 高度重叠；双方共同投资人<br><br>
+            <strong>史济苗</strong>（动量领航）— 双方共同投资人，可作为关系桥接
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 7: Key Questions -->
+  <div class="slide slide--dark" data-i="7">
+    <p class="t-label--light mb-8">07 · 共赢对话议程</p>
+    <h2 class="t-h2">首次会议 · 五个校准问题</h2>
+    <div class="accent-line"></div>
+    <div class="two-col" style="flex:1;align-items:start;">
+      <div>
+        <p class="t-body--light" style="margin-bottom:20px;">这些问题旨在快速校准合作意图，确保双方在同一个方向上投入时间。核心原则：<strong style="color:var(--lumen);">业务优先，互利为本</strong>。</p>
+        <ol class="q-list">
+          <li>DMetaSoul 当前最核心的需求是什么——业务伙伴、技术对接、还是融资渠道？</li>
+          <li>LakeInsight 现有客户中，大模型 API 的月调用量和支出是多少？是否有国产模型接入痛点？</li>
+          <li>DMetaSoul 是否在寻找 GTM 或增长方面的专业支持？有无相关预算？</li>
+          <li>博思云为在这个关系中扮演什么角色？有无既定佣金安排？</li>
+          <li>LakeSoul 未来 12 个月的战略重点——是深耕国内还是准备国际化？</li>
+        </ol>
+      </div>
+      <div>
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px;">
+          <p style="font-size:14px;color:var(--lumen);font-weight:600;margin-bottom:16px;">会后判定标准</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:10px;align-items:start;">
+              <span style="color:var(--green);font-size:16px;line-height:1;">&#9679;</span>
+              <div>
+                <p style="font-size:13px;color:var(--boardroom);font-weight:500;">推进合作</p>
+                <p style="font-size:12px;color:rgba(247,249,252,0.5);margin-top:2px;">存在可在 2&ndash;4 周内转化为 ModelAPI GMV / GTM paid discovery / 明确 referral fee 的业务需求</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <span style="color:var(--amber);font-size:16px;line-height:1;">&#9679;</span>
+              <div>
+                <p style="font-size:13px;color:var(--boardroom);font-weight:500;">保持关系</p>
+                <p style="font-size:12px;color:rgba(247,249,252,0.5);margin-top:2px;">业务需求存在但短期无法转化；保留为长期技术/人脉资产，季度跟进</p>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <span style="color:rgba(247,249,252,0.3);font-size:16px;line-height:1;">&#9679;</span>
+              <div>
+                <p style="font-size:13px;color:var(--boardroom);font-weight:500;">边界明确</p>
+                <p style="font-size:12px;color:rgba(247,249,252,0.5);margin-top:2px;">若主要诉求是融资渠道，需 success fee / advisory equity 等商业条款才推进</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:24px;padding:20px 24px;border-left:3px solid;border-image:var(--gradient) 1;background:rgba(255,255,255,0.03);border-radius:0 8px 8px 0;">
+          <p style="font-size:14px;color:var(--boardroom);font-weight:500;margin-bottom:6px;">核心原则</p>
+          <p style="font-size:13px;color:rgba(247,249,252,0.6);line-height:1.6;">Seasea 是业务操作合伙人，不是投资机构。合作诉求落在业务层面，双方共赢是唯一长期稳定的关系架构。</p>
+        </div>
+      </div>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- SLIDE 8: Closing -->
+  <div class="slide slide--hero" data-i="8">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:640px;">
+      <p class="t-label--light" style="margin-bottom:20px;">CLOSING</p>
+      <h1 class="t-display" style="font-size:44px;">
+        数据是底座<br>
+        <em>增长是引擎</em><br>
+        共赢是路径
+      </h1>
+      <div class="accent-line" style="width:96px;"></div>
+      <p class="t-body--light" style="max-width:480px;margin-bottom:32px;">
+        LakeSoul 的湖仓深度 &times; Seasea 的增长广度——<br>
+        不是简单的供应商关系，而是基础设施与应用层的战略共振。
+      </p>
+      <div style="display:flex;gap:16px;align-items:center;">
+        <div style="padding:10px 24px;background:var(--gradient);border-radius:8px;font-size:14px;font-weight:600;color:white;">
+          启动 ModelAPI POC · 本周
+        </div>
+        <span style="font-size:13px;opacity:0.5;">&rarr; 以 $500 试用额度开始验证</span>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:80px;right:64px;text-align:right;">
+      <p style="font-size:13px;opacity:0.5;">DMetaSoul &times; Seasea</p>
+      <p style="font-size:12px;opacity:0.3;margin-top:4px;">Prepared for 朱亚东 · June 2026</p>
+    </div>
+    <div class="watermark">Privileged&amp;Confidential</div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="nav-btn" onclick="go(-1)">&larr; 上一页</button>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="nav-dots" id="dots"></div>
+    <span class="nav-label" id="counter">01 / 09</span>
+  </div>
+  <button class="nav-btn" onclick="go(1)">下一页 &rarr;</button>
+</div>
+
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsEl = document.getElementById('dots');
+  const counterEl = document.getElementById('counter');
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    if (n < 0 || n >= total || n === cur) return;
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add(n > cur ? 'prev' : '');
+    slides[cur].classList.remove(n < cur ? 'prev' : '');
+    cur = n;
+    slides[cur].classList.remove('prev');
+    slides[cur].classList.add('active');
+    dotsEl.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    counterEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  }
+
+  function go(dir) { goTo(cur + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 50) go(diff < 0 ? 1 : -1);
+  });
+</script>
+
+</body>
+</html>
