@@ -1,1125 +1,995 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AGCC.US × AIDC 投资研究报告 | 内部投资委员会专用</title>
-<meta name="description" content="Agencia Comercial Spirits Ltd（NASDAQ: AGCC）与 AI 数据中心行业投资研究报告，2026 年 7 月。" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGCC.US 与 AIDC 行业投资研究报告 · Seasea Investment OS</title>
+<meta name="description" content="AGCC.US（NASDAQ: AGCC）AI 数据中心转型标的投资研究报告，评分 19/35，Watchlist，PASS。内部投资委员会决策文件。">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
 :root{
   --navy:#0A1628;
-  --navy-2:#0E1D33;
-  --navy-3:#12253F;
-  --panel:#0F1E35;
+  --navy-2:#0d1c30;
+  --navy-3:#12263f;
   --gold:#C9A86A;
-  --gold-bright:#E4C989;
-  --gold-dim:#8A7548;
+  --gold-bright:#E4C888;
   --cream:#F2EBDA;
-  --cream-dim:#A9A493;
+  --ink:#e8eef6;
+  --muted:#8fa2b8;
+  --muted-2:#63748c;
+  --red:#d9534f;
+  --red-bright:#ff6b66;
+  --amber:#e0a44a;
+  --green:#4a9d7f;
   --line:rgba(201,168,106,0.18);
-  --line-soft:rgba(242,235,218,0.08);
-  --alert:#C7534B;
-  --alert-bright:#E27069;
-  --warn:#D89A46;
-  --ok:#6FA88A;
-  --sev-extreme:#B23A32;
-  --sev-high:#C7534B;
-  --sev-midhigh:#CE7A44;
-  --sev-mid:#B8923F;
-  --serif:"Noto Serif SC",Georgia,serif;
-  --sans:"Noto Sans SC",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
-  --shadow:0 30px 80px -30px rgba(0,0,0,0.7);
+  --line-soft:rgba(255,255,255,0.06);
+  --card:rgba(255,255,255,0.025);
+  --card-2:rgba(201,168,106,0.05);
+  --serif:'Noto Serif SC',serif;
+  --sans:'Noto Sans SC',sans-serif;
   --maxw:1180px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:84px;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   font-family:var(--sans);
   background:var(--navy);
-  color:var(--cream);
-  line-height:1.75;
+  color:var(--ink);
+  line-height:1.85;
   font-weight:300;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
-  position:relative;
+  letter-spacing:.01em;
 }
-/* ambient background layers */
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;
   background:
-    radial-gradient(1200px 800px at 78% -8%, rgba(201,168,106,0.10), transparent 60%),
-    radial-gradient(900px 700px at 8% 12%, rgba(38,74,120,0.28), transparent 55%),
-    radial-gradient(1000px 900px at 50% 120%, rgba(199,83,75,0.08), transparent 60%),
+    radial-gradient(1200px 700px at 78% -8%,rgba(201,168,106,0.10),transparent 60%),
+    radial-gradient(900px 600px at 8% 12%,rgba(30,66,110,0.35),transparent 55%),
+    radial-gradient(1000px 900px at 50% 108%,rgba(201,168,106,0.05),transparent 60%),
     var(--navy);
 }
 body::after{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.35;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
 }
-::selection{background:var(--gold);color:var(--navy);}
-a{color:inherit;text-decoration:none;}
+::selection{background:rgba(201,168,106,.32);color:#fff}
+a{color:var(--gold-bright);text-decoration:none}
 
-/* faint grid overlay */
-.grid-overlay{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(circle at 50% 30%,black,transparent 85%);
-}
-
-/* ============ NAV ============ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+/* ---------- progress + nav ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright),var(--cream));
+  box-shadow:0 0 12px rgba(201,168,106,.6)}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:150;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(18px,4vw,48px);height:70px;
-  backdrop-filter:blur(14px);
-  background:rgba(10,22,40,0.72);
-  border-bottom:1px solid var(--line);
-  transition:background .4s ease;
+  padding:14px clamp(18px,5vw,60px);
+  background:rgba(10,22,40,0.72);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line-soft);
+  transition:padding .3s ease,background .3s ease;
 }
-.nav .brand{display:flex;align-items:center;gap:12px;font-family:var(--mono);letter-spacing:.5px;}
-.nav .brand .tick{
-  font-size:15px;color:var(--gold);font-weight:600;
-  border:1px solid var(--line);padding:4px 10px;border-radius:4px;
-  background:rgba(201,168,106,0.06);
+nav.shrink{padding:9px clamp(18px,5vw,60px);background:rgba(10,22,40,0.9)}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:700}
+.brand .mark{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;
+  display:grid;place-items:center;color:var(--gold);font-size:15px;letter-spacing:1px;
+  background:radial-gradient(circle at 30% 30%,rgba(201,168,106,.2),transparent)}
+.brand .txt{font-size:15px;color:var(--cream);letter-spacing:.06em}
+.brand .txt small{display:block;font-family:var(--sans);font-weight:300;font-size:10px;color:var(--muted);letter-spacing:.28em}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap}
+.navlinks a{
+  font-size:12.5px;color:var(--muted);padding:6px 12px;border-radius:20px;
+  transition:.25s;font-weight:400;letter-spacing:.04em;white-space:nowrap;
 }
-.nav .brand .sub{font-size:11px;color:var(--cream-dim);text-transform:uppercase;letter-spacing:2px;}
-.nav-links{display:flex;gap:4px;align-items:center;}
-.nav-links a{
-  font-size:12.5px;color:var(--cream-dim);padding:8px 12px;border-radius:4px;
-  transition:color .25s,background .25s;position:relative;letter-spacing:.5px;
-}
-.nav-links a:hover{color:var(--cream);}
-.nav-links a.active{color:var(--gold);}
-.nav-links a.active::after{
-  content:"";position:absolute;left:12px;right:12px;bottom:2px;height:1.5px;background:var(--gold);
-}
-.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--gold);
-  padding:8px 12px;border-radius:4px;font-family:var(--mono);cursor:pointer;}
-.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold-bright));z-index:101;width:0;}
+.navlinks a:hover{color:var(--cream)}
+.navlinks a.active{color:var(--navy);background:var(--gold);font-weight:500}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--gold);
+  padding:8px 12px;border-radius:8px;font-size:14px;cursor:pointer}
 
-/* ============ LAYOUT ============ */
-section{padding:clamp(70px,9vw,130px) clamp(18px,5vw,48px);position:relative;}
-.wrap{max-width:var(--maxw);margin:0 auto;}
+/* ---------- layout ---------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,5vw,40px)}
+section{padding:clamp(64px,9vh,120px) 0;position:relative}
 .eyebrow{
-  font-family:var(--mono);font-size:12px;letter-spacing:4px;text-transform:uppercase;
-  color:var(--gold);display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+  font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);
+  font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:14px;
 }
-.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block;}
-h2.sec-title{
-  font-family:var(--serif);font-weight:700;
-  font-size:clamp(30px,4.6vw,52px);line-height:1.12;color:var(--cream);
-  margin-bottom:20px;letter-spacing:.5px;
-}
-h2.sec-title .num{color:var(--gold-dim);font-size:.55em;font-family:var(--mono);margin-right:14px;vertical-align:middle;}
-.lead{font-size:clamp(15px,1.6vw,18px);color:var(--cream-dim);max-width:760px;line-height:1.9;}
-p{color:var(--cream-dim);font-size:15.5px;}
-strong{color:var(--cream);font-weight:500;}
-.gold{color:var(--gold);}
-.sec-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);border:none;max-width:var(--maxw);margin:0 auto;}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);display:inline-block}
+h2.sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(28px,4.4vw,46px);
+  line-height:1.25;color:var(--cream);margin-bottom:14px;letter-spacing:.01em}
+h3{font-family:var(--serif);font-weight:600;font-size:clamp(19px,2.4vw,25px);color:var(--gold-bright);
+  margin:38px 0 16px;letter-spacing:.02em}
+h4{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--cream);margin:24px 0 10px}
+p{color:var(--muted);font-size:15.5px;margin-bottom:16px;font-weight:300}
+p strong,li strong{color:var(--ink);font-weight:500}
+.lead{font-size:clamp(16px,1.9vw,19px);color:#c3d0e0;font-weight:300;line-height:1.95}
+ul,ol{margin:0 0 18px 4px;padding-left:20px}
+li{color:var(--muted);font-size:15px;margin-bottom:10px;font-weight:300}
+li::marker{color:var(--gold)}
 
-/* reveal base */
-.reveal{opacity:0;transform:translateY(38px);}
+/* ---------- hero ---------- */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:120px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000,transparent)}
+.ticker-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);
+  font-size:12px;letter-spacing:.3em;color:var(--gold);border:1px solid var(--line);
+  padding:7px 16px;border-radius:30px;margin-bottom:26px;background:var(--card-2)}
+.ticker-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--red-bright);
+  box-shadow:0 0 10px var(--red-bright);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+#hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(38px,7vw,82px);
+  line-height:1.08;color:var(--cream);letter-spacing:.005em;max-width:16ch}
+#hero h1 .hl{color:transparent;background:linear-gradient(120deg,var(--gold),var(--gold-bright) 50%,var(--cream));
+  -webkit-background-clip:text;background-clip:text}
+.hero-sub{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:60ch;margin:26px 0 8px;line-height:1.9}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:32px;font-size:13px;color:var(--muted-2)}
+.hero-meta span b{color:var(--gold);font-weight:500}
+.verdict-strip{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:44px;
+  padding:22px 26px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(100deg,rgba(217,83,79,0.1),rgba(10,22,40,0.2));position:relative;overflow:hidden}
+.verdict-strip::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red-bright)}
+.verdict-badge{font-family:var(--serif);font-weight:900;font-size:clamp(30px,5vw,46px);
+  color:var(--red-bright);letter-spacing:.14em;text-shadow:0 0 24px rgba(255,107,102,.3)}
+.verdict-strip .vtext{flex:1;min-width:220px}
+.verdict-strip .vtext b{color:var(--cream);font-weight:500;font-size:15px;display:block;margin-bottom:2px}
+.verdict-strip .vtext span{font-size:13.5px;color:var(--muted)}
+.scroll-cue{margin-top:52px;display:flex;align-items:center;gap:12px;color:var(--muted-2);font-size:12px;letter-spacing:.2em}
+.scroll-cue .line{width:1px;height:40px;background:linear-gradient(var(--gold),transparent);animation:drop 2s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ============ HERO ============ */
-.hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  padding-top:120px;position:relative;overflow:hidden;
-}
-.hero-classified{
-  font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--alert-bright);
-  border:1px solid rgba(199,83,75,0.4);background:rgba(199,83,75,0.07);
-  padding:6px 14px;border-radius:3px;display:inline-flex;gap:8px;align-items:center;margin-bottom:30px;width:fit-content;
-}
-.hero-classified .dot{width:7px;height:7px;border-radius:50%;background:var(--alert-bright);animation:blink 1.8s infinite;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
-.hero h1{
-  font-family:var(--serif);font-weight:900;letter-spacing:1px;
-  font-size:clamp(44px,8.5vw,110px);line-height:0.98;color:var(--cream);margin-bottom:8px;
-}
-.hero h1 .ai{color:var(--gold);position:relative;}
-.hero-sub{
-  font-family:var(--serif);font-size:clamp(18px,2.6vw,30px);color:var(--cream-dim);
-  font-weight:500;margin-bottom:26px;
-}
-.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-family:var(--mono);font-size:12.5px;color:var(--cream-dim);margin-bottom:44px;}
-.hero-meta span b{color:var(--gold);font-weight:500;}
+/* ---------- stat cards ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:20px}
+.stat-card{border:1px solid var(--line);border-radius:14px;padding:26px 24px;
+  background:var(--card);position:relative;overflow:hidden;transition:.4s}
+.stat-card::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 100% 0,rgba(201,168,106,.08),transparent);opacity:0;transition:.4s}
+.stat-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.stat-card:hover::after{opacity:1}
+.stat-num{font-family:var(--serif);font-weight:900;font-size:clamp(30px,4vw,44px);
+  color:var(--gold-bright);line-height:1;letter-spacing:.01em}
+.stat-num .unit{font-size:.5em;color:var(--muted);font-weight:400;margin-left:4px}
+.stat-label{font-size:13px;color:var(--muted);margin-top:12px;letter-spacing:.03em}
+.stat-note{font-size:11.5px;color:var(--muted-2);margin-top:6px}
+.stat-card.warn .stat-num{color:var(--red-bright)}
+.stat-card.warn{border-color:rgba(217,83,79,.3)}
 
-/* ticker */
-.ticker{
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  background:rgba(15,30,53,0.5);backdrop-filter:blur(6px);margin-top:6px;
-}
-.ticker .cell{padding:24px 26px;border-right:1px solid var(--line-soft);position:relative;}
-.ticker .cell:last-child{border-right:none;}
-.ticker .k{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-dim);margin-bottom:10px;}
-.ticker .v{font-family:var(--mono);font-size:clamp(22px,3vw,34px);font-weight:600;color:var(--cream);line-height:1;}
-.ticker .v .cur{font-size:.55em;color:var(--gold);vertical-align:super;margin-right:2px;}
-.ticker .chg{font-family:var(--mono);font-size:12.5px;margin-top:8px;display:inline-block;}
-.chg.up{color:var(--ok);}
-.chg.down{color:var(--alert-bright);}
-.chg.neutral{color:var(--gold);}
-.scroll-hint{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
-  font-family:var(--mono);font-size:10.5px;letter-spacing:3px;color:var(--cream-dim);text-transform:uppercase;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-}
-.scroll-hint .bar{width:1px;height:36px;background:linear-gradient(var(--gold),transparent);animation:drop 2s infinite;}
-@keyframes drop{0%{transform:scaleY(0);transform-origin:top;}50%{transform:scaleY(1);transform-origin:top;}50.1%{transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+/* ---------- generic card / panels ---------- */
+.card{border:1px solid var(--line-soft);border-radius:16px;padding:clamp(22px,3vw,34px);
+  background:var(--card);margin-bottom:20px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
 
-/* ============ VERDICT ============ */
-.verdict-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px;}
-.verdict-badge{
-  position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:6px;
-  padding:44px 70px;border-radius:8px;
-  border:1.5px solid rgba(199,83,75,0.5);
-  background:linear-gradient(180deg,rgba(199,83,75,0.14),rgba(199,83,75,0.04));
-  box-shadow:0 0 0 1px rgba(199,83,75,0.15),0 40px 100px -40px rgba(199,83,75,0.55);
-  overflow:hidden;
-}
-.verdict-badge::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(199,83,75,0.25),transparent 70%);
-}
-.verdict-badge .rating{
-  font-family:var(--serif);font-weight:900;font-size:clamp(56px,11vw,120px);line-height:1;
-  color:var(--alert-bright);letter-spacing:6px;position:relative;
-  text-shadow:0 0 40px rgba(199,83,75,0.4);
-}
-.verdict-badge .cn{font-family:var(--serif);font-size:clamp(20px,3vw,30px);color:var(--cream);font-weight:600;letter-spacing:6px;position:relative;}
-.verdict-badge .scale{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--cream-dim);position:relative;margin-top:6px;}
-.verdict-note{max-width:720px;color:var(--cream-dim);font-size:15.5px;line-height:1.95;}
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line-soft);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:480px}
+th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line-soft);font-weight:300;color:var(--muted)}
+thead th{background:var(--card-2);color:var(--gold);font-weight:500;font-size:12.5px;
+  letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line)}
+tbody tr{transition:.2s}
+tbody tr:hover{background:rgba(201,168,106,.04)}
+td strong,th strong{color:var(--cream);font-weight:500}
+tr.total-row td{background:rgba(201,168,106,.08);color:var(--cream);font-weight:500;border-top:1px solid var(--gold)}
 
-/* ============ CARDS / GRID ============ */
-.grid{display:grid;gap:22px;}
-.g2{grid-template-columns:repeat(2,1fr);}
-.g3{grid-template-columns:repeat(3,1fr);}
-.g4{grid-template-columns:repeat(4,1fr);}
-.card{
-  background:linear-gradient(160deg,rgba(15,30,53,0.9),rgba(10,22,40,0.6));
-  border:1px solid var(--line);border-radius:8px;padding:30px 28px;
-  position:relative;overflow:hidden;transition:transform .4s,border-color .4s;
-}
-.card:hover{transform:translateY(-4px);border-color:rgba(201,168,106,0.4);}
-.card .idx{font-family:var(--mono);font-size:12px;color:var(--gold-dim);letter-spacing:2px;}
-.card h3{font-family:var(--serif);font-size:20px;color:var(--cream);margin:12px 0 12px;font-weight:600;}
-.card p{font-size:14.5px;line-height:1.85;}
+/* ---------- badges/pills ---------- */
+.pill{display:inline-block;font-size:11.5px;padding:3px 11px;border-radius:20px;font-weight:400;letter-spacing:.04em}
+.pill.hi{background:rgba(217,83,79,.16);color:var(--red-bright);border:1px solid rgba(217,83,79,.3)}
+.pill.mid{background:rgba(224,164,74,.14);color:var(--amber);border:1px solid rgba(224,164,74,.3)}
+.pill.lo{background:rgba(74,157,127,.14);color:var(--green);border:1px solid rgba(74,157,127,.3)}
+.pill.info{background:var(--card-2);color:var(--gold);border:1px solid var(--line)}
 
-/* stat / counters */
-.stat{
-  background:linear-gradient(160deg,rgba(15,30,53,0.85),rgba(10,22,40,0.5));
-  border:1px solid var(--line);border-radius:8px;padding:30px 26px;position:relative;
-}
-.stat::before{content:"";position:absolute;left:0;top:22px;bottom:22px;width:2px;background:var(--gold);}
-.stat .label{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cream-dim);margin-bottom:14px;}
-.stat .figure{font-family:var(--mono);font-weight:600;font-size:clamp(30px,4.4vw,46px);color:var(--cream);line-height:1;}
-.stat .figure .u{font-size:.42em;color:var(--gold);margin-left:6px;font-weight:400;}
-.stat .desc{font-size:13px;color:var(--cream-dim);margin-top:14px;line-height:1.7;}
-.stat .desc .neg{color:var(--alert-bright);}
-.stat .desc .pos{color:var(--ok);}
+/* ---------- reveal anim base ---------- */
+.reveal{opacity:0;transform:translateY(36px)}
+.section-num{position:absolute;top:clamp(40px,7vh,90px);right:clamp(18px,5vw,40px);
+  font-family:var(--serif);font-weight:900;font-size:clamp(60px,12vw,150px);
+  color:rgba(201,168,106,.05);line-height:1;z-index:0;pointer-events:none;user-select:none}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0 auto;max-width:var(--maxw)}
 
-/* ============ TABLES ============ */
-.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;}
-table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
-th,td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--line-soft);}
-thead th{
-  font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--gold);background:rgba(201,168,106,0.05);font-weight:500;
-}
-tbody tr:hover{background:rgba(201,168,106,0.04);}
-td.mono{font-family:var(--mono);color:var(--cream);}
-td .neg{color:var(--alert-bright);}
-td .pos{color:var(--ok);}
+/* ---------- special: deal architecture flow ---------- */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0;position:relative}
+.flow-node{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--card-2);
+  text-align:center;position:relative;transition:.4s}
+.flow-node:hover{border-color:var(--gold);transform:translateY(-3px)}
+.flow-node .fn-icon{font-size:24px;margin-bottom:10px}
+.flow-node h5{font-family:var(--serif);color:var(--cream);font-size:16px;font-weight:600;margin-bottom:6px}
+.flow-node p{font-size:12.5px;color:var(--muted);margin:0}
+.flow-arrow{position:absolute;top:50%;font-size:20px;color:var(--gold);z-index:3}
 
-/* ============ TIMELINE ============ */
-.timeline{position:relative;margin-top:20px;padding-left:8px;}
-.timeline::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--gold-dim));}
-.tl-item{position:relative;padding:0 0 40px 46px;}
-.tl-item:last-child{padding-bottom:0;}
-.tl-item .node{position:absolute;left:2px;top:2px;width:20px;height:20px;border-radius:50%;
-  border:2px solid var(--gold);background:var(--navy);}
-.tl-item.alert .node{border-color:var(--alert-bright);box-shadow:0 0 0 4px rgba(199,83,75,0.15);}
-.tl-item .date{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:1px;margin-bottom:6px;}
-.tl-item h4{font-family:var(--serif);font-size:18px;color:var(--cream);margin-bottom:6px;font-weight:600;}
-.tl-item p{font-size:14px;line-height:1.75;}
+/* ---------- kill criteria ---------- */
+.kill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px}
+.kill-card{border:1px solid rgba(217,83,79,.24);border-radius:14px;padding:24px;
+  background:linear-gradient(160deg,rgba(217,83,79,.07),var(--card));position:relative;transition:.4s}
+.kill-card:hover{border-color:var(--red-bright);transform:translateY(-4px)}
+.kill-card .kc-no{font-family:var(--serif);font-weight:900;font-size:34px;color:rgba(255,107,102,.4);line-height:1}
+.kill-card h5{color:var(--cream);font-size:15.5px;font-weight:500;margin:8px 0 8px}
+.kill-card p{font-size:13px;margin:0;color:var(--muted)}
+.kill-card .trigger{margin-top:12px;font-size:11.5px;color:var(--red-bright);
+  border-top:1px dashed rgba(217,83,79,.3);padding-top:10px;letter-spacing:.03em}
 
-/* ============ BAR CHART ============ */
-.bars{display:flex;flex-direction:column;gap:20px;margin-top:12px;}
-.bar-row .bar-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;}
-.bar-row .bar-name{font-family:var(--sans);font-size:14.5px;color:var(--cream);font-weight:500;}
-.bar-row .bar-val{font-family:var(--mono);font-size:14px;color:var(--gold);}
-.bar-track{height:26px;background:rgba(242,235,218,0.05);border-radius:4px;overflow:hidden;position:relative;}
-.bar-fill{height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--gold-dim),var(--gold-bright));position:relative;}
-.bar-fill.agcc{background:linear-gradient(90deg,#7a3a35,var(--alert-bright));}
-.bar-caption{font-family:var(--mono);font-size:12px;color:var(--cream-dim);margin-top:16px;line-height:1.7;}
+/* ---------- scoring ---------- */
+.score-hero{display:flex;flex-wrap:wrap;gap:34px;align-items:center;margin-bottom:12px}
+.gauge{position:relative;width:190px;height:190px;flex-shrink:0}
+.gauge svg{transform:rotate(-90deg)}
+.gauge .gnum{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge .gnum b{font-family:var(--serif);font-size:44px;font-weight:900;color:var(--gold-bright);line-height:1}
+.gauge .gnum span{font-size:12px;color:var(--muted);letter-spacing:.14em;margin-top:4px}
+.score-bars{flex:1;min-width:280px}
+.score-row{margin-bottom:14px}
+.score-row .sr-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px}
+.score-row .sr-top b{color:var(--cream);font-weight:400}
+.score-row .sr-top span{color:var(--gold);font-weight:500}
+.bar{height:7px;border-radius:6px;background:rgba(255,255,255,.06);overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:6px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-bright))}
 
-/* ============ RISK MATRIX ============ */
-.matrix{display:grid;gap:14px;margin-top:12px;}
-.risk-flags{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px;}
-.flag{
-  display:flex;gap:16px;align-items:flex-start;padding:18px 20px;
-  background:linear-gradient(160deg,rgba(199,83,75,0.08),rgba(10,22,40,0.4));
-  border:1px solid rgba(199,83,75,0.22);border-radius:8px;
-}
-.flag .fn{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--alert-bright);line-height:1;min-width:34px;}
-.flag p{font-size:14px;color:var(--cream);line-height:1.7;}
-.matrix-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:8px;margin-top:24px;}
-.matrix-grid .mh{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);padding:10px;text-align:center;}
-.matrix-grid .mh.left{text-align:left;}
-.matrix-grid .mcell{padding:14px 12px;border-radius:6px;font-size:13px;text-align:center;font-family:var(--mono);color:#fff;font-weight:500;}
-.matrix-grid .mlabel{padding:14px 12px;background:rgba(15,30,53,0.7);border:1px solid var(--line-soft);border-radius:6px;font-size:13.5px;color:var(--cream);display:flex;align-items:center;}
-.sev-extreme{background:var(--sev-extreme);}
-.sev-high{background:var(--sev-high);}
-.sev-midhigh{background:var(--sev-midhigh);}
-.sev-mid{background:var(--sev-mid);color:var(--navy);}
-.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--cream-dim);}
-.legend span{display:inline-flex;align-items:center;gap:8px;}
-.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;}
+/* ---------- malaysia highlight ---------- */
+.opp-banner{border:1px solid rgba(74,157,127,.35);border-radius:18px;overflow:hidden;
+  background:linear-gradient(135deg,rgba(74,157,127,.1),var(--card));position:relative}
+.opp-banner .ob-head{padding:26px clamp(24px,4vw,40px);border-bottom:1px solid var(--line-soft);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.opp-banner .ob-head h3{margin:0;color:var(--green)}
+.ob-deadline{font-family:var(--serif);font-weight:700;font-size:14px;color:var(--cream);
+  border:1px solid rgba(74,157,127,.4);padding:8px 16px;border-radius:24px;background:rgba(74,157,127,.1)}
+.opp-banner .ob-body{padding:clamp(24px,4vw,40px)}
+.opp-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-bottom:22px}
+.opp-stat div b{font-family:var(--serif);font-size:28px;color:var(--green);font-weight:900;display:block}
+.opp-stat div small{font-size:12px;color:var(--muted)}
 
-/* checklist */
-.checklist{display:grid;gap:12px;margin-top:14px;}
-.check-item{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border:1px solid var(--line-soft);border-radius:8px;background:rgba(15,30,53,0.4);}
-.check-item .box{min-width:22px;height:22px;border:1.5px solid var(--alert-bright);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--alert-bright);font-family:var(--mono);font-size:13px;}
-.check-item .txt{font-size:14.5px;color:var(--cream);}
-.check-item .status{font-family:var(--mono);font-size:12px;color:var(--alert-bright);margin-top:4px;}
+/* ---------- risk matrix ---------- */
+.matrix-tag{font-size:12px}
+.recommend-box{border:2px solid var(--red-bright);border-radius:18px;padding:clamp(28px,4vw,44px);
+  background:linear-gradient(135deg,rgba(217,83,79,.12),var(--card));text-align:center;margin-top:10px;position:relative;overflow:hidden}
+.recommend-box::before{content:"PASS";position:absolute;font-family:var(--serif);font-weight:900;
+  font-size:clamp(140px,26vw,300px);color:rgba(255,107,102,.04);top:50%;left:50%;
+  transform:translate(-50%,-50%);pointer-events:none;letter-spacing:.1em}
+.recommend-box .rec-verdict{font-family:var(--serif);font-weight:900;font-size:clamp(40px,7vw,72px);
+  color:var(--red-bright);letter-spacing:.1em;position:relative}
+.recommend-box .rec-tag{font-size:13px;color:var(--gold);letter-spacing:.3em;text-transform:uppercase;position:relative}
+.recommend-box p{position:relative;max-width:64ch;margin:18px auto 0}
 
-/* alternatives */
-.alt-card{border-left:2px solid var(--gold);padding:20px 24px;background:rgba(15,30,53,0.5);border-radius:0 8px 8px 0;}
-.alt-card h4{font-family:var(--serif);font-size:17px;color:var(--gold);margin-bottom:8px;font-weight:600;}
-.alt-card p{font-size:14px;line-height:1.8;}
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:60px clamp(18px,5vw,40px) 46px;background:var(--navy-2)}
+.foot-inner{max-width:var(--maxw);margin:0 auto}
+.disclaimer{font-size:12.5px;color:var(--muted-2);border:1px solid var(--line-soft);
+  border-radius:12px;padding:20px 24px;background:var(--card);line-height:1.9}
+.foot-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:28px;
+  font-size:12px;color:var(--muted-2);align-items:center}
 
-/* pull quote */
-.pull{
-  font-family:var(--serif);font-size:clamp(22px,3.4vw,38px);line-height:1.5;color:var(--cream);
-  font-weight:600;max-width:900px;position:relative;padding-left:34px;border-left:3px solid var(--gold);
-}
-.pull .hl{color:var(--gold);}
-
-/* footer */
-footer{padding:70px clamp(18px,5vw,48px) 60px;border-top:1px solid var(--line);text-align:center;}
-footer .disc{max-width:760px;margin:0 auto 24px;font-size:12.5px;color:var(--cream-dim);line-height:1.9;font-family:var(--mono);}
-footer .fbrand{font-family:var(--serif);font-size:22px;color:var(--gold);letter-spacing:2px;margin-bottom:10px;}
-footer .meta{font-family:var(--mono);font-size:11px;color:var(--gold-dim);letter-spacing:2px;}
-
-/* misc */
-.split{display:grid;grid-template-columns:1.05fr 0.95fr;gap:48px;align-items:start;}
-.mt40{margin-top:40px;}.mt28{margin-top:28px;}.mt20{margin-top:20px;}
-.section-head{margin-bottom:44px;}
-
-/* ============ RESPONSIVE ============ */
-@media(max-width:920px){
-  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;
-    background:rgba(10,22,40,0.97);border-bottom:1px solid var(--line);padding:12px;gap:2px;}
-  .nav-links.open{display:flex;}
-  .nav-toggle{display:block;}
-  .g4{grid-template-columns:repeat(2,1fr);}
-  .g3{grid-template-columns:1fr;}
-  .g2{grid-template-columns:1fr;}
-  .split{grid-template-columns:1fr;gap:32px;}
-  .ticker{grid-template-columns:repeat(2,1fr);}
-  .ticker .cell:nth-child(2){border-right:none;}
-  .risk-flags{grid-template-columns:1fr;}
-  .matrix-grid{grid-template-columns:1.2fr repeat(3,1fr);font-size:11px;}
-}
-@media(max-width:540px){
-  .g4{grid-template-columns:1fr;}
-  .verdict-badge{padding:32px 34px;}
-  .hero-meta{gap:8px 16px;}
-}
-@media print{
-  body{background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-  .nav,.scroll-hint,.scroll-progress,.grid-overlay{display:none;}
-  .reveal{opacity:1 !important;transform:none !important;}
-  section{padding:30px 20px;page-break-inside:avoid;}
+/* ---------- responsive ---------- */
+@media(max-width:860px){
+  .navlinks{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;
+    background:rgba(10,22,40,.97);padding:14px;gap:2px;border-bottom:1px solid var(--line)}
+  .navlinks.open{display:flex}
+  .navlinks a{padding:11px 14px}
+  .menu-btn{display:block}
+  .two-col{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .flow-arrow{display:none}
+  .section-num{opacity:.6}
 }
 </style>
 </head>
 <body>
-<div class="grid-overlay"></div>
-<div class="scroll-progress" id="progress"></div>
+<div id="progress"></div>
 
-<!-- ============ NAV ============ -->
-<nav class="nav" id="nav">
+<nav id="nav">
   <div class="brand">
-    <span class="tick">AGCC</span>
-    <span class="sub">Investment Dossier</span>
+    <div class="mark">S</div>
+    <div class="txt">AGCC · AIDC<small>SEASEA INVESTMENT OS</small></div>
   </div>
-  <div class="nav-links" id="navlinks">
-    <a href="#hero" class="active">封面</a>
-    <a href="#summary">摘要</a>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <div class="navlinks" id="navlinks">
+    <a href="#hero" class="active">摘要</a>
+    <a href="#deal">交易架构</a>
     <a href="#company">公司</a>
-    <a href="#financials">财务</a>
+    <a href="#pipeline">全球管线</a>
     <a href="#industry">行业</a>
-    <a href="#competition">竞争</a>
+    <a href="#compete">竞争</a>
+    <a href="#valuation">估值</a>
     <a href="#risk">风险</a>
-    <a href="#recommendation">建议</a>
-    <a href="#appendix">附录</a>
+    <a href="#kill">Kill</a>
+    <a href="#malaysia">马来西亚</a>
+    <a href="#scoring">评分</a>
+    <a href="#diligence">尽调</a>
   </div>
-  <button class="nav-toggle" id="navtoggle" aria-label="menu">菜单 ≡</button>
 </nav>
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="hero">
-  <div class="wrap">
-    <span class="hero-classified"><span class="dot"></span>L4 FINANCIAL CONFIDENTIAL · 投资委员会专用</span>
-    <h1 id="heroTitle">AGCC<span class="ai">.US</span><br/>× AIDC 深度尽调</h1>
-    <div class="hero-sub">Agencia Comercial Spirits Ltd（NASDAQ: AGCC）与 AI 数据中心行业投资研究</div>
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="ticker-tag"><span class="dot"></span>NASDAQ: AGCC &nbsp;·&nbsp; L4 FINANCIAL CONFIDENTIAL &nbsp;·&nbsp; 2026 年 7 月</div>
+    <h1>AGCC.US 与 AIDC 行业<br><span class="hl">投资研究报告</span></h1>
+    <p class="hero-sub">Agencia Comercial Spirits Ltd（NASDAQ: AGCC）从台湾烈酒分销到 AI 数据中心基础设施的转型标的。本报告还原从「印尼 40MW 单点」到「200 亿美金基金 + NCP 购卡资质 + 2GW 全球储备 + Global Switch」的完整版图，并逐项拆解其可验证性缺口。</p>
     <div class="hero-meta">
-      <span>报告日期 <b>2026 年 7 月</b></span>
       <span>拟议规模 <b>USD 10M</b></span>
-      <span>数据截至 <b>2026-07-02</b></span>
-      <span>评级 <b>PASS</b></span>
+      <span>报告日期 <b>2026-07</b></span>
+      <span>分类 <b>Watchlist</b></span>
+      <span>用途 <b>投资委员会评审</b></span>
     </div>
-
-    <div class="ticker" id="ticker">
-      <div class="cell">
-        <div class="k">股价 / Last Price</div>
-        <div class="v"><span class="cur">$</span><span class="count" data-target="14.80" data-dec="2">0.00</span></div>
-        <div class="chg up" id="chgPrice">YTD +51.6%</div>
-      </div>
-      <div class="cell">
-        <div class="k">市值 / Market Cap</div>
-        <div class="v"><span class="cur">$</span><span class="count" data-target="375" data-dec="0">0</span><span style="font-size:.5em;color:var(--gold)">M</span></div>
-        <div class="chg neutral">约 3.75 亿美元</div>
-      </div>
-      <div class="cell">
-        <div class="k">52 周区间 / 52W Range</div>
-        <div class="v"><span style="font-size:.62em"><span class="cur">$</span>3.66 <span style="color:var(--cream-dim)">至</span> 25.73</span></div>
-        <div class="chg down">波动幅度 7 倍</div>
-      </div>
-      <div class="cell">
-        <div class="k">隐含市销率 / P/S</div>
-        <div class="v"><span class="count" data-target="62.5" data-dec="1">0.0</span><span style="font-size:.5em;color:var(--gold)">×</span></div>
-        <div class="chg down">烈酒业务口径</div>
+    <div class="verdict-strip reveal">
+      <div class="verdict-badge">PASS</div>
+      <div class="vtext">
+        <b>放弃 / 不予投资，列入 Watchlist 深度跟踪</b>
+        <span>宏大叙事与可落地证据之间的鸿沟，是本案例最大的风险来源。除非出现带定金锚定合同、可验证基金到账与 NCP 官方文件，否则不建议配置。</span>
       </div>
     </div>
-  </div>
-  <div class="scroll-hint"><span>SCROLL</span><span class="bar"></span></div>
-</section>
-
-<hr class="sec-divider"/>
-
-<!-- ============ VERDICT ============ -->
-<section id="verdict">
-  <div class="wrap verdict-wrap">
-    <span class="eyebrow reveal">投资建议 · Investment Verdict</span>
-    <div class="verdict-badge reveal" id="verdictBadge">
-      <div class="rating">PASS</div>
-      <div class="cn">不建议投资</div>
-      <div class="scale">BUY / HOLD / PASS 三档评级</div>
-    </div>
-    <p class="verdict-note reveal">
-      对于 <strong>1,000 万美元</strong>的机构投资决策，AGCC 在当前形态下不满足风险回报门槛。
-      估值与基本面严重脱钩，转型执行风险极高且不可验证，治理结构对少数股东高度不利，稀释风险实质性存在，行业地位处于绝对劣势（<span class="gold">40MW 对阵 1.2GW 级玩家</span>）。
-    </p>
+    <div class="scroll-cue"><span class="line"></span>向下滚动，逐章展开</div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ EXECUTIVE SUMMARY ============ -->
+<!-- ============ EXEC SUMMARY ============ -->
 <section id="summary">
+  <div class="section-num">01</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Executive Summary</span>
-      <h2 class="sec-title"><span class="num">01</span>一页纸摘要</h2>
-      <p class="lead">
-        AGCC 是一家 2025 年 3 月于开曼群岛注册、总部位于台湾台中的公司，2025 年 10 月以每股 4.00 美元登陆纳斯达克。
-        公司原主业为台湾烈酒分销，2026 年第一季度宣布战略转向 AI 数据中心基础设施，并在印尼推进目标 40MW 的项目。
-      </p>
+    <div class="eyebrow reveal">封面与摘要 · Executive Summary</div>
+    <h2 class="sec-title reveal">一页纸判断：高叙事，低落地</h2>
+    <p class="lead reveal">AGCC 是一家 2025 年 3 月于开曼群岛注册、总部位于台湾台中的公司，2025 年 10 月 22 日以每股 4.00 美元登陆纳斯达克，IPO 募资约 700 万美元。公司原主业为台湾烈酒分销，2026 年第一季度宣布战略转向 AI 数据中心（AIDC）基础设施。</p>
+
+    <div class="stat-grid reveal" id="statGrid">
+      <div class="stat-card"><div class="stat-num" data-count="14.80" data-dec="2">0<span class="unit">美元</span></div><div class="stat-label">股价（2026-07-02）</div><div class="stat-note">52 周区间 3.66 至 25.73</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="3.75" data-dec="2">0<span class="unit">亿美元</span></div><div class="stat-label">市值</div><div class="stat-note">YTD +51.6%</div></div>
+      <div class="stat-card warn"><div class="stat-num" data-count="62.5" data-dec="1">0<span class="unit">倍</span></div><div class="stat-label">隐含 P/S（烈酒业务）</div><div class="stat-note">行业合理区间 0.5 至 2 倍</div></div>
+      <div class="stat-card warn"><div class="stat-num" data-count="53" data-dec="0">0<span class="unit">万美元</span></div><div class="stat-label">日成交量</div><div class="stat-note">对应「200 亿美金基金」叙事</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="621" data-dec="0">0<span class="unit">万美元</span></div><div class="stat-label">2025 营收（同比 +145%）</div><div class="stat-note">净利润 60.9 万（同比 -22%）</div></div>
+      <div class="stat-card warn"><div class="stat-num" data-count="99" data-dec="0">0<span class="unit">%</span></div><div class="stat-label">创始人投票控制权</div><div class="stat-note">双重股权，Class B 每股 10 票</div></div>
     </div>
 
-    <div class="pull reveal">
-      这是一个典型的<span class="hl">故事驱动型微型股转型标的</span>。以约 620 万美元烈酒营收，支撑约 3.75 亿美元市值，隐含约 62.5 倍市销率。
-    </div>
-
-    <div class="grid g4 mt40">
-      <div class="stat reveal">
-        <div class="label">2025 营收</div>
-        <div class="figure"><span class="count" data-target="621" data-dec="0">0</span><span class="u">万美元</span></div>
-        <div class="desc"><span class="pos">同比 +145%</span> · 增长以牺牲盈利为代价</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">2025 净利润</div>
-        <div class="figure"><span class="count" data-target="60.9" data-dec="1">0</span><span class="u">万美元</span></div>
-        <div class="desc"><span class="neg">同比 -22%</span> · 净利率降至约 9.8%</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">后续增发注册</div>
-        <div class="figure"><span class="count" data-target="240" data-dec="0">0</span><span class="u">百万美元</span></div>
-        <div class="desc"><span class="neg">重大稀释级别</span> · 相对当前市值</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">创始人投票控制</div>
-        <div class="figure"><span class="count" data-target="99" data-dec="0">0</span><span class="u">%</span></div>
-        <div class="desc"><span class="neg">双重股权结构</span> · 少数股东无话语权</div>
-      </div>
-    </div>
-
-    <div class="mt40 reveal">
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>关键指标</th><th>数值</th><th>说明</th></tr></thead>
-          <tbody>
-            <tr><td>股价（2026-07-02）</td><td class="mono">约 $14.80</td><td>YTD <span class="pos">+51.6%</span></td></tr>
-            <tr><td>市值</td><td class="mono">约 $375M</td><td>约 3.75 亿美元</td></tr>
-            <tr><td>52 周区间</td><td class="mono">$3.66 – $25.73</td><td>极端波动</td></tr>
-            <tr><td>隐含 P/S（烈酒业务）</td><td class="mono">约 62.5×</td><td>行业合理区间 0.5–2×</td></tr>
-            <tr><td>分析师覆盖</td><td class="mono">无</td><td>零卖方覆盖</td></tr>
-            <tr><td>AIDC 业务营收</td><td class="mono">$0</td><td>零营收 · 无运营数据中心</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="card reveal" style="margin-top:26px">
+      <h4>核心判断</h4>
+      <p>这是一个典型的「高叙事、低落地」微型股转型标的。公司以约 620 万美元营收的烈酒业务，支撑约 3.75 亿美元市值，隐含约 <strong>62.5 倍市销率</strong>。而其宣称的 200 亿美金基金、2GW 储备、NCP 购卡资质与英伟达 / SEC / 美国商务部三方合并批准，目前几乎全部依赖项目方口头陈述，缺乏第三方文件佐证。关键矛盾在于：一支声称 200 亿美金规模的基金，对应标的日成交量仅约 53 万美元，市场认可与叙事规模严重背离。所谓「已签订单」（1.2 亿 + 3.7 亿美元）均为意向协议，无定金支付，客户名单（字节 / 腾讯 / 阿里 / 快手）未经验证。</p>
+      <p style="margin-bottom:0">值得单独标注：<strong>马来西亚雪兰莪州 1.3GW 用电指标地块</strong>信息具体、可操作、时间明确（7/13 截止），合作方在马有 30 余年电力基建经验，可能是本次接触中最值得跟进的实际机会，建议作为独立于 AGCC 股权投资的单独议题评估。</p>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ COMPANY ============ -->
+<!-- ============ DEAL ARCHITECTURE ============ -->
+<section id="deal">
+  <div class="section-num">03</div>
+  <div class="wrap">
+    <div class="eyebrow reveal">项目架构与融资结构 · Deal Architecture</div>
+    <h2 class="sec-title reveal">SPV · NCP · F1：三层资本架构</h2>
+    <p class="lead reveal">本章基于 2026-07-04 会议纪要整理，内容为项目方陈述，属尽调待核验项，非既成事实。</p>
+
+    <div class="flow reveal">
+      <div class="flow-node">
+        <div class="fn-icon">🏦</div>
+        <h5>SPV + 200 亿美金基金</h5>
+        <p>持有 NCP 资质，承接声称规模 200 亿美金的基础设施基金，向英伟达批量购卡</p>
+        <div class="flow-arrow" style="right:-18px">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="fn-icon">🖥️</div>
+        <h5>运营主体（并表）</h5>
+        <p>租赁 SPV 采购的算力卡，作为运营主体实现业务并表，做大上市公司估值</p>
+        <div class="flow-arrow" style="right:-18px">→</div>
+      </div>
+      <div class="flow-node">
+        <div class="fn-icon">🌍</div>
+        <h5>Global Switch 海外支柱</h5>
+        <p>2016 年收购，欧洲与亚太最大传统 IDC 之一，承接欧洲与中东业务</p>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>3.1 SPV 结构与 NCP 购卡资质</h4>
+        <p>主体公司 AGCC 通过 SPV 持有一支声称规模达 200 亿美金的基础设施基金，用于向英伟达批量购买算力卡，再租赁给运营主体以实现并表。SPV 作为具备 <strong>NCP（NVIDIA Cloud Partner）</strong>资质的实体负责下单购卡，项目方将其定位为核心壁垒。</p>
+        <p style="margin-bottom:0"><span class="pill hi">尽调红线</span> NCP 资质须以英伟达官方文件核实；200 亿美金基金须核实资金来源与到账证明。二者目前均无第三方佐证。</p>
+      </div>
+      <div class="card">
+        <h4>3.2 合并计划与监管合规</h4>
+        <p>为满足美国政府对持股结构的要求，初期将购卡主体（SPV）与运营主体分离。项目方称 SEC、英伟达与美国商务部已同意合并，预计 <strong>10 月完成整合</strong>，届时不再使用现有 SPV 结构。初始结构中设立固定收益基金（年化 5~6%）。</p>
+        <p style="margin-bottom:0"><span class="pill hi">尽调红线</span> 须核实三方批准文件。若 F1 生效被延迟或批准无法证实，构成退出触发条件。</p>
+      </div>
+      <div class="card">
+        <h4>3.3 F1 发行细节</h4>
+        <p>发行总量 <strong>2,000 万股</strong>，定价 10 美元/股，募集资金 <strong>2 亿美元</strong>。云峰基金（Yunfeng Fund）领投 1,000 万股（1 亿美元），剩余 1,000 万股原定由中国背景投资人承接。</p>
+        <p style="margin-bottom:0">待办：项目方需尽快完成 F1 投资人认购协议签署并提交 SEC 申请官方生效。</p>
+      </div>
+      <div class="card">
+        <h4>3.4 双飞合规限制</h4>
+        <p>公司合并后，中国籍股东或中国注册公司持股比例不得超过 <strong>5%</strong>（最多 213 万股）。应对方式为将现有中国资金拆分为多个非关联方投资，或设立海外主体规避限制。</p>
+        <p style="margin-bottom:0"><span class="pill mid">风险判断</span> 即便架构绕行，仍面临资金来源穿透审查，拆分安排本身可能被认定为规避行为，合规不确定性高。</p>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <h4>3.5 资本架构与多平台战略</h4>
+      <ul style="margin-bottom:0">
+        <li>整体战略三部分：上市平台用于整合与融资；基础设施基金支撑大规模资本支出；海外运营主体 Global Switch 承接欧洲与中东业务。</li>
+        <li>AGCC 采用 AB 股结构，B 股掌握投票权，确保控制权稳定。</li>
+        <li>国内原有项目将与中国移动混改组建新公司在国内上市，实现境内外双线发展。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ COMPANY ANALYSIS ============ -->
 <section id="company">
+  <div class="section-num">04</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Company Analysis</span>
-      <h2 class="sec-title"><span class="num">02</span>公司概览与转型叙事</h2>
-      <p class="lead">
-        公司当前市值溢价几乎完全来自转型叙事。电力协议与意向书是投入端与意向端的信号，而非需求端与收入端的确认。
-      </p>
+    <div class="eyebrow reveal">公司分析 · Company Analysis</div>
+    <h2 class="sec-title reveal">从烈酒到算力：转型叙事拆解</h2>
+    <p class="lead reveal">公司当前的市值溢价几乎完全来自转型叙事。关键问题在于：电力协议、购卡资质与意向书是「投入端」与「意向端」的信号，而非「需求端」与「收入端」的确认。</p>
+
+    <h3 class="reveal">4.3 财务表现分析</h3>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>指标</th><th>2024</th><th>2025</th><th>同比 / 观察</th></tr></thead>
+        <tbody>
+          <tr><td>营收（Revenue）</td><td>254 万美元</td><td><strong>621 万美元</strong></td><td><span class="pill lo">+145%</span></td></tr>
+          <tr><td>净利润（Net Income）</td><td>78.1 万美元</td><td>60.9 万美元</td><td><span class="pill hi">-22%</span></td></tr>
+          <tr><td>净利率</td><td>约 30.7%</td><td>约 9.8%</td><td><span class="pill hi">大幅压缩</span></td></tr>
+          <tr><td>每股收益（EPS）</td><td>0.062 美元</td><td>0.038 美元</td><td><span class="pill hi">下滑</span></td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="reveal">营收高增长但盈利倒退：2025 年营收同比 +145%，净利润却同比 -22%，净利率从约 30.7% 压缩至约 9.8%，增长以牺牲盈利质量为代价。<strong>621 万美元营收无法支撑任何数据中心级别的资本开支</strong>，更遑论 2GW 储备所需的数十亿至上百亿美元级别投入，公司完全依赖外部融资与尚未证实的 200 亿美金基金。</p>
 
-    <div class="split">
-      <div class="reveal">
-        <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:18px;font-weight:600;">转型叙事拆解</h3>
-        <div class="grid" style="gap:16px;">
-          <div class="card">
-            <div class="idx">01 / 印尼项目</div>
-            <h3>PT. AGCC AITECH INDONESIA</h3>
-            <p>与印尼国家电力公司 PLN 签署电力协议，双回路供电（每路 55,400 kVA，5 年期），接入费用约 430 万美元，目标建设 40MW AI 数据中心。目前无锚定客户、无收入管线。</p>
-          </div>
-          <div class="card">
-            <div class="idx">02 / 台湾意向书</div>
-            <h3>非约束性 LOI</h3>
-            <p>一份非约束性 LOI，对应约 1.2 亿美元的 AI 机会。将非约束性 LOI 作为机会呈现，是本案例最需警惕的叙事包装。</p>
-          </div>
-          <div class="card">
-            <div class="idx">03 / 资本运作</div>
-            <h3>2.4 亿美元增发注册</h3>
-            <p>2026 年 6 月提交后续增发注册，为项目提供潜在资金来源，同时对现有股东构成重大稀释风险。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:18px;font-weight:600;">公司演进时间线</h3>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="node"></div>
-            <div class="date">2025 · 03</div>
-            <h4>开曼群岛注册成立</h4>
-            <p>总部位于台湾台中，原始主业为区域性烈酒分销。</p>
-          </div>
-          <div class="tl-item">
-            <div class="node"></div>
-            <div class="date">2025 · 10 · 22</div>
-            <h4>纳斯达克挂牌 $4.00</h4>
-            <p>IPO 募资约 700 万美元，属小额微型股上市。</p>
-          </div>
-          <div class="tl-item alert">
-            <div class="node"></div>
-            <div class="date">2026 · Q1</div>
-            <h4>宣布战略转向 AIDC</h4>
-            <p>核心抓手为印尼子公司，围绕目标 40MW 数据中心展开。</p>
-          </div>
-          <div class="tl-item">
-            <div class="node"></div>
-            <div class="date">2026 · 05–06</div>
-            <h4>新任董事长 Li Qiang</h4>
-            <p>20 年以上数据中心经验，唯一具相关背景者，任职时间短，需观察实权。</p>
-          </div>
-          <div class="tl-item alert">
-            <div class="node"></div>
-            <div class="date">2026 · 06</div>
-            <h4>提交 2.4 亿美元增发注册</h4>
-            <p>相对当前 3.75 亿美元市值，属重大稀释级别。</p>
-          </div>
-          <div class="tl-item alert">
-            <div class="node"></div>
-            <div class="date">2026 · 07 · 02</div>
-            <h4>股价约 $14.80，市值约 $375M</h4>
-            <p>YTD +51.6%，无分析师覆盖，估值完全依赖转型叙事。</p>
-          </div>
-        </div>
-      </div>
+    <h3 class="reveal">4.4 管理层评估</h3>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>姓名</th><th>职务</th><th>背景</th><th>评估</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tsai Yi Yang</strong>（蔡姓创始人）</td><td>创始人 / CEO</td><td>烈酒行业背景，无数据中心经验</td><td>核心新业务能力缺失</td></tr>
+          <tr><td><strong>Li Qiang</strong>（李强）</td><td>新任董事长（2026 年 5/6 月）</td><td>声称 20 年以上数据中心经验</td><td>唯一具相关经验者，履历待背调</td></tr>
+          <tr><td>Shi Hao Liu</td><td>CFO</td><td>财务负责人</td><td>信息有限</td></tr>
+          <tr><td>Tian Yiding</td><td>新任独立董事</td><td>年龄 31 岁</td><td>资历较浅，独立性存疑</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="reveal"><strong>关键人物背调（尤其是李强）若发现重大不实陈述，应立即 PASS。</strong>在控股股东掌握 99% 投票权的结构下，新独立董事的独立监督作用有限。</p>
 
-    <div class="grid g3 mt40">
-      <div class="card reveal">
-        <div class="idx">管理层评估</div>
-        <h3>核心能力缺失</h3>
-        <p>CEO Tsai Yi Yang 具烈酒背景、无数据中心经验；CFO 信息有限；新独立董事年仅 31 岁，在 99% 投票控制结构下监督作用有限。</p>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>4.5 公司治理审查</h4>
+        <p>通过 Ping Shiang Business Ltd（BVI）持有的 Class B 股份控制公司，每股 10 票。Tsai Yi Yang（82%）与其母亲 Lee Li Mei（18%）合计约 <strong>99% 投票控制权</strong>。少数股东在重大交易、增发、关联交易、董事任免上实际无法施加影响。审计机构信息不明，内部控制被标记为风险项。</p>
       </div>
-      <div class="card reveal">
-        <div class="idx">公司治理</div>
-        <h3>99% 投票集中</h3>
-        <p>通过 Ping Shiang Business Ltd（BVI）持有 Class B（每股 10 票）。创始人 82% + 其母亲 18% 合计约 99% 投票控制，少数股东无制衡。</p>
-      </div>
-      <div class="card reveal">
-        <div class="idx">估值分析</div>
-        <h3>估值失锚</h3>
-        <p>市值 3.75 亿 ÷ 营收 621 万 = 约 62.5× P/S。消费品分销合理区间 0.5–2×，属极端偏离，无任何可比框架支撑。</p>
+      <div class="card">
+        <h4>4.6 估值分析</h4>
+        <p>市值约 3.75 亿美元 / 2025 营收 621 万美元 = 约 <strong>62.5 倍 P/S</strong>。消费品分销行业合理 P/S 通常在 0.5 至 2 倍，62.5 倍属极端偏离。AIDC 业务处于零营收阶段，无法支撑当前市值。当前估值无任何可比框架能合理解释，完全依赖市场对转型叙事的投机性定价。</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ FINANCIALS ============ -->
-<section id="financials">
+<!-- ============ PIPELINE ============ -->
+<section id="pipeline">
+  <div class="section-num">05</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Financial Snapshot</span>
-      <h2 class="sec-title"><span class="num">03</span>财务表现分析</h2>
-      <p class="lead">
-        营收高增长但盈利倒退：2025 年营收同比增长 145%，净利润却下降 22%，净利率从约 30.7% 大幅压缩至约 9.8%。绝对规模微小，无法支撑数据中心级别资本开支。
-      </p>
+    <div class="eyebrow reveal">全球项目管线与资产 · 2GW Pipeline</div>
+    <h2 class="sec-title reveal">在手储备接近 2GW，横跨六国</h2>
+    <p class="lead reveal">本章属项目方陈述，须逐项核验。相较公开可见的「印尼 40MW」单点，此为项目方描述的完整版图。除印尼 40MW 与 PLN 协议有公开痕迹外，其余均为口头陈述。</p>
+
+    <div class="stat-grid reveal" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <div class="stat-card"><div class="stat-num" data-count="2" data-dec="0">0<span class="unit">GW</span></div><div class="stat-label">声称在手储备</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="500" data-dec="0">0<span class="unit">MW</span></div><div class="stat-label">北海道旗舰（GB300）</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="40" data-dec="0">0<span class="unit">MW</span></div><div class="stat-label">印尼目标（已公开）</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="6" data-dec="0">0<span class="unit">国</span></div><div class="stat-label">项目分布地区</div></div>
     </div>
 
-    <div class="grid g2 mt20">
-      <div class="reveal">
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>指标</th><th>2024</th><th>2025</th><th>同比</th></tr></thead>
-            <tbody>
-              <tr><td>营收 Revenue</td><td class="mono">$2.54M</td><td class="mono">$6.21M</td><td><span class="pos">+145%</span></td></tr>
-              <tr><td>净利润 Net Income</td><td class="mono">$0.78M</td><td class="mono">$0.61M</td><td><span class="neg">-22%</span></td></tr>
-              <tr><td>净利率 Margin</td><td class="mono">约 30.7%</td><td class="mono">约 9.8%</td><td><span class="neg">大幅压缩</span></td></tr>
-              <tr><td>每股收益 EPS</td><td class="mono">$0.062</td><td class="mono">$0.038</td><td><span class="neg">下滑</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt20" style="font-size:14px;">
-          621 万美元营收无法支撑任何数据中心级别的资本开支。40MW 数据中心的建设成本通常以亿美元计，公司自有现金流对项目几乎无贡献，完全依赖外部融资。
-        </p>
-      </div>
-
-      <div class="reveal">
-        <h3 style="font-family:var(--serif);font-size:20px;color:var(--cream);margin-bottom:8px;font-weight:600;">营收 vs 净利率背离</h3>
-        <p style="font-size:13.5px;margin-bottom:20px;">营收翻倍增长的同时，盈利质量显著恶化。</p>
-        <div class="bars">
-          <div class="bar-row" data-pct="41">
-            <div class="bar-head"><span class="bar-name">2024 营收</span><span class="bar-val">$2.54M</span></div>
-            <div class="bar-track"><div class="bar-fill" data-w="41"></div></div>
-          </div>
-          <div class="bar-row" data-pct="100">
-            <div class="bar-head"><span class="bar-name">2025 营收</span><span class="bar-val">$6.21M</span></div>
-            <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
-          </div>
-          <div class="bar-row" data-pct="100">
-            <div class="bar-head"><span class="bar-name">2024 净利率</span><span class="bar-val">30.7%</span></div>
-            <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
-          </div>
-          <div class="bar-row" data-pct="32">
-            <div class="bar-head"><span class="bar-name">2025 净利率</span><span class="bar-val">9.8%</span></div>
-            <div class="bar-track"><div class="bar-fill agcc" data-w="32"></div></div>
-          </div>
-        </div>
-        <div class="bar-caption">营收条按相对最大值缩放；净利率条按 2024 基准缩放。增长以牺牲盈利质量为代价。</div>
-      </div>
+    <h3 class="reveal">5.1 全球项目分布</h3>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>地区</th><th>项目详情</th><th>状态 / 备注</th></tr></thead>
+        <tbody>
+          <tr><td><strong>日本北海道</strong></td><td>单体最大项目，电力容量 500MW，全部采用英伟达 GB300 芯片</td><td><span class="pill info">旗舰 · 口头陈述</span></td></tr>
+          <tr><td>泰国</td><td>项目正被杭州大厂关注，可能整合</td><td><span class="pill mid">早期</span></td></tr>
+          <tr><td>马来西亚（巴生县）</td><td>数据中心在建</td><td><span class="pill info">口头陈述</span></td></tr>
+          <tr><td>马来西亚（冷月县）</td><td>数据中心在建</td><td><span class="pill info">口头陈述</span></td></tr>
+          <tr><td>中国 北京/上海/深圳</td><td>原有传统 IDC 项目已拨入 AGCC 体系</td><td><span class="pill mid">存量整合</span></td></tr>
+          <tr><td><strong>美国圣何塞</strong></td><td>整租给英伟达作为其先进算力展示中心</td><td><span class="pill lo">若属实为强背书</span></td></tr>
+          <tr><td>印尼</td><td>目标 40MW，PT. AGCC AITECH INDONESIA，与 PLN 签双回路供电协议</td><td><span class="pill lo">公开披露</span></td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="grid g3 mt40">
-      <div class="stat reveal">
-        <div class="label">公允市值（烈酒口径）</div>
-        <div class="figure">$6–12<span class="u">M</span></div>
-        <div class="desc">若按 1–2× P/S 计，仅为当前价格的极小部分</div>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>5.3 Global Switch 资产</h4>
+        <p>2016 年收购，欧洲与亚太地区最大的传统数据中心运营商之一。评级 DDD+，具备独立发债能力，项目方称可发行十年期欧元债（接近零利率）。<strong>若归属与并表关系属实，是本案例中相对最「实」的资产项</strong>，具备独立现金流与融资能力，也是尽调中最应优先厘清的资产。</p>
       </div>
-      <div class="stat reveal">
-        <div class="label">当前市值</div>
-        <div class="figure">$375<span class="u">M</span></div>
-        <div class="desc"><span class="neg">安全边际为负</span> · 完全依赖叙事定价</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">下行空间（Bear）</div>
-        <div class="figure">-70~90<span class="u">%</span></div>
-        <div class="desc"><span class="neg">若叙事证伪</span> · 向烈酒真实价值回归</div>
+      <div class="card">
+        <h4>5.4 Token 销售与模式拓展</h4>
+        <p>除传统算力租赁外，项目方正探索向 AI 初创公司直接出售 token（如与「质朴」创始人唐杰合作）。项目方主张卖 token 收益更高，底层仍依赖自有卡池。<span class="pill mid">风险</span> 须警惕其真实动因是提升收益，还是绕开对硬件出口/部署的监管约束。</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
 <!-- ============ INDUSTRY ============ -->
 <section id="industry">
+  <div class="section-num">06</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Industry Landscape</span>
-      <h2 class="sec-title"><span class="num">04</span>AIDC 行业分析</h2>
-      <p class="lead">
-        行业总量高速增长且资金充沛，长期需求确定性较高。但这一红利主要由具备资本、电力与客户资源的头部玩家获取，微型新进入者难以分享。
-      </p>
+    <div class="eyebrow reveal">行业分析 · AIDC Industry</div>
+    <h2 class="sec-title reveal">红利真实，但集中于头部</h2>
+    <p class="lead reveal">AI 数据中心指专为 AI 训练与推理设计的高密度、高功率基础设施。行业总量高速增长且资金充沛，但红利主要由具备资本、电力与客户资源的头部玩家获取，微型新进入者难以分享。</p>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card"><div class="stat-num" data-count="7250" data-dec="0">0<span class="unit">亿</span></div><div class="stat-label">2026 超大规模厂商资本开支</div><div class="stat-note">微软 1900 / 亚马逊 2000 / 谷歌 1750+</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="7.6" data-dec="1">0<span class="unit">万亿</span></div><div class="stat-label">2026-2031 累计资本开支</div><div class="stat-note">单位：美元</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="103" data-dec="0">0<span class="unit">GW</span></div><div class="stat-label">2025 全球容量</div><div class="stat-note">2030 预计约 200 GW</div></div>
+      <div class="stat-card"><div class="stat-num" data-count="80" data-dec="0">0<span class="unit">%</span></div><div class="stat-label">NVIDIA GPU 市场份额</div><div class="stat-note">超大规模云控制约 70% 容量</div></div>
     </div>
 
-    <div class="grid g4 mt20">
-      <div class="stat reveal">
-        <div class="label">全球市场（2025）</div>
-        <div class="figure"><span class="count" data-target="1470" data-dec="0">0</span><span class="u">亿美元起</span></div>
-        <div class="desc">区间 1,470–3,440 亿，CAGR 18–25%</div>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>6.4 价值链与供给动态</h4>
+        <p><strong>供给瓶颈转移</strong>：2024 年主要约束是 GPU 稀缺，2026 年电力已成为第一约束条件。这也解释了马来西亚 1.3GW 用电指标为何具备独立价值。</p>
+        <p style="margin-bottom:0"><strong>过度建设风险</strong>：全球已公布约 190 GW 规划容量，但实际运营不足 5 GW，AGCC 的 2GW 储备正处于「规划」一端。劳动力约需 49.9 万名工人，薪资通胀 15% 至 25%。</p>
       </div>
-      <div class="stat reveal">
-        <div class="label">全球容量（2025）</div>
-        <div class="figure"><span class="count" data-target="103" data-dec="0">0</span><span class="u">GW</span></div>
-        <div class="desc">预计 2030 年增至约 200 GW</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">超大厂资本开支（2026）</div>
-        <div class="figure"><span class="count" data-target="7250" data-dec="0">0</span><span class="u">亿美元</span></div>
-        <div class="desc">微软/亚马逊/Alphabet/Meta 合计</div>
-      </div>
-      <div class="stat reveal">
-        <div class="label">五年累计（2026-31）</div>
-        <div class="figure"><span class="count" data-target="7.6" data-dec="1">0</span><span class="u">万亿美元</span></div>
-        <div class="desc">推理占比升至 60–70%</div>
-      </div>
-    </div>
-
-    <div class="split mt40">
-      <div class="reveal">
-        <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:16px;font-weight:600;">竞争格局与供给动态</h3>
-        <div class="grid" style="gap:14px;">
-          <div class="card">
-            <div class="idx">集中度</div>
-            <h3>头部高度垄断</h3>
-            <p>超大规模云厂商控制约 70% 容量，NVIDIA 占据约 80% GPU 市场。新进入者若无差异化电力、锚定客户或资本优势，几乎无立足空间。</p>
-          </div>
-          <div class="card">
-            <div class="idx">供给瓶颈</div>
-            <h3>电力成为第一约束</h3>
-            <p>2024 年约束为 GPU 稀缺，2026 年电力已成第一约束。全球已公布约 190 GW 规划，实际运营不足 5 GW，隐含过度建设风险。</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:16px;font-weight:600;">印尼市场聚焦</h3>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>指标</th><th>数值</th></tr></thead>
-            <tbody>
-              <tr><td>市场规模（2026 / 2031）</td><td class="mono">$18.3亿 → $34.8亿</td></tr>
-              <tr><td>CAGR</td><td class="mono">13.71%</td></tr>
-              <tr><td>AI 容量（2025 / 2028）</td><td class="mono">300MW → 743MW</td></tr>
-              <tr><td>主要竞争者</td><td class="mono">BDx · Digital Edge · NTT · Equinix</td></tr>
-              <tr><td>电力条件</td><td class="mono">PLN 可获取，非独家</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="mt20" style="font-size:14px;">
-          印尼市场增长可观，但竞争已然激烈。头部玩家规划容量以 GW 计，AGCC 的 40MW 目标占比极小。电力的非独家性意味着 AGCC 与 PLN 的协议不构成排他性优势。
-        </p>
+      <div class="card">
+        <h4>6.5 地域趋势（印尼聚焦）</h4>
+        <p>2026 年市场约 18.3 亿美元，CAGR 13.71%，预计 2031 年达 34.8 亿美元。AI 容量 2025 至 2028 年从 300 MW 增至 743 MW（+268%）。</p>
+        <p style="margin-bottom:0">竞争者：BDx（1.2 GW）、Digital Edge（1.45 GW）、超大规模云厂商、NTT、Equinix。PLN 电力可获取，但并非任何单一运营商的独家资源。</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ COMPETITION ============ -->
-<section id="competition">
+<!-- ============ COMPETITIVE ============ -->
+<section id="compete">
+  <div class="section-num">07</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Competitive Positioning</span>
-      <h2 class="sec-title"><span class="num">05</span>竞争格局与定位</h2>
-      <p class="lead">
-        在一个以电力、资本、客户、规模为核心壁垒的行业中，AGCC 在四个维度上均处于劣势，其竞争定位不成立。
-      </p>
+    <div class="eyebrow reveal">竞争格局与定位 · Competitive Positioning</div>
+    <h2 class="sec-title reveal">护城河，是尽调问题而非估值问题</h2>
+    <p class="lead reveal">竞争定位的强弱完全取决于叙事的可验证性。在核心资源未证实前，应以「可观测的印尼单点 + 极低流动性」为定价基准，而非以「未证实的 2GW 全球版图」为基准。</p>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>维度</th><th>AGCC（已验证）</th><th>AGCC（项目方陈述）</th><th>BDx</th><th>Digital Edge</th></tr></thead>
+        <tbody>
+          <tr><td>运营容量</td><td>约 40 MW（目标，未运营）</td><td>接近 2 GW（储备）</td><td>1.2 GW</td><td>1.45 GW</td></tr>
+          <tr><td>运营资产</td><td>无</td><td>Global Switch（待核验）</td><td>有</td><td>有</td></tr>
+          <tr><td>客户合同</td><td>无（仅意向，无定金）</td><td>字节/腾讯/阿里/快手（口头）</td><td>有</td><td>有</td></tr>
+          <tr><td>资本实力</td><td>微型股，依赖增发</td><td>200 亿美金基金（未证实）</td><td>强</td><td>强</td></tr>
+          <tr><td>购卡能力</td><td>未证实</td><td>NCP 资质（待核验）</td><td>成熟</td><td>成熟</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="reveal">
-      <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:6px;font-weight:600;">规划容量对比（对数量级差距）</h3>
-      <p style="font-size:13.5px;margin-bottom:20px;">AGCC 40MW 相当于 BDx（1.2GW）的约 1/30，Digital Edge（1.45GW）的约 1/36。</p>
-      <div class="bars">
-        <div class="bar-row" data-pct="100">
-          <div class="bar-head"><span class="bar-name">Digital Edge</span><span class="bar-val">1,450 MW</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="100"></div></div>
-        </div>
-        <div class="bar-row" data-pct="83">
-          <div class="bar-head"><span class="bar-name">BDx</span><span class="bar-val">1,200 MW</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="83"></div></div>
-        </div>
-        <div class="bar-row" data-pct="51">
-          <div class="bar-head"><span class="bar-name">印尼 AI 容量（2028E）</span><span class="bar-val">743 MW</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="51"></div></div>
-        </div>
-        <div class="bar-row" data-pct="2.8">
-          <div class="bar-head"><span class="bar-name">AGCC（目标）</span><span class="bar-val">40 MW</span></div>
-          <div class="bar-track"><div class="bar-fill agcc" data-w="2.8"></div></div>
-        </div>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>潜在护城河（若证实）</h4>
+        <p style="margin-bottom:0"><strong>NCP 购卡资质</strong>与 <strong>Global Switch 资产</strong>，二者若为真，确构成同行难以快速复制的稀缺资源。</p>
       </div>
-      <div class="bar-caption">即便印尼 AI 容量按 2028 年 743MW 计算，AGCC 满产也仅占约 5%，且此为乐观满产假设。</div>
-    </div>
-
-    <div class="mt40 reveal">
-      <div class="tbl-wrap">
-        <table>
-          <thead><tr><th>维度</th><th>AGCC</th><th>BDx</th><th>Digital Edge</th><th>超大规模厂商</th></tr></thead>
-          <tbody>
-            <tr><td>规划容量</td><td class="mono"><span class="neg">40 MW</span></td><td class="mono">1.2 GW</td><td class="mono">1.45 GW</td><td class="mono">数 GW 级</td></tr>
-            <tr><td>运营资产</td><td><span class="neg">无</span></td><td>有</td><td>有</td><td>有</td></tr>
-            <tr><td>客户合同</td><td><span class="neg">无</span></td><td>有</td><td>有</td><td>自用 + 外部</td></tr>
-            <tr><td>资本实力</td><td><span class="neg">微型股，依赖增发</span></td><td>强</td><td>强</td><td>极强</td></tr>
-            <tr><td>电力资源</td><td><span class="neg">PLN 非独家</span></td><td>多元</td><td>多元</td><td>自建 + 采购</td></tr>
-            <tr><td>运营经验</td><td><span class="neg">缺失</span></td><td>成熟</td><td>成熟</td><td>成熟</td></tr>
-          </tbody>
-        </table>
+      <div class="card" style="border-color:rgba(217,83,79,.24)">
+        <h4>当前可验证护城河：几乎为零</h4>
+        <ul style="margin-bottom:0">
+          <li>电力：PLN 协议非独家，可复制。</li>
+          <li>客户：无带定金锚定客户，无网络效应。</li>
+          <li>规模：已运营容量为零，与头部差距悬殊。</li>
+          <li>购卡资质：未见官方文件佐证。</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
+
+<!-- ============ VALUATION ============ -->
+<section id="valuation">
+  <div class="section-num">09</div>
+  <div class="wrap">
+    <div class="eyebrow reveal">财务模型与估值 · Financial Model</div>
+    <h2 class="sec-title reveal">安全边际为负</h2>
+    <p class="lead reveal">在熊市概率约 45%、基准约 40%、牛市约 15% 的分布下，当前 14.80 美元股价已充分甚至过度计入基准与牛市预期。以 1,000 万美元入场，期望收益为负，且下行波动剧烈。</p>
+
+    <div class="grid-3 reveal">
+      <div class="card" style="border-color:rgba(217,83,79,.24)">
+        <span class="pill hi">熊市 · 概率 45%</span>
+        <p style="margin-top:12px;margin-bottom:0">印尼项目停滞或缩水，2GW 储备无法落地，基金/NCP 无法证实。营收回归烈酒业务本身，2027 年约 700 至 900 万美元。</p>
+      </div>
+      <div class="card">
+        <span class="pill mid">基准 · 概率 40%</span>
+        <p style="margin-top:12px;margin-bottom:0">印尼 40MW 部分落地，2028 至 2029 年逐步产生托管收入。满产 40MW 对应年化约 4,000 万至 6,000 万美元，但爬坡缓慢，需大额资本开支与外部融资。</p>
+      </div>
+      <div class="card" style="border-color:rgba(74,157,127,.3)">
+        <span class="pill lo">牛市 · 概率 15%</span>
+        <p style="margin-top:12px;margin-bottom:0">NCP 资质与 200 亿基金证实、10 月合并完成、旗舰项目与带定金锚定客户兑现，估值向平台型算力基建重估。依赖多项低概率事件同时成立。</p>
+      </div>
+    </div>
+
+    <h3 class="reveal">9.2 估值倍数对比</h3>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>类别</th><th>EV/Revenue 基准</th></tr></thead>
+        <tbody>
+          <tr><td>纯 GPU 云（CoreWeave, Nebius）</td><td>8 至 12 倍</td></tr>
+          <tr><td>托管运营商（Colocation）</td><td>5 至 8 倍</td></tr>
+          <tr><td>区域托管（Regional colocation）</td><td>4 至 6 倍</td></tr>
+          <tr><td>前期基础设施（Pre-revenue）</td><td><strong>&lt;1 倍（投机性）</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card reveal">
+      <h4>公允价值估算</h4>
+      <p style="margin-bottom:0">若以烈酒业务 1 至 2 倍 P/S 计，公允市值约 <strong>600 万至 1,200 万美元</strong>级别，即当前 3.75 亿美元的极小部分。若基准情形 40MW 满产实现（约 5,000 万美元收入），按区域托管 4 至 6 倍对应企业价值约 2 至 3 亿美元，但需 24 至 36 个月及大额稀释性融资，折现与稀释后归属现有股东价值将大幅缩水。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <!-- ============ RISK ============ -->
 <section id="risk">
+  <div class="section-num">08</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Risk Analysis</span>
-      <h2 class="sec-title"><span class="num">06</span>风险分析：十大红旗</h2>
-      <p class="lead">
-        多数关键风险落在高至极高区间，且相互叠加放大。以下为公司特有风险的十大红旗清单。
-      </p>
+    <div class="eyebrow reveal">风险分析 · Risk Analysis</div>
+    <h2 class="sec-title reveal">多数关键风险落在「高」至「极高」</h2>
+    <p class="lead reveal">公司特有风险、商业模式质疑、行业风险与宏观风险相互叠加放大。以下风险矩阵按概率 × 影响综合评级。</p>
+
+    <h3 class="reveal">8.5 风险矩阵（概率 × 影响）</h3>
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>风险</th><th>概率</th><th>影响</th><th>综合等级</th></tr></thead>
+        <tbody>
+          <tr><td>核心资源不可验证（基金/NCP/合并批准）</td><td>高</td><td>高</td><td><span class="pill hi">极高</span></td></tr>
+          <tr><td>转型执行失败</td><td>高</td><td>高</td><td><span class="pill hi">极高</span></td></tr>
+          <tr><td>增发稀释</td><td>高</td><td>高</td><td><span class="pill hi">极高</span></td></tr>
+          <tr><td>治理侵害少数股东</td><td>高</td><td>中高</td><td><span class="pill hi">高</span></td></tr>
+          <tr><td>流动性枯竭</td><td>中高</td><td>高</td><td><span class="pill hi">高</span></td></tr>
+          <tr><td>双飞合规 / 资金穿透阻断</td><td>中高</td><td>高</td><td><span class="pill hi">高</span></td></tr>
+          <tr><td>竞争挤压</td><td>高</td><td>中</td><td><span class="pill hi">高</span></td></tr>
+          <tr><td>行业过度建设</td><td>中</td><td>中</td><td><span class="pill mid">中</span></td></tr>
+          <tr><td>宏观资本开支见顶</td><td>中</td><td>高</td><td><span class="pill mid">中高</span></td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="risk-flags reveal">
-      <div class="flag"><span class="fn">01</span><p>AIDC 业务零营收，无运营数据中心。</p></div>
-      <div class="flag"><span class="fn">02</span><p>烈酒公司跨界 2 亿美元以上基础设施项目，跨度过大。</p></div>
-      <div class="flag"><span class="fn">03</span><p>核心新业务管理层缺乏经验。</p></div>
-      <div class="flag"><span class="fn">04</span><p>创始人 99% 投票控制，叠加 2.4 亿美元稀释性增发计划。</p></div>
-      <div class="flag"><span class="fn">05</span><p>将非约束性 LOI 包装为机会。</p></div>
-      <div class="flag"><span class="fn">06</span><p>数据中心无客户合同、无收入管线。</p></div>
-      <div class="flag"><span class="fn">07</span><p>烈酒业务 62.5 倍市销率，估值失锚。</p></div>
-      <div class="flag"><span class="fn">08</span><p>无分析师覆盖，微型股流动性差。</p></div>
-      <div class="flag"><span class="fn">09</span><p>审计机构不明，内部控制被标记为风险。</p></div>
-      <div class="flag"><span class="fn">10</span><p>对手规模达其 30 倍（BDx 1.2GW 对 AGCC 40MW）。</p></div>
-    </div>
-
-    <div class="mt40 reveal">
-      <h3 style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:6px;font-weight:600;">风险矩阵（概率 × 影响）</h3>
-      <p style="font-size:13.5px;">颜色越深代表综合等级越高。转型执行失败与增发稀释均落在极高区间。</p>
-      <div class="matrix-grid">
-        <div class="mh left">风险因子</div>
-        <div class="mh">概率</div>
-        <div class="mh">影响</div>
-        <div class="mh">综合等级</div>
-
-        <div class="mlabel">转型执行失败</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-extreme">极高</div>
-
-        <div class="mlabel">增发稀释</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-extreme">极高</div>
-
-        <div class="mlabel">治理侵害少数股东</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-midhigh">中高</div>
-        <div class="mcell sev-high">高</div>
-
-        <div class="mlabel">流动性枯竭</div>
-        <div class="mcell sev-midhigh">中高</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-high">高</div>
-
-        <div class="mlabel">竞争挤压</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-mid">中</div>
-        <div class="mcell sev-high">高</div>
-
-        <div class="mlabel">宏观资本开支见顶</div>
-        <div class="mcell sev-mid">中</div>
-        <div class="mcell sev-high">高</div>
-        <div class="mcell sev-midhigh">中高</div>
-
-        <div class="mlabel">行业过度建设</div>
-        <div class="mcell sev-mid">中</div>
-        <div class="mcell sev-mid">中</div>
-        <div class="mcell sev-mid">中</div>
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>8.1 红旗清单（节选）</h4>
+        <ul style="margin-bottom:0">
+          <li>AIDC 业务零营收，无运营数据中心。</li>
+          <li>基金/NCP/三方合并批准均为口头陈述，无佐证。</li>
+          <li>200 亿基金规模与约 53 万美元日成交量严重背离。</li>
+          <li>「已签订单」为意向协议、无定金，客户名单未验证。</li>
+          <li>审计机构不明，内部控制被标记为风险。</li>
+        </ul>
       </div>
-      <div class="legend">
-        <span><i class="sev-extreme"></i>极高</span>
-        <span><i class="sev-high"></i>高</span>
-        <span><i class="sev-midhigh"></i>中高</span>
-        <span><i class="sev-mid"></i>中</span>
+      <div class="card" style="border-color:rgba(224,164,74,.24)">
+        <h4>8.2 商业模式质疑</h4>
+        <p>推测实际盈利模式可能并非长期运营，而是通过在马来西亚等地短暂部署后将设备转运至中国二次销售赚取差价；或转向卖 token 以规避对硬件出口/部署的监管限制。</p>
+        <p style="margin-bottom:0"><strong>若尽调确认无长期运营意图，应 PASS。</strong></p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ RECOMMENDATION ============ -->
-<section id="recommendation">
+<!-- ============ KILL CRITERIA ============ -->
+<section id="kill" style="background:linear-gradient(180deg,transparent,rgba(217,83,79,.04),transparent)">
+  <div class="section-num">8.6</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Investment Decision Framework</span>
-      <h2 class="sec-title"><span class="num">07</span>投资建议与替代方案</h2>
-      <p class="lead">
-        对于 1,000 万美元规模配置，须同时满足以下门槛方可考虑进入。目前 AGCC 全部不满足。
-      </p>
-    </div>
+    <div class="eyebrow reveal" style="color:var(--red-bright)">Kill Criteria · 客观退出条件</div>
+    <h2 class="sec-title reveal">五项 Kill Criteria</h2>
+    <p class="lead reveal">以下五项 kill criteria 可客观定义，用于 Watchlist 阶段的持续跟踪与决策触发。任一触发即降级或立即 PASS。</p>
 
-    <div class="checklist reveal">
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">存在具约束力的锚定客户合同</div><div class="status">当前：无</div></div></div>
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">项目融资闭环，资本开支来源明确</div><div class="status">当前：依赖 2.4 亿美元增发</div></div></div>
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">管理层具备可验证的数据中心交付履历</div><div class="status">当前：仅新董事长</div></div></div>
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">治理结构对少数股东提供基本保护</div><div class="status">当前：99% 控制，无保护</div></div></div>
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">估值具备安全边际</div><div class="status">当前：安全边际为负</div></div></div>
-      <div class="check-item"><div class="box">✕</div><div><div class="txt">可接受的流动性与退出路径</div><div class="status">当前：微型股流动性差</div></div></div>
-    </div>
-
-    <h3 class="mt40 reveal" style="font-family:var(--serif);font-size:22px;color:var(--cream);margin-bottom:18px;font-weight:600;">替代投资比较</h3>
-    <div class="grid g3 reveal">
-      <div class="alt-card">
-        <h4>头部托管运营商</h4>
-        <p>现金流可见、客户确定、治理规范。虽估值不便宜但确定性高，风险回报更优。</p>
+    <div class="kill-grid reveal">
+      <div class="kill-card">
+        <div class="kc-no">01</div>
+        <h5>流动性风险</h5>
+        <p>合并完成后成交量持续低于门槛且无机构增持。</p>
+        <div class="trigger">触发 → 成交量 &lt; 500 万美元/日，放弃</div>
       </div>
-      <div class="alt-card">
-        <h4>AIDC 基础设施基金</h4>
-        <p>直接参与有约束合同的项目，规避单一微型股的公司特有风险。</p>
+      <div class="kill-card">
+        <div class="kc-no">02</div>
+        <h5>订单真实性风险</h5>
+        <p>无法出示带定金条款的执行合同（非意向协议）。</p>
+        <div class="trigger">触发 → 90 天内无落实，降级 passed</div>
       </div>
-      <div class="alt-card">
-        <h4>持有观察，等待验证</h4>
-        <p>将资金置于低风险资产，待 AGCC 出现约束性合同与融资闭环后再评估，机会成本可控。</p>
+      <div class="kill-card">
+        <div class="kc-no">03</div>
+        <h5>合规与资金穿透风险</h5>
+        <p>SEC F1 生效被延迟，或中国资金架构无法合规拆解。</p>
+        <div class="trigger">触发 → 退出</div>
       </div>
-    </div>
-
-    <div class="pull mt40 reveal">
-      在获得<span class="hl">约束性客户合同、项目融资闭环、治理制衡与合理估值</span>这四项实质性改善之前，AGCC 不适合作为 1,000 万美元投资标的。
+      <div class="kill-card">
+        <div class="kc-no">04</div>
+        <h5>商业模式存疑</h5>
+        <p>尽调确认无长期运营意图（转运二次销售或纯规避监管）。</p>
+        <div class="trigger">触发 → PASS</div>
+      </div>
+      <div class="kill-card">
+        <div class="kc-no">05</div>
+        <h5>关键人物背景未核实</h5>
+        <p>对李强等关键人物背调发现重大不实陈述。</p>
+        <div class="trigger">触发 → 立即 PASS</div>
+      </div>
     </div>
   </div>
 </section>
 
-<hr class="sec-divider"/>
+<div class="divider"></div>
 
-<!-- ============ APPENDIX ============ -->
-<section id="appendix">
+<!-- ============ MALAYSIA ============ -->
+<section id="malaysia">
+  <div class="section-num">10</div>
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Appendices</span>
-      <h2 class="sec-title"><span class="num">08</span>附录与数据来源</h2>
-    </div>
+    <div class="eyebrow reveal" style="color:var(--green)">马来西亚 1.3GW 电力机会 · 可独立评估</div>
+    <h2 class="sec-title reveal">最值得跟进的实际机会</h2>
+    <p class="lead reveal">本章描述一个可能独立于 AGCC 股权投资的单独机会。在电力已成为 AIDC 第一约束的背景下，一块具备完整用电批复的 1.3GW 用地本身即是稀缺资源。</p>
 
-    <div class="grid g2 reveal">
-      <div>
-        <h3 style="font-family:var(--serif);font-size:19px;color:var(--cream);margin-bottom:16px;font-weight:600;">估值倍数参考</h3>
-        <div class="tbl-wrap">
-          <table>
-            <thead><tr><th>类别</th><th>EV/Revenue</th></tr></thead>
-            <tbody>
-              <tr><td>纯 GPU 云（CoreWeave, Nebius）</td><td class="mono">8–12×</td></tr>
-              <tr><td>托管运营商（Colocation）</td><td class="mono">5–8×</td></tr>
-              <tr><td>区域托管（Regional）</td><td class="mono">4–6×</td></tr>
-              <tr><td>前期基础设施（Pre-revenue）</td><td class="mono">&lt;1×（投机性）</td></tr>
-            </tbody>
-          </table>
+    <div class="opp-banner reveal">
+      <div class="ob-head">
+        <h3>雪兰莪州 1.3GW 用电指标地块</h3>
+        <div class="ob-deadline">⏱ 交易窗口截止 7 月 13 日</div>
+      </div>
+      <div class="ob-body">
+        <div class="opp-stat">
+          <div><b>1.3<span style="font-size:14px">GW</span></b><small>用电指标（1,300MW）</small></div>
+          <div><b>30<span style="font-size:14px">+ 年</span></b><small>合作方电力基建经验</small></div>
+          <div><b>7/13</b><small>资金支付时间窗口</small></div>
+          <div><b>TNB</b><small>与国家电网长期合作</small></div>
         </div>
+        <p>资源为一块位于马来西亚雪兰莪州（Selangor）的州政府开发用地，已有完整用电批复。合作方在马来西亚拥有 30 余年电力基础设施建设经验，地位相当于「马电建」。</p>
+        <p><strong>政商网络支持</strong>：多位清华五道口「一带一路」班同学在马来西亚政商界任职。关键人物包括现任贸工部部长东库扎夫（前财政部长），现为 DEC AI DCTF（前置审批机构）主席。这一政治网络若真实，对用电指标审批与落地具有实质价值。</p>
+        <p style="margin-bottom:0"><strong>关键判断</strong>：该机会应独立于 AGCC 股票投资单独评估。其价值锚定在电力资源与土地本身，而非 AGCC 上市主体叙事。建议作为单独议题推进尽调，评估 Seasea 是否可作为独立参与方介入，而非通过 AGCC 股权间接暴露于其未证实的整体叙事。</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ SCORING ============ -->
+<section id="scoring" style="background:linear-gradient(180deg,transparent,rgba(201,168,106,.05),transparent)">
+  <div class="section-num">11</div>
+  <div class="wrap">
+    <div class="eyebrow reveal">机会评分与分类 · Opportunity Scoring</div>
+    <h2 class="sec-title reveal">综合评分 19/35 · Watchlist</h2>
+    <p class="lead reveal">依据 Seasea Investment OS 机会评分框架，AGCC.US 综合评分落入 Watchlist（14-20 区间），即仅观察、不予配置。</p>
+
+    <div class="score-hero reveal">
+      <div class="gauge">
+        <svg width="190" height="190" viewBox="0 0 190 190">
+          <circle cx="95" cy="95" r="82" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14"/>
+          <circle id="gaugeArc" cx="95" cy="95" r="82" fill="none" stroke="url(#gg)" stroke-width="14"
+            stroke-linecap="round" stroke-dasharray="515" stroke-dashoffset="515"/>
+          <defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#C9A86A"/><stop offset="1" stop-color="#E4C888"/></linearGradient></defs>
+        </svg>
+        <div class="gnum"><b id="scoreNum">0</b><span>/ 35 分</span></div>
+      </div>
+      <div class="score-bars" id="scoreBars">
+        <div class="score-row"><div class="sr-top"><b>Thesis Fit（主题契合度）</b><span>3 / 5</span></div><div class="bar"><i data-w="60"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Asymmetric Payoff（非对称回报）</b><span>2 / 5</span></div><div class="bar"><i data-w="40"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Capital-Flow Confirmation（资金流确认）</b><span>2 / 5</span></div><div class="bar"><i data-w="40"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Business-Opportunity（商业机会确认）</b><span>2 / 5</span></div><div class="bar"><i data-w="40"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Competitive Edge / Moat（竞争壁垒）</b><span>3 / 5</span></div><div class="bar"><i data-w="60"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Timing and Catalyst（时机与催化）</b><span>3 / 5</span></div><div class="bar"><i data-w="60"></i></div></div>
+        <div class="score-row"><div class="sr-top"><b>Risk / Kill Criteria Clarity（风险清晰度）</b><span>4 / 5</span></div><div class="bar"><i data-w="80"></i></div></div>
+      </div>
+    </div>
+    <div class="card reveal" style="margin-top:8px">
+      <p style="margin-bottom:0"><strong>分类结论</strong>：Watchlist。保持深度跟踪，按第 8.6 节 kill criteria 与尽调清单推进验证，暂不配置资金。风险与退出清晰度得分最高（4/5），说明风险已被清晰识别、kill criteria 可客观定义；而资金流确认与商业机会确认得分最低（各 2/5），正是叙事与落地脱节的直接体现。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ DILIGENCE ============ -->
+<section id="diligence">
+  <div class="section-num">12</div>
+  <div class="wrap">
+    <div class="eyebrow reveal">投资决策框架与尽职调查 · Decision Framework</div>
+    <h2 class="sec-title reveal">先证据，后配置</h2>
+    <p class="lead reveal">对于 1,000 万美元配置，须同时满足以下门槛方可考虑进入。目前 AGCC 全部不满足。</p>
+
+    <div class="grid-2 reveal">
+      <div class="card">
+        <h4>12.1 决策标准（当前全部未达标）</h4>
+        <ul style="margin-bottom:0">
+          <li>具约束力、带定金条款的锚定客户合同 <span class="pill hi">仅意向</span></li>
+          <li>基金到账与 NCP 官方文件佐证 <span class="pill hi">口头</span></li>
+          <li>SEC/英伟达/商务部合并批准文件 <span class="pill hi">口头</span></li>
+          <li>中国资金架构可合规拆解（双飞 5%）<span class="pill hi">未落实</span></li>
+          <li>管理层可验证交付履历 <span class="pill hi">待背调</span></li>
+          <li>治理对少数股东提供基本保护 <span class="pill hi">99% 控制</span></li>
+          <li>估值具备安全边际 <span class="pill hi">为负</span></li>
+          <li>可接受的流动性与退出路径 <span class="pill hi">微型股</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>12.2 深度尽调清单（按优先级）</h4>
+        <ol style="margin-bottom:0">
+          <li>核实 NCP 购卡资质的英伟达官方文件。</li>
+          <li>核实 200 亿美金基金资金来源与到账证明。</li>
+          <li>核实 SEC/英伟达/商务部合并批准文件。</li>
+          <li>要求出示带定金执行合同原件（非意向）。</li>
+          <li>核实李强等关键人物背景与行业履历。</li>
+          <li>核验 Global Switch 权属、并表与欧元债条款。</li>
+          <li>核验旗舰项目合同、批文与产权文件。</li>
+          <li>独立跟踪马来西亚 1.3GW 地块的实际进展。</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card reveal">
+      <h4>12.4 若仍决定推进的结构化建议</h4>
+      <ul style="margin-bottom:0">
+        <li>采用可转换 / 优先条款而非普通股，设置清算优先权。</li>
+        <li>争取董事会观察员席位与重大事项否决权，对抗 99% 投票集中。</li>
+        <li>设置里程碑拨付，与 NCP 核验、合并完成、锚定客户签约、开工、通电挂钩。</li>
+        <li>加入反稀释条款与增发同意权，应对 2.4 亿 + 2 亿美元摊薄。</li>
+        <li>就双飞合规提前设计合规持股主体，严格限制单一标的敞口。</li>
+      </ul>
+    </div>
+
+    <div class="recommend-box reveal">
+      <div class="rec-tag">最终建议</div>
+      <div class="rec-verdict">PASS</div>
+      <p>新增一手情报将本案例从「印尼 40MW 单点转型」还原为「200 亿美金基金 + NCP 购卡资质 + 2GW 全球储备 + Global Switch」的宏大版图，但同时清晰暴露了这一版图几乎全部依赖口头陈述、缺乏第三方佐证的本质。在获得带定金客户合同、基金到账与 NCP 官方文件、合并批准文件、合规资金架构，以及治理制衡与合理估值等实质性改善之前，AGCC 不适合作为 1,000 万美元投资标的。建议列入 Watchlist 持续跟踪，并将马来西亚 1.3GW 电力机会作为独立议题优先评估。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ APPENDICES ============ -->
+<section id="appendix">
+  <div class="section-num">13</div>
+  <div class="wrap">
+    <div class="eyebrow reveal">附录 · Appendices</div>
+    <h2 class="sec-title reveal">数据表与关键人物</h2>
+
+    <div class="grid-2 reveal">
       <div>
-        <h3 style="font-family:var(--serif);font-size:19px;color:var(--cream);margin-bottom:16px;font-weight:600;">行业对比</h3>
+        <h4>13.3 行业对比表</h4>
         <div class="tbl-wrap">
           <table>
             <thead><tr><th>项目</th><th>数值</th></tr></thead>
             <tbody>
-              <tr><td>全球 AIDC 市场（2025）</td><td class="mono">$1,470–3,440 亿</td></tr>
-              <tr><td>全球容量（2025 / 2030）</td><td class="mono">约 103 / 200 GW</td></tr>
-              <tr><td>超大厂资本开支（2026）</td><td class="mono">约 $7,250 亿</td></tr>
-              <tr><td>印尼市场（2026 / 2031）</td><td class="mono">$18.3 / 34.8 亿</td></tr>
-              <tr><td>印尼 AI 容量（2025 / 2028）</td><td class="mono">300 / 743 MW</td></tr>
-              <tr><td>AGCC 目标容量</td><td class="mono">40 MW</td></tr>
+              <tr><td>全球 AIDC 市场（2025）</td><td>1,470 至 3,440 亿美元</td></tr>
+              <tr><td>全球容量（2025 / 2030）</td><td>约 103 GW / 约 200 GW</td></tr>
+              <tr><td>超大规模资本开支（2026）</td><td>约 7,250 亿美元</td></tr>
+              <tr><td>五年累计（2026-2031）</td><td>约 7.6 万亿美元</td></tr>
+              <tr><td>印尼市场（2026 / 2031）</td><td>18.3 亿 / 34.8 亿美元</td></tr>
+              <tr><td>AGCC 印尼目标 / 声称储备</td><td>40 MW / 接近 2 GW</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4>13.5 关键人物</h4>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>姓名</th><th>角色</th><th>备注</th></tr></thead>
+            <tbody>
+              <tr><td>叶泽昌</td><td>会议参与人</td><td>一手信息来源</td></tr>
+              <tr><td>李强</td><td>AGCC 新任董事长</td><td>声称 20 年经验，待背调</td></tr>
+              <tr><td>东库扎夫</td><td>马来西亚贸工部部长</td><td>DEC AI DCTF 主席</td></tr>
+              <tr><td>唐杰</td><td>质朴（Tangible）创始人</td><td>Token 销售合作意向</td></tr>
+              <tr><td>周雄伟</td><td>PAG 基金 / 天虹通讯</td><td>税务结构、路条确认</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
 
-    <div class="card mt40 reveal">
-      <div class="idx">数据来源 · Data Sources</div>
-      <h3>公开披露与内部研究整理</h3>
-      <p>
-        公司公开披露（IPO 招股文件、后续增发注册、公告），截至 2026 年 7 月 2 日。行业市场规模、容量、资本开支数据来自内部整理的行业研究材料（2025–2026）。印尼市场数据来自区域 AIDC 市场研究整理。所有数据在投资决策前须经独立核验。
-      </p>
+    <div class="card reveal">
+      <h4>13.1 数据来源</h4>
+      <p style="margin-bottom:0">公司公开披露（IPO 招股文件、后续增发注册、公告），截至 2026 年 7 月 2 日。项目架构、SPV/NCP、F1 发行、双飞合规、2GW 管线、Global Switch、Token 销售、马来西亚机会等信息来源于 2026-07-04 会议纪要（参与人：叶泽昌），属项目方口头陈述，须独立核验。行业市场规模、容量、资本开支数据来自内部整理的行业研究材料（2025 至 2026）。所有数据在投资决策前须经独立核验。</p>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer>
-  <div class="fbrand">PASS · 不建议投资</div>
-  <div class="disc">
-    本报告仅供内部投资委员会决策参考，不构成任何证券的买卖要约或投资建议。所有数据须经独立尽职调查核验。
-    当前定价属于对高不确定性转型叙事的投机性押注，风险回报严重不对称。
+  <div class="foot-inner">
+    <div class="disclaimer reveal">
+      <strong style="color:var(--gold)">免责声明</strong>：本报告仅供内部投资委员会决策参考，不构成任何证券的买卖要约或投资建议。公开市场数据来自截至 2026 年 7 月 2 日的公开信息与内部研究整理；项目架构、融资安排、订单储备、马来西亚机会等信息来源于 2026 年 7 月 4 日会议纪要（参与人：叶泽昌），属项目方口头陈述，尚无第三方佐证，须在投资决策前完成独立尽职调查与文件核验。所有数据须经独立核验。
+    </div>
+    <div class="foot-meta">
+      <span>Seasea Investment OS · L4 Financial Confidential · 内部投资委员会专用</span>
+      <span>标的 NASDAQ: AGCC &nbsp;·&nbsp; 评分 19/35 &nbsp;·&nbsp; Watchlist &nbsp;·&nbsp; 2026 年 7 月</span>
+    </div>
   </div>
-  <div class="meta">L4 FINANCIAL CONFIDENTIAL · 2026 · INTERNAL INVESTMENT COMMITTEE</div>
 </footer>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(function(){
-  "use strict";
-  var hasGSAP = (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined");
-  if(hasGSAP){ gsap.registerPlugin(ScrollTrigger); }
+gsap.registerPlugin(ScrollTrigger);
 
-  /* ---------- counter animation ---------- */
-  function animateCount(el){
-    if(el.dataset.done) return;
-    el.dataset.done = "1";
-    var target = parseFloat(el.dataset.target);
-    var dec = parseInt(el.dataset.dec || "0", 10);
-    var obj = { v: 0 };
-    var render = function(){
-      var val = obj.v;
-      el.textContent = val.toLocaleString("en-US", {minimumFractionDigits:dec, maximumFractionDigits:dec});
-    };
-    if(hasGSAP){
-      gsap.to(obj, { v: target, duration: 1.8, ease: "power2.out", onUpdate: render });
-    } else {
-      var start = null, dur = 1600;
-      function step(ts){
-        if(!start) start = ts;
-        var p = Math.min((ts-start)/dur, 1);
-        obj.v = target * (1 - Math.pow(1-p, 3));
-        render();
-        if(p<1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-  }
+/* progress bar + nav shrink */
+const nav=document.getElementById('nav'),prog=document.getElementById('progress');
+function onScroll(){
+  const h=document.documentElement,st=h.scrollTop,sh=h.scrollHeight-h.clientHeight;
+  prog.style.width=(st/sh*100)+'%';
+  nav.classList.toggle('shrink',st>60);
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  /* ---------- bar fill ---------- */
-  function fillBar(el){
-    if(el.dataset.done) return;
-    el.dataset.done = "1";
-    var w = parseFloat(el.dataset.w);
-    if(hasGSAP){
-      gsap.to(el, { width: w + "%", duration: 1.4, ease: "power3.out" });
-    } else {
-      el.style.transition = "width 1.3s cubic-bezier(.16,1,.3,1)";
-      requestAnimationFrame(function(){ el.style.width = w + "%"; });
-    }
-  }
+/* mobile menu */
+const menuBtn=document.getElementById('menuBtn'),navlinks=document.getElementById('navlinks');
+menuBtn.addEventListener('click',()=>navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navlinks.classList.remove('open')));
 
-  /* ---------- reveal + trigger children ---------- */
-  function triggerContent(node){
-    var counters = node.querySelectorAll ? node.querySelectorAll(".count") : [];
-    counters.forEach(animateCount);
-    var bars = node.querySelectorAll ? node.querySelectorAll(".bar-fill") : [];
-    bars.forEach(fillBar);
-  }
+/* scrollspy */
+const links=[...document.querySelectorAll('.navlinks a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function spy(){
+  const y=window.scrollY+140;let cur=secs[0];
+  secs.forEach(s=>{if(s.offsetTop<=y)cur=s});
+  links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur.id));
+}
+window.addEventListener('scroll',spy,{passive:true});spy();
 
-  var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+/* hero load animation */
+gsap.from('#hero .ticker-tag',{y:24,opacity:0,duration:.8,ease:'power3.out'});
+gsap.from('#hero h1',{y:40,opacity:0,duration:1,delay:.1,ease:'power3.out'});
+gsap.from('#hero .hero-sub',{y:30,opacity:0,duration:.9,delay:.35,ease:'power3.out'});
+gsap.from('#hero .hero-meta span',{y:20,opacity:0,duration:.6,delay:.55,stagger:.08,ease:'power2.out'});
 
-  if(hasGSAP){
-    reveals.forEach(function(el){
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 88%", onEnter: function(){ triggerContent(el); } }
-      });
-    });
-    // hero content is above the fold: reveal immediately
-    document.querySelectorAll("#ticker .count, #hero .count").forEach(animateCount);
-  } else {
-    /* Intersection Observer fallback */
-    if("IntersectionObserver" in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){
-            e.target.style.transition = "opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1)";
-            e.target.style.opacity = "1";
-            e.target.style.transform = "none";
-            triggerContent(e.target);
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      reveals.forEach(function(el){ io.observe(el); });
-    } else {
-      reveals.forEach(function(el){ el.style.opacity="1"; el.style.transform="none"; triggerContent(el); });
-    }
-    document.querySelectorAll("#ticker .count").forEach(animateCount);
-  }
+/* generic reveals */
+gsap.utils.toArray('.reveal').forEach(el=>{
+  gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',
+    scrollTrigger:{trigger:el,start:'top 88%'}});
+});
 
-  /* ---------- hero parallax ---------- */
-  if(hasGSAP){
-    gsap.to("#heroTitle", {
-      yPercent: 30, opacity: 0.35, ease: "none",
-      scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
-    });
-    gsap.to(".grid-overlay", {
-      yPercent: 12, ease: "none",
-      scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: true }
-    });
-  }
+/* parallax section numbers */
+gsap.utils.toArray('.section-num').forEach(el=>{
+  gsap.fromTo(el,{y:60},{y:-60,ease:'none',
+    scrollTrigger:{trigger:el.closest('section'),start:'top bottom',end:'bottom top',scrub:true}});
+});
 
-  /* ---------- verdict badge pop ---------- */
-  var badge = document.getElementById("verdictBadge");
-  if(badge && hasGSAP){
-    gsap.fromTo(badge, { scale: 0.85, opacity: 0 }, {
-      scale: 1, opacity: 1, duration: 1.1, ease: "back.out(1.6)",
-      scrollTrigger: { trigger: badge, start: "top 80%" }
-    });
-  }
+/* counter animation */
+function animateCount(el){
+  const target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||0);
+  const unit=el.querySelector('.unit')?el.querySelector('.unit').outerHTML:'';
+  const obj={v:0};
+  gsap.to(obj,{v:target,duration:1.8,ease:'power2.out',
+    onUpdate:()=>{el.innerHTML=obj.v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+unit;}});
+}
+gsap.utils.toArray('[data-count]').forEach(el=>{
+  ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>animateCount(el)});
+});
 
-  /* ---------- scroll progress bar ---------- */
-  var progress = document.getElementById("progress");
-  function onScroll(){
-    var h = document.documentElement;
-    var scrolled = (h.scrollTop || document.body.scrollTop);
-    var height = h.scrollHeight - h.clientHeight;
-    progress.style.width = (height>0 ? (scrolled/height*100) : 0) + "%";
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+/* stat-card stagger */
+gsap.utils.toArray('.stat-grid').forEach(grid=>{
+  gsap.from(grid.querySelectorAll('.stat-card'),{y:30,opacity:0,duration:.7,stagger:.09,ease:'power2.out',
+    scrollTrigger:{trigger:grid,start:'top 85%'}});
+});
 
-  /* ---------- scrollspy nav ---------- */
-  var links = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
-  var sections = links.map(function(l){ return document.querySelector(l.getAttribute("href")); }).filter(Boolean);
-  function spy(){
-    var pos = window.scrollY + 120;
-    var current = sections[0];
-    sections.forEach(function(s){ if(s.offsetTop <= pos) current = s; });
-    links.forEach(function(l){
-      l.classList.toggle("active", current && l.getAttribute("href") === "#" + current.id);
-    });
-  }
-  window.addEventListener("scroll", spy, { passive: true });
-  spy();
+/* kill card stagger */
+gsap.from('.kill-card',{y:40,opacity:0,duration:.7,stagger:.1,ease:'power2.out',
+  scrollTrigger:{trigger:'.kill-grid',start:'top 82%'}});
 
-  /* ---------- mobile menu ---------- */
-  var toggle = document.getElementById("navtoggle");
-  var navlinks = document.getElementById("navlinks");
-  if(toggle){
-    toggle.addEventListener("click", function(){ navlinks.classList.toggle("open"); });
-    navlinks.addEventListener("click", function(e){
-      if(e.target.tagName === "A") navlinks.classList.remove("open");
-    });
-  }
+/* flow nodes */
+gsap.from('.flow-node',{y:34,opacity:0,duration:.7,stagger:.15,ease:'power2.out',
+  scrollTrigger:{trigger:'.flow',start:'top 85%'}});
 
-  /* ---------- nav bg on scroll ---------- */
-  var nav = document.getElementById("nav");
-  window.addEventListener("scroll", function(){
-    nav.style.background = window.scrollY > 40 ? "rgba(10,22,40,0.9)" : "rgba(10,22,40,0.72)";
-  }, { passive: true });
-})();
+/* scoring gauge + bars */
+ScrollTrigger.create({trigger:'#scoring',start:'top 70%',once:true,onEnter:()=>{
+  const arc=document.getElementById('gaugeArc'),C=515,frac=19/35;
+  gsap.to(arc,{strokeDashoffset:C*(1-frac),duration:1.8,ease:'power2.out'});
+  const sn={v:0};
+  gsap.to(sn,{v:19,duration:1.8,ease:'power2.out',
+    onUpdate:()=>document.getElementById('scoreNum').textContent=Math.round(sn.v)});
+  document.querySelectorAll('#scoreBars .bar i').forEach((b,i)=>{
+    gsap.to(b,{width:b.dataset.w+'%',duration:1.1,delay:i*.08,ease:'power2.out'});
+  });
+}});
 </script>
 </body>
 </html>
