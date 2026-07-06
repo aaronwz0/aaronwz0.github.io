@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musein Partner Program | 合伙人计划</title>
+<meta name="description" content="Musein 合伙人体系，四级成长路径。从零门槛邀请到战略级绑定，你的内容产线终于有了合伙人体系。">
+<meta property="og:title" content="Musein Partner Program">
+<meta property="og:description" content="四个等级，从零门槛邀请到战略级绑定。">
+<meta property="og:image" content="logo-mark.png">
+<link rel="icon" href="logo-mark.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root {
+  --deep-black: #0A0A0A;
+  --charcoal: #1A1A1A;
+  --graphite: #2A2A2A;
+  --off-white: #F5F4EF;
+  --muted-stone: #9A9A9A;
+  --cinema-coral: #FF6B6B;
+  --coral-hover: #FF8585;
+  --coral-muted: rgba(255,107,107,0.15);
+  --spark-yellow: #FFE74A;
+  --creator-lime: #9BE85E;
+  --muse-cyan: #29DDE2;
+  --warm-orange: #FF9B50;
+  --creator-pink: #F45FA8;
+  --electric-violet: #9B6BFF;
+  --runtime-blue: #318CFF;
+  --sky-aqua: #4FCBFF;
+  --font-display: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--deep-black); }
+body {
+  font-family: var(--font-body);
+  background: var(--deep-black);
+  color: var(--off-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--cinema-coral); color: var(--deep-black); }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--graphite);
+}
+.nav-logo { height: 28px; }
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--deep-black);
+  background: var(--cinema-coral);
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--coral-hover); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  overflow: hidden;
+}
+.hero-spectrum {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero-spectrum .brush {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+.hero-spectrum .b1 { width: 500px; height: 300px; background: var(--electric-violet); top: 10%; left: -5%; }
+.hero-spectrum .b2 { width: 400px; height: 250px; background: var(--muse-cyan); top: 5%; right: -8%; }
+.hero-spectrum .b3 { width: 350px; height: 200px; background: var(--creator-pink); bottom: 15%; left: 20%; }
+.hero-spectrum .b4 { width: 300px; height: 180px; background: var(--spark-yellow); bottom: 10%; right: 15%; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cinema-coral);
+  border: 1px solid rgba(255,107,107,0.3);
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cinema-coral);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+.hero h1 .italic-accent {
+  font-style: italic;
+  color: var(--cinema-coral);
+}
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: var(--muted-stone);
+  max-width: 540px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 1rem; font-weight: 600;
+  color: var(--deep-black);
+  background: var(--cinema-coral);
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 0 30px rgba(255,107,107,0.2);
+}
+.hero-cta:hover {
+  background: var(--coral-hover);
+  box-shadow: 0 0 50px rgba(255,107,107,0.35);
+  transform: translateY(-2px);
+}
+.hero-cta svg { width: 18px; height: 18px; }
+.hero-scroll-hint {
+  position: absolute; bottom: 2rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: var(--muted-stone); font-size: 0.75rem; letter-spacing: 0.08em;
+}
+.hero-scroll-hint .line {
+  width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted-stone), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* ─── SECTIONS ─── */
+section { padding: 6rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--cinema-coral);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--muted-stone);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* ─── PHILOSOPHY (Timeline) ─── */
+.philosophy { background: var(--deep-black); }
+.timeline {
+  position: relative;
+  margin-top: 3rem;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cinema-coral), var(--electric-violet), var(--muse-cyan));
+}
+.timeline-item {
+  position: relative;
+  padding: 0 0 3rem 2rem;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem; top: 0.35rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--cinema-coral);
+  background: var(--deep-black);
+}
+.timeline-item:last-child::before { border-color: var(--electric-violet); }
+.timeline-tier {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; font-weight: 700;
+  color: var(--cinema-coral);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+.timeline-item:last-child .timeline-tier { color: var(--electric-violet); }
+.timeline-name {
+  font-size: 1.3rem; font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.timeline-desc {
+  font-size: 0.95rem;
+  color: var(--muted-stone);
+  line-height: 1.6;
+}
+
+/* ─── TIER CARDS ─── */
+.tiers { background: var(--charcoal); }
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.tier-card {
+  position: relative;
+  background: var(--deep-black);
+  border: 1px solid var(--graphite);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+.tier-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: border-color 0.35s;
+}
+.tier-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.tier-card:hover::before {
+  border-color: var(--cinema-coral);
+}
+.tier-card .card-tier {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cinema-coral);
+  margin-bottom: 0.75rem;
+}
+.tier-card h3 {
+  font-size: 1.15rem; font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.tier-card .card-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted-stone);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+.tier-card .card-highlight {
+  font-family: var(--font-mono);
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--cinema-coral);
+  margin-bottom: 0.25rem;
+}
+.tier-card .card-highlight-label {
+  font-size: 0.75rem;
+  color: var(--muted-stone);
+}
+.tier-card .card-features {
+  list-style: none;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--graphite);
+}
+.tier-card .card-features li {
+  font-size: 0.82rem;
+  color: var(--muted-stone);
+  padding: 0.3rem 0;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.tier-card .card-features li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--cinema-coral);
+  flex-shrink: 0;
+}
+.tier-card.card-t3 .card-tier { color: var(--electric-violet); }
+.tier-card.card-t3:hover::before { border-color: var(--electric-violet); }
+
+/* ─── COMMISSION PATH ─── */
+.commission { background: var(--deep-black); }
+.commission-visual {
+  margin-top: 3rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2rem 0;
+}
+.commission-bar {
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.commission-bar .bar {
+  width: 100px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(to top, var(--cinema-coral), rgba(255,107,107,0.4));
+  transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.commission-bar .bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted-stone);
+  letter-spacing: 0.05em;
+}
+.commission-bar .bar-value {
+  font-family: var(--font-mono);
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--off-white);
+}
+.commission-bar .bar-value .pct { font-size: 1rem; color: var(--cinema-coral); }
+.commission-note {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--muted-stone);
+  line-height: 1.6;
+}
+.commission-note strong { color: var(--off-white); font-weight: 600; }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--charcoal);
+  text-align: center;
+  padding: 8rem 2rem;
+}
+.cta-section .section-title {
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+.cta-section .section-desc {
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+.cta-button {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--deep-black);
+  background: var(--cinema-coral);
+  padding: 1rem 2.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 0 40px rgba(255,107,107,0.25);
+}
+.cta-button:hover {
+  background: var(--coral-hover);
+  box-shadow: 0 0 60px rgba(255,107,107,0.4);
+  transform: translateY(-3px) scale(1.03);
+}
+.cta-button svg { width: 20px; height: 20px; }
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--graphite);
+  font-size: 0.75rem;
+  color: var(--muted-stone);
+}
+.footer a { color: var(--cinema-coral); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  section { padding: 4rem 1.25rem; }
+  .tier-grid { grid-template-columns: 1fr; }
+  .commission-visual { flex-direction: column; align-items: center; }
+  .commission-bar .bar { width: 200px; height: 40px !important; border-radius: 8px; }
+  .footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <img src="logo-colorful.png" alt="Musein" class="nav-logo">
+  <a href="https://musein.ai" class="nav-cta" target="_blank">加入 Musein</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-spectrum">
+    <div class="brush b1"></div>
+    <div class="brush b2"></div>
+    <div class="brush b3"></div>
+    <div class="brush b4"></div>
+  </div>
+  <div class="hero-badge">
+    <span class="dot"></span>
+    <span>Partner Program 2026</span>
+  </div>
+  <h1>Musein <span class="italic-accent">Partner</span><br>Program</h1>
+  <p class="hero-sub">你的内容产线，终于有了合伙人体系。<br>四级成长路径，从零门槛邀请到战略级绑定。</p>
+  <a href="https://musein.ai" class="hero-cta" target="_blank">
+    成为合伙人
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <div class="hero-scroll-hint">
+    <span>SCROLL</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container">
+    <div class="section-label">设计原则</div>
+    <h2 class="section-title">越往上，绑定越深</h2>
+    <p class="section-desc">等级越高，激励从现金结算逐步过渡到长期共同体。每一级的权益都指向同一个方向：和 Musein 一起增长。</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-tier">T0</div>
+        <div class="timeline-name">社区推广者</div>
+        <div class="timeline-desc">所有注册用户均可参与。邀请好友注册并完成首次付费，双方获得积分、额度或优惠券奖励。零门槛，产品内自动结算。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-tier">T1</div>
+        <div class="timeline-name">联盟合伙人</div>
+        <div class="timeline-desc">有社媒粉丝或自有课程体系的创作者，可申请成为联盟合伙人。生成裂变邀请码，按引荐实收现金获得阶梯提成。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-tier">T2</div>
+        <div class="timeline-name">区域战略资源合伙人</div>
+        <div class="timeline-desc">在特定区域或垂直行业拥有独特资源的合作方。区域独家授权，联合品牌活动，渠道级业务实收提成。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-tier">T3</div>
+        <div class="timeline-name">战略合伙人</div>
+        <div class="timeline-desc">深度绑定的长期利益共同体。参与方向级决策，享有长期激励权益，是公司核心团队的延伸。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIER CARDS -->
+<section class="tiers">
+  <div class="container">
+    <div class="section-label">四级体系</div>
+    <h2 class="section-title">每一级都有清晰的回报</h2>
+    <p class="section-desc">不需要猜测，不需要谈判。体系透明，权益明确，晋升路径一目了然。</p>
+    <div class="tier-grid">
+      <div class="tier-card">
+        <div class="card-tier">T0 / COMMUNITY</div>
+        <h3>社区推广者</h3>
+        <p class="card-subtitle">邀请好友，双向奖励</p>
+        <div class="card-highlight">0门槛</div>
+        <div class="card-highlight-label">注册即可参与</div>
+        <ul class="card-features">
+          <li>生成个人邀请链接/码</li>
+          <li>邀请人和被邀请人各获奖励</li>
+          <li>积分、额度、优惠券</li>
+          <li>产品内自动结算</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="card-tier">T1 / AFFILIATE</div>
+        <h3>联盟合伙人</h3>
+        <p class="card-subtitle">有粉丝就能赚，阶梯提成</p>
+        <div class="card-highlight">8-15<span class="pct">%</span></div>
+        <div class="card-highlight-label">引荐实收阶梯提成</div>
+        <ul class="card-features">
+          <li>裂变邀请码（可设有效期）</li>
+          <li>按实收现金结算，非签约额</li>
+          <li>业绩越好，档位越高</li>
+          <li>专属素材包 + 专属客服</li>
+        </ul>
+      </div>
+      <div class="tier-card">
+        <div class="card-tier">T2 / REGIONAL</div>
+        <h3>区域战略合伙人</h3>
+        <p class="card-subtitle">区域资源互补，联合品牌</p>
+        <div class="card-highlight">5-10<span class="pct">%</span></div>
+        <div class="card-highlight-label">渠道业务实收提成</div>
+        <ul class="card-features">
+          <li>区域独家或半独家授权</li>
+          <li>联合品牌活动</li>
+          <li>课程/社群渠道分发</li>
+          <li>业务级会议参与权</li>
+        </ul>
+      </div>
+      <div class="tier-card card-t3">
+        <div class="card-tier">T3 / STRATEGIC</div>
+        <h3>战略合伙人</h3>
+        <p class="card-subtitle">深度绑定，长期共同体</p>
+        <div class="card-highlight">长期</div>
+        <div class="card-highlight-label">利益共同体</div>
+        <ul class="card-features">
+          <li>参与方向级决策</li>
+          <li>长期激励权益</li>
+          <li>核心团队延伸</li>
+          <li>按业绩贡献分梯度</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSION PATH -->
+<section class="commission">
+  <div class="container">
+    <div class="section-label">成长路径</div>
+    <h2 class="section-title">业绩驱动，档位递增</h2>
+    <p class="section-desc">T1 联盟合伙人的提成比例随累计引荐实收递增。做得越多，赚得越多，没有天花板。</p>
+    <div class="commission-visual">
+      <div class="commission-bar">
+        <div class="bar-value"><span class="counter" data-target="8">0</span><span class="pct">%</span></div>
+        <div class="bar" data-height="120"></div>
+        <div class="bar-label">入门</div>
+      </div>
+      <div class="commission-bar">
+        <div class="bar-value"><span class="counter" data-target="12">0</span><span class="pct">%</span></div>
+        <div class="bar" data-height="200"></div>
+        <div class="bar-label">进阶</div>
+      </div>
+      <div class="commission-bar">
+        <div class="bar-value"><span class="counter" data-target="15">0</span><span class="pct">%</span></div>
+        <div class="bar" data-height="280"></div>
+        <div class="bar-label">头部 + 冲刺奖</div>
+      </div>
+    </div>
+    <p class="commission-note">
+      提成按<strong>实际到账金额</strong>结算，不是签约合同额。<br>
+      实收才算，现金流健康，双方共赢。
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-label">开始</div>
+  <h2 class="section-title">成为 Musein 合伙人</h2>
+  <p class="section-desc">无论你是内容创作者、社群主、区域渠道方，还是战略级合作方，这里都有属于你的位置。</p>
+  <a href="https://musein.ai" class="cta-button" target="_blank">
+    立即加入
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>&copy; 2026 Musein.ai</span>
+  <span><a href="https://musein.ai" target="_blank">musein.ai</a></span>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ─── HERO ─── */
+const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' }});
+heroTL
+  .from('.hero-badge', { opacity: 0, y: 20, duration: 0.6 })
+  .from('.hero h1', { opacity: 0, y: 40, duration: 0.8 }, '-=0.3')
+  .from('.hero-sub', { opacity: 0, y: 20, duration: 0.6 }, '-=0.4')
+  .from('.hero-cta', { opacity: 0, scale: 0.9, duration: 0.5 }, '-=0.3')
+  .from('.hero-scroll-hint', { opacity: 0, duration: 0.4 }, '-=0.1');
+
+/* Hero parallax */
+gsap.to('.hero-spectrum .b1', { y: -80, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+gsap.to('.hero-spectrum .b2', { y: -120, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+gsap.to('.hero-spectrum .b3', { y: -60, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+gsap.to('.hero-spectrum .b4', { y: -100, scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }});
+
+/* ─── PHILOSOPHY TIMELINE ─── */
+gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+  gsap.to(item, {
+    opacity: 1, x: 0, duration: 0.7,
+    delay: i * 0.15,
+    scrollTrigger: { trigger: item, start: 'top 85%', toggleActions: 'play none none reverse' }
+  });
+});
+
+/* ─── TIER CARDS ─── */
+gsap.utils.toArray('.tier-card').forEach((card, i) => {
+  gsap.to(card, {
+    opacity: 1, y: 0, duration: 0.6,
+    delay: i * 0.12,
+    scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none reverse' }
+  });
+});
+
+/* ─── COMMISSION BARS + COUNTERS ─── */
+const commissionSection = document.querySelector('.commission');
+const bars = gsap.utils.toArray('.commission-bar');
+
+bars.forEach((bar, i) => {
+  gsap.to(bar, {
+    opacity: 1, y: 0, duration: 0.5,
+    delay: i * 0.2,
+    scrollTrigger: { trigger: commissionSection, start: 'top 70%', toggleActions: 'play none none reverse',
+      onEnter: () => {
+        const barEl = bar.querySelector('.bar');
+        const h = barEl.getAttribute('data-height');
+        barEl.style.height = h + 'px';
+        const counter = bar.querySelector('.counter');
+        const target = parseInt(counter.getAttribute('data-target'));
+        gsap.to(counter, {
+          duration: 1.5, ease: 'power2.out',
+          onUpdate: function() {
+            counter.textContent = Math.round(this.progress() * target);
+          }
+        });
+      }
+    }
+  });
+});
+
+/* ─── CTA SECTION ─── */
+gsap.from('.cta-section .section-label', { opacity: 0, y: 20, duration: 0.5, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
+gsap.from('.cta-section .section-title', { opacity: 0, y: 30, duration: 0.6, delay: 0.1, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
+gsap.from('.cta-section .section-desc', { opacity: 0, y: 20, duration: 0.5, delay: 0.2, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
+gsap.from('.cta-button', { opacity: 0, scale: 0.9, duration: 0.5, delay: 0.3, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
+
+/* ─── SECTION LABELS + TITLES ─── */
+gsap.utils.toArray('.philosophy .section-label, .tiers .section-label, .commission .section-label').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, scrollTrigger: { trigger: el, start: 'top 85%' }});
+});
+gsap.utils.toArray('.philosophy .section-title, .tiers .section-title, .commission .section-title').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 25, duration: 0.5, delay: 0.1, scrollTrigger: { trigger: el, start: 'top 85%' }});
+});
+gsap.utils.toArray('.philosophy .section-desc, .tiers .section-desc, .commission .section-desc').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, delay: 0.2, scrollTrigger: { trigger: el, start: 'top 85%' }});
+});
+</script>
+
+</body>
+</html>
