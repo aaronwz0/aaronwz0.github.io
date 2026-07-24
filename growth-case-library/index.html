@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>增长案例库 · Aaron 韦臻 × Seasea Intelligence OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;600&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#0B1B3A;
+    --paper:#F7F9FC;
+    --pure:#FFFFFF;
+    --cobalt:#0048FF;
+    --sky:#2BB8FF;
+    --navy:#1E3A8A;
+    --ink:#0A0F1E;
+    --slate:#475569;
+    --line:#E2E8F0;
+    --green:#00B66E;
+    --grad:linear-gradient(135deg,#1E3A8A 0%,#0048FF 55%,#2BB8FF 100%);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Geist','Noto Sans SC',-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-weight:400;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:'Fraunces','Noto Serif SC',serif}
+  .mono{font-family:'Geist Mono',ui-monospace,monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 48px}
+  ::selection{background:rgba(0,72,255,.16)}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(247,249,252,.86);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:1160px;margin:0 auto;padding:0 48px;height:56px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.22em;color:var(--ink);text-decoration:none}
+  .brand em{font-style:normal;color:var(--cobalt)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{font-size:12.5px;color:var(--slate);text-decoration:none;letter-spacing:.02em;transition:color .22s cubic-bezier(.4,0,.2,1)}
+  .nav-links a:hover{color:var(--cobalt)}
+  .nav-date{font-family:'Geist Mono',monospace;font-size:11px;color:var(--slate)}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    background:var(--indigo);color:#fff;position:relative;overflow:hidden;
+    padding:172px 0 88px;
+  }
+  header.hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(640px 340px at 84% 8%,rgba(43,184,255,.15),transparent 62%);
+  }
+  .kicker{
+    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.24em;
+    color:var(--sky);text-transform:uppercase;margin-bottom:26px;
+  }
+  .hero-en{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:21px;color:#9CC8FF;margin-bottom:10px}
+  h1.hero-title{font-family:'Fraunces','Noto Serif SC',serif;font-weight:600;font-size:64px;line-height:1.08;letter-spacing:.01em}
+  .hero-rule{width:120px;height:3px;background:var(--grad);margin:30px 0 26px}
+  .hero-sub{font-size:16.5px;font-weight:300;color:rgba(255,255,255,.74);max-width:660px;line-height:1.8}
+  .hero-meta{
+    margin-top:34px;font-family:'Geist Mono',monospace;font-size:12px;
+    color:rgba(255,255,255,.52);letter-spacing:.04em;
+  }
+  .hero-meta b{color:rgba(255,255,255,.85);font-weight:500}
+  .hero-stats{
+    margin-top:56px;padding-top:34px;border-top:1px solid rgba(255,255,255,.14);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative;z-index:1;
+  }
+  .hstat b{display:block;font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:30px;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+  .hstat span{display:block;margin-top:6px;font-size:12px;color:rgba(255,255,255,.58);line-height:1.5}
+
+  /* ---------- author strip ---------- */
+  .author{background:var(--pure);border-bottom:1px solid var(--line);padding:44px 0}
+  .author-grid{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+  .author h2{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--slate);text-transform:uppercase;font-weight:500;padding-top:4px}
+  .author p{font-size:14px;color:var(--slate);max-width:760px}
+  .author p b{color:var(--ink);font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;
+    padding:6px 12px;border:1px solid var(--line);border-radius:2px;background:var(--paper);color:var(--ink);
+  }
+  .chip i{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+  .chip.blue i{background:var(--cobalt)}
+
+  /* ---------- sections ---------- */
+  section.block{padding:88px 0 24px}
+  .sec-head{margin-bottom:20px}
+  .sec-kicker{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--cobalt);text-transform:uppercase;margin-bottom:14px}
+  .sec-head h2{font-family:'Fraunces','Noto Serif SC',serif;font-weight:600;font-size:38px;line-height:1.2}
+  .sec-head p{margin-top:10px;font-size:14.5px;color:var(--slate);max-width:680px}
+
+  /* ---------- case ---------- */
+  article.case{border-top:1px solid var(--line);padding:60px 0 64px;display:grid;grid-template-columns:250px 1fr;gap:56px}
+  .case-side .idx{font-family:'Fraunces',serif;font-size:15px;color:var(--cobalt);font-weight:500;letter-spacing:.06em}
+  .case-side h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:600;font-size:25px;line-height:1.3;margin:10px 0 18px}
+  .tag{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;
+    padding:5px 11px;border-radius:2px;margin-bottom:10px;
+  }
+  .tag.practice{color:#0A7A4B;border:1px solid rgba(0,182,110,.4);background:rgba(0,182,110,.06)}
+  .tag.practice::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .tag.research{color:var(--cobalt);border:1px solid rgba(0,72,255,.32);background:rgba(0,72,255,.05)}
+  .tag.research::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cobalt)}
+  .case-meta{margin-top:18px;border-top:1px solid var(--line)}
+  .case-meta .row{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .case-meta .k{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--slate);padding-top:2px}
+  .case-meta .v{color:var(--ink);font-weight:500;line-height:1.55}
+  .case-meta .v small{display:block;font-weight:400;color:var(--slate);font-size:12px}
+
+  .case-body .lead{font-size:15.5px;color:var(--ink);max-width:760px;line-height:1.85;font-weight:400}
+  .case-body .lead b{font-weight:600}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 30px;margin:36px 0 8px}
+  .stat{border-left:1px solid var(--line);padding-left:16px}
+  .stat b{display:block;font-family:'Fraunces','Noto Serif SC',serif;font-weight:500;font-size:27px;font-variant-numeric:tabular-nums;letter-spacing:.01em;color:var(--ink);line-height:1.15}
+  .stat b em{font-style:normal;color:var(--cobalt)}
+  .stat span{display:block;margin-top:7px;font-size:12px;color:var(--slate);line-height:1.5}
+
+  .chart{margin:34px 0 8px;padding:34px 0 40px;border-top:1px dashed var(--line)}
+  .bars{display:flex;align-items:flex-end;gap:20px;height:132px;border-bottom:1px solid var(--line)}
+  .bar{flex:1;max-width:76px;background:var(--grad);border-radius:3px 3px 0 0;position:relative;min-height:8px}
+  .bar.latest{background:var(--cobalt)}
+  .bar .v{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-family:'Geist Mono',monospace;font-size:11px;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .bar .l{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);font-family:'Geist Mono',monospace;font-size:10.5px;color:var(--slate);white-space:nowrap}
+  .chart figcaption{margin-top:34px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--slate);letter-spacing:.03em}
+
+  .findings{margin-top:38px}
+  .findings h4,.method h5{
+    font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;
+    color:var(--slate);text-transform:uppercase;font-weight:500;margin-bottom:18px;
+  }
+  .findings ol{list-style:none;counter-reset:f}
+  .findings li{
+    counter-increment:f;position:relative;padding:0 0 20px 42px;
+    font-size:14px;color:var(--slate);line-height:1.8;max-width:780px;
+  }
+  .findings li::before{
+    content:"0" counter(f);position:absolute;left:0;top:2px;
+    font-family:'Geist Mono',monospace;font-size:12px;color:var(--cobalt);letter-spacing:.06em;
+  }
+  .findings li b{color:var(--ink);font-weight:500}
+
+  .method{
+    margin-top:26px;background:var(--pure);border:1px solid var(--line);
+    border-left:3px solid var(--cobalt);padding:22px 26px;max-width:820px;
+  }
+  .method h5{color:var(--cobalt);margin-bottom:10px}
+  .method p{font-size:13.5px;color:var(--slate);line-height:1.8}
+  .method p b{color:var(--ink);font-weight:500}
+
+  /* ---------- takeaways ---------- */
+  section.takeaways{background:var(--indigo);color:#fff;padding:96px 0;margin-top:88px;position:relative;overflow:hidden}
+  section.takeaways::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(560px 300px at 10% 100%,rgba(43,184,255,.1),transparent 60%);
+  }
+  .takeaways .sec-kicker{color:var(--sky)}
+  .takeaways h2{font-family:'Fraunces','Noto Serif SC',serif;font-weight:600;font-size:38px;line-height:1.25}
+  .takeaways .sub{margin-top:12px;font-size:14.5px;color:rgba(255,255,255,.66);max-width:680px}
+  .tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;margin-top:56px;position:relative;z-index:1}
+  .tk::before{content:"";display:block;width:44px;height:3px;background:var(--grad);margin-bottom:22px}
+  .tk h3{font-family:'Fraunces','Noto Serif SC',serif;font-weight:600;font-size:19px;line-height:1.45;margin-bottom:14px}
+  .tk p{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.85}
+  .tk p b{color:#fff;font-weight:500}
+  .tk .evi{margin-top:14px;font-family:'Geist Mono',monospace;font-size:11px;color:rgba(255,255,255,.45);line-height:1.7;letter-spacing:.02em}
+  .closing{margin-top:64px;padding-top:36px;border-top:1px solid rgba(255,255,255,.14);position:relative;z-index:1}
+  .closing p{font-family:'Fraunces','Noto Serif SC',serif;font-style:italic;font-weight:300;font-size:21px;color:rgba(255,255,255,.92);max-width:760px;line-height:1.7}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--paper);border-top:1px solid var(--line);padding:56px 0 88px}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  footer h6{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--slate);text-transform:uppercase;font-weight:500;margin-bottom:16px}
+  footer p,footer li{font-size:12.5px;color:var(--slate);line-height:1.9}
+  footer ul{list-style:none}
+  footer li{font-family:'Geist Mono',monospace;font-size:11.5px;padding-left:14px;position:relative}
+  footer li::before{content:"·";position:absolute;left:0;color:var(--cobalt)}
+  .marks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .marks span{font-family:'Geist Mono',monospace;font-size:10.5px;border:1px solid var(--line);border-radius:2px;padding:3px 9px;color:var(--slate);background:var(--pure)}
+  .f-bottom{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:11px;color:var(--slate)}
+  .watermark{
+    position:fixed;right:14px;bottom:10px;z-index:60;pointer-events:none;
+    font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(10,15,30,.3);
+  }
+
+  @media (max-width:960px){
+    .wrap,.nav-in{padding:0 24px}
+    h1.hero-title{font-size:42px}
+    .hero-stats{grid-template-columns:repeat(2,1fr)}
+    .author-grid{grid-template-columns:1fr;gap:18px}
+    article.case{grid-template-columns:1fr;gap:36px}
+    .tk-grid{grid-template-columns:1fr;gap:36px}
+    .f-grid{grid-template-columns:1fr;gap:32px}
+    .nav-links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">SEASEA<em> · </em>INTELLIGENCE OS</a>
+    <div class="nav-links">
+      <a href="#practice">实战案例</a>
+      <a href="#research">深度研究</a>
+      <a href="#takeaways">对 1518 的启示</a>
+      <a href="#method-notes">数据口径</a>
+    </div>
+    <span class="nav-date">2026-07-24</span>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker">Growth Case Library · 增长案例库</p>
+    <p class="hero-en">The Growth Case Library</p>
+    <h1 class="hero-title">增长案例库</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">电商、DTC 品牌、出海工具与 AI Infra 四类增长样本。三个实战，两个深研。每一个数字标注口径，每一个结论经得起追问。</p>
+    <p class="hero-meta">呈送 <b>汪东风</b> · 整理 <b>Aaron 韦臻</b> · Seasea Intelligence OS · 2026-07-24 · 共 5 案，附 4 份完整研究报告</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>5</b><span>收录案例：实战 3 案，深度研究 2 案</span></div>
+      <div class="hstat"><b>3.59M–315.8M</b><span>覆盖站点的月访问量级（Semrush / Similarweb）</span></div>
+      <div class="hstat"><b>2025.10–2026.06</b><span>统一研究区间，月度可复核序列</span></div>
+      <div class="hstat"><b>3 套工具</b><span>Semrush · Similarweb · Ahrefs 交叉验证</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="author">
+  <div class="wrap author-grid">
+    <h2>操盘者背景</h2>
+    <div>
+      <p><b>Aaron 韦臻</b>，Seasea 创始人。本案例库中 WaveSpeed、DHgate、VIVAIA 为其直接操盘或深度参与的项目，SHEIN 与 PictureThis 为同一套数据口径与诊断框架下的深度研究样本。实战与研究并置，让每个方法论结论既能被第三方数据验证，也能被一线操盘经验验证。</p>
+      <div class="chips">
+        <span class="chip"><i></i>WaveSpeed AI ｜ CGO · 增长主导</span>
+        <span class="chip"><i></i>DHgate ｜ 前 CTO</span>
+        <span class="chip"><i></i>VIVAIA ｜ 0-1 孵化参与 · 股东</span>
+        <span class="chip blue"><i></i>Seasea ｜ 创始人</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ==================== 01 实战案例 ==================== -->
+<section class="block" id="practice">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker">Section 01 · 实战案例</p>
+      <h2>直接对增长结果负责的项目</h2>
+      <p>以下三个案例，Aaron 分别以 CGO、CTO、孵化参与者身份在任。报告以第三方公开数据口径复核，不引用无法验证的内部数字。</p>
+    </div>
+  </div>
+
+  <!-- Case 01 WaveSpeed -->
+  <div class="wrap">
+    <article class="case">
+      <aside class="case-side">
+        <p class="idx">CASE 01</p>
+        <h3>WaveSpeed AI</h3>
+        <span class="tag practice">实战主导 · CGO</span>
+        <div class="case-meta">
+          <div class="row"><span class="k">领域</span><span class="v">AI Infra · 生成式模型 API 平台</span></div>
+          <div class="row"><span class="k">区间</span><span class="v">2025.10 – 2026.06</span></div>
+          <div class="row"><span class="k">角色</span><span class="v">CGO<small>主导增长与 GTM 策略</small></span></div>
+          <div class="row"><span class="k">对照组</span><span class="v">fal.ai · Replicate · Atlas Cloud 等 11 家</span></div>
+        </div>
+      </aside>
+      <div class="case-body">
+        <p class="lead">统一 API 聚合 1,000+ 生成式模型。以「模型 × 任务 × 价格 × 对比」的程序化关键词矩阵承接商业搜索需求，研究区间内月访问量由 234 万增至 359 万，<b>进入与 fal.ai 同一量级的第一流量梯队</b>，SEO 效能综合得分位列 11 家横评第一。</p>
+        <div class="stats">
+          <div class="stat"><b>3.59<em>M</em></b><span>2026-06 月访问量（O · Semrush），2 月至 6 月 +53%</span></div>
+          <div class="stat"><b>#<em>1</em> / 11</b><span>SEO 效能综合得分 46.1，11 家横评第一（O）</span></div>
+          <div class="stat"><b>169.6<em>K</em></b><span>月自然搜索流量，高于 fal.ai 的 115.5K（O）</span></div>
+          <div class="stat"><b>32.5<em>K</em></b><span>搜索关键词覆盖（Similarweb），组内最宽</span></div>
+          <div class="stat"><b>11<em>′15″</em></b><span>平均访问时长，跳出率 40.1%（O）</span></div>
+        </div>
+        <figure class="chart">
+          <div class="bars">
+            <div class="bar" style="height:56%"><span class="v">2.34M</span><span class="l">02月</span></div>
+            <div class="bar" style="height:83%"><span class="v">3.46M</span><span class="l">04月</span></div>
+            <div class="bar" style="height:100%"><span class="v">4.15M</span><span class="l">05月</span></div>
+            <div class="bar latest" style="height:87%"><span class="v">3.59M</span><span class="l">06月</span></div>
+          </div>
+          <figcaption>WaveSpeed 月访问量（2026，Semrush 口径，M = 百万次访问；03 月公开页无可防守值，不填充）</figcaption>
+        </figure>
+        <div class="findings">
+          <h4>核心判断</h4>
+          <ol>
+            <li><b>增长的第一引擎是产品复用与新模型上线，不是 SEO。</b>Direct 占桌面访问 45%–57%，自然搜索约占总访问 4.7%。SEO 是第二增长曲线，但单位资源效率已领先 fal.ai：自然流量、关键词宽度、单位外链效率均占优。</li>
+            <li><b>当前短板是「规模强、质量弱」。</b>头部自然词偏免费工具与娱乐意图（free face swap 类），AI video API、Kling API pricing、fal.ai alternative 等高商业意图词尚未成为头部流量，产品能力与 SERP 商业意图之间存在错配。</li>
+            <li><b>90 天杠杆不是扩充博客，而是四类数据型资产：</b>模型 API 决策页、实时价格与成本计算页、原创质量 / 延迟 / 失败率 benchmark、alternative 与迁移教程页。把 1,000+ 模型供给转化为「可排名、可比较、可定价、可验证」的商业搜索资产。</li>
+          </ol>
+        </div>
+        <div class="method">
+          <h5>方法论产出</h5>
+          <p><b>五维 SEO 效能评分模型</b>（流量增长 30% · 自然搜索占比 25% · 域名权威 20% · 外链效率 15% · 互动质量 10%），配合 <b>90 天三阶段路线图</b>：数据与归因底座 → 可排名的商业内容矩阵 → 竞争对手难以复制的数据型 SEO 壁垒。</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Case 02 DHgate -->
+  <div class="wrap">
+    <article class="case">
+      <aside class="case-side">
+        <p class="idx">CASE 02</p>
+        <h3>DHgate 敦煌网</h3>
+        <span class="tag practice">实战服务 · 时任 CTO</span>
+        <div class="case-meta">
+          <div class="row"><span class="k">领域</span><span class="v">跨境 B2B / B2C 电商平台</span></div>
+          <div class="row"><span class="k">区间</span><span class="v">2025.07 – 2026.06</span></div>
+          <div class="row"><span class="k">角色</span><span class="v">前 CTO<small>在任期间负责产品与技术体系</small></span></div>
+          <div class="row"><span class="k">对照组</span><span class="v">Alibaba · Made-in-China · 1688</span></div>
+        </div>
+      </aside>
+      <div class="case-body">
+        <p class="lead">Aaron 任 CTO 期间，平台实现<b>十亿级 GMV 增长</b>，打造 Creator Distribution Platform 与万物定制平台，新增数十万 Creator；2025 年 3 月平台实现 10 倍增长（2025-04 App 单端爆发：iOS 单日下载 117,500 次，较 30 日均值 +732%，美国 +940%，App Store 排名由第 352 升至第 3，O · Appfigures）。本报告为离任后以第三方公开口径做的 12 个月效能复核。</p>
+        <div class="stats">
+          <div class="stat"><b>25.8–31.2<em>M</em></b><span>2026-06 月访问量（Similarweb / Semrush 双口径）</span></div>
+          <div class="stat"><b>+27.75<em>%</em></b><span>自然搜索 2.29M / 月，环比（O · Semrush）</span></div>
+          <div class="stat"><b>68 / 81</b><span>Authority Score / Ahrefs DR，域名资产不弱（O）</span></div>
+          <div class="stat"><b>≥70.88<em>%</em></b><span>品牌词占美国自然流量比例（D），结构性短板</span></div>
+          <div class="stat"><b>30<em>M+</em></b><span>在售商品库存（公司口径），采购型数据底座</span></div>
+        </div>
+        <figure class="chart">
+          <div class="bars">
+            <div class="bar" style="height:81%"><span class="v">20.95M</span><span class="l">04月</span></div>
+            <div class="bar" style="height:91%"><span class="v">23.40M</span><span class="l">05月</span></div>
+            <div class="bar latest" style="height:100%"><span class="v">25.80M</span><span class="l">06月</span></div>
+          </div>
+          <figcaption>DHgate 月访问量（2026，Similarweb 口径；4–6 月累计 +23.1%，平台期中的修复段）</figcaption>
+        </figure>
+        <div class="findings">
+          <h4>核心判断</h4>
+          <ol>
+            <li><b>当前是「平台期中的修复段」，不是结构性增长重启。</b>Semrush 6 月值仍低于 2025 年 10 月公开检查点 14.3%，不宜把单月反弹解读为趋势反转。</li>
+            <li><b>最大的 SEO 浪费：站内有「批发采购数据库」，搜索引擎看到的却主要是「品牌导航入口」。</b>阶梯价、MOQ、卖家评分、经营年限等字段齐全，但 wholesale supplier、low MOQ、dropshipping 等非品牌采购词未形成页面资产。</li>
+            <li><b>90 天五个杠杆：</b>非品牌商业意图页面层、官方信任内容中心（夺回 legit / reviews / tracking 的站外解释权）、索引与渲染治理、供应商数据产品化、第一方全渠道归因。</li>
+          </ol>
+        </div>
+        <div class="method">
+          <h5>方法论产出</h5>
+          <p><b>10 渠道归因拆解框架</b>（含 Gen AI 引荐单列），<b>品牌 / 非品牌词结构诊断</b>，以及本案例库统一采用的 <b>O / D / E 三级数据标记</b>：观测值、推导值、估算值分开标注，找不到可靠公开值的一律留空，不做填充。</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Case 03 VIVAIA（承接 Section 01 实战案例） -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <article class="case">
+      <aside class="case-side">
+        <p class="idx">CASE 03</p>
+        <h3>VIVAIA</h3>
+        <span class="tag practice">实践孵化 · 0-1 参与 + 股东</span>
+        <div class="case-meta">
+          <div class="row"><span class="k">领域</span><span class="v">DTC 可持续时尚品牌（环保再生鞋履）</span></div>
+          <div class="row"><span class="k">区间</span><span class="v">品牌 0-1 阶段（2020 – 2022 为主）</span></div>
+          <div class="row"><span class="k">角色</span><span class="v">孵化参与者 · 股东<small>时任集团 CTO，产品技术一号位，300 人团队</small></span></div>
+          <div class="row"><span class="k">主体</span><span class="v">Starlinke 斯达领科（深圳）</span></div>
+        </div>
+      </aside>
+      <div class="case-body">
+        <p class="lead">Aaron 在品牌 0-1 阶段参与孵化并持有公司股份。以「万站归一」的统一站点与统一数据战略收拢 100+ 站群，搭建支撑设计、获客、履约、复购全链路的产品技术体系，支撑 VIVAIA <b>用 5 年时间做到年营收 30 亿元</b>，覆盖 200+ 国家与地区。</p>
+        <div class="stats">
+          <div class="stat"><b>30<em>亿元</em></b><span>年营收，品牌创立 5 年达成（公司口径）</span></div>
+          <div class="stat"><b>200<em>+</em></b><span>覆盖国家与地区</span></div>
+          <div class="stat"><b>300<em>人</em></b><span>产品、研发、数据、战略团队规模（Aaron 任 CTO 期间）</span></div>
+          <div class="stat"><b>2<em>×</em></b><span>One Site 改造后 Campaign ROI 翻倍，利润转正</span></div>
+          <div class="stat"><b>+50<em>%</em></b><span>迭代效率提升（统一技术栈与数据后）</span></div>
+        </div>
+        <div class="findings">
+          <h4>核心打法</h4>
+          <ol>
+            <li><b>万站归一（One Site）。</b>把 100+ 技术栈各异、数据不通的站群收拢为统一品牌站：统一开发框架与组件，统一订单、用户、商品、库存数据。多站点、多技术栈会损害能力复用与数据统一，统一之后 ROI 与迭代效率才显著改善。</li>
+            <li><b>数十个 C 端与 B 端子系统支撑全链路。</b>从设计、用户获取到履约、复购，每个环节都有系统承接，增长动作才能被度量、被复盘、被复利。</li>
+            <li><b>ESG + 高端设计的轻奢定位。</b>环保再生材料心智与品牌站体验承接溢价，摆脱站群时代的低价流量逻辑。</li>
+          </ol>
+        </div>
+        <div class="method">
+          <h5>经验沉淀</h5>
+          <p><b>增长系统的上限由数据底座决定。</b>站点、技术栈、数据口径不统一时，任何渠道优化都是局部修补；先把「一个站、一套数据、一套能力」做扎实，品牌、投放与内容投入才会产生复利。</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================== 02 深度研究案例 ==================== -->
+<section class="block" id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-kicker">Section 02 · 深度研究案例</p>
+      <h2>以同一套诊断框架，拆解行业最强样本</h2>
+      <p>研究口径与实战案例完全一致：Semrush / Similarweb / Ahrefs 公开页交叉验证，O / D / E 三级标记，只信同一工具内的趋势与结构，不做跨工具绝对值相加。</p>
+    </div>
+  </div>
+
+  <!-- Case 04 SHEIN -->
+  <div class="wrap">
+    <article class="case">
+      <aside class="case-side">
+        <p class="idx">CASE 04</p>
+        <h3>SHEIN</h3>
+        <span class="tag research">深度研究 · 复合获客模型</span>
+        <div class="case-meta">
+          <div class="row"><span class="k">领域</span><span class="v">跨境电商平台（快时尚）</span></div>
+          <div class="row"><span class="k">区间</span><span class="v">2025.07 – 2026.06</span></div>
+          <div class="row"><span class="k">对照组</span><span class="v">Zara · H&amp;M · Temu</span></div>
+          <div class="row"><span class="k">价值</span><span class="v">商品、趋势内容、UGC、联盟四环闭环的横向对标</span></div>
+        </div>
+      </aside>
+      <div class="case-body">
+        <p class="lead">SHEIN 不是「SEO 单轮驱动」，而是 <b>Affiliate + Paid Search + Direct 的复合获客机器</b>：Affiliate 占桌面访问 27.38% 为第一渠道，搜索流量内部 Paid 占 64.38%。最值得复制的是「商品—趋势内容—UGC—联盟」的内容架构与增长机制，最不应照搬的是海量薄 SKU 与付费规模。</p>
+        <div class="stats">
+          <div class="stat"><b>315.8<em>M</em></b><span>2026-06 月访问量（O · Similarweb），同比 +49.98%</span></div>
+          <div class="stat"><b>27.38<em>%</em></b><span>Affiliate 占桌面访问，全站第一渠道（O）</span></div>
+          <div class="stat"><b>44.78<em>M</em></b><span>月自然搜索流量，环比 +22.32%（O · Semrush）</span></div>
+          <div class="stat"><b>1.7<em>M</em></b><span>搜索关键词量（O · Ahrefs），组内仅次于 Temu</span></div>
+          <div class="stat"><b>10–20<em>%</em></b><span>官方联盟佣金，归因 Cookie 30 天（O · 官网）</span></div>
+        </div>
+        <figure class="chart">
+          <div class="bars">
+            <div class="bar" style="height:84%"><span class="v">282.8M</span><span class="l">02月</span></div>
+            <div class="bar" style="height:100%"><span class="v">335.7M</span><span class="l">03月</span></div>
+            <div class="bar" style="height:83%"><span class="v">277.6M</span><span class="l">04月</span></div>
+            <div class="bar" style="height:94%"><span class="v">316.0M</span><span class="l">05月</span></div>
+            <div class="bar latest" style="height:78%"><span class="v">260.6M</span><span class="l">06月</span></div>
+          </div>
+          <figcaption>SHEIN 月访问量（2026-02 至 06，Semrush 口径）：高位锯齿形态，扩张后的平台与下行修正，而非连续上升期</figcaption>
+        </figure>
+        <div class="findings">
+          <h4>核心判断</h4>
+          <ol>
+            <li><b>趋势内容直接回答交易问题。</b>2026 趋势内容大量使用「under $30」「affordable」「body type」「occasion」等问答式主题，把价格、场景、身材、搭配意图导入稳定类目页，再把权重送入 SKU。</li>
+            <li><b>UGC 被机制化。</b>Free Trial 免费试用 + 评论积分，让用户持续产出尺码、面料、实拍内容，形成「试用 → 评论 → 商品页独特内容 → 转化与长尾覆盖 → 更多订单与评论」的增长环。</li>
+            <li><b>不可复制项要认清。</b>供应链速度、品牌搜索基盘、App 行为数据、全球联盟网络密度，都不是页面层动作能追平的。可复制的是内容架构与归因机制。</li>
+          </ol>
+        </div>
+        <div class="method">
+          <h5>方法论产出</h5>
+          <p><b>「商品—趋势内容—UGC—联盟」闭环拆解</b>，以及 Paid Search 反哺 SEO 选题的方法：把高转化、高 CPC 的付费查询词沉淀为稳定自然落地页，让投放预算同时充当关键词研究的探针。</p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Case 05 PictureThis -->
+  <div class="wrap">
+    <article class="case">
+      <aside class="case-side">
+        <p class="idx">CASE 05</p>
+        <h3>PictureThis</h3>
+        <span class="tag research">深度研究 · pSEO + UGC 双引擎</span>
+        <div class="case-meta">
+          <div class="row"><span class="k">领域</span><span class="v">出海工具产品（植物识别，睿琪软件 Glority）</span></div>
+          <div class="row"><span class="k">区间</span><span class="v">2022 – 2025 底（流量主线）</span></div>
+          <div class="row"><span class="k">同构性</span><span class="v">与 1518「姓氏 × 八字 × 场景」模板集群逻辑同构</span></div>
+          <div class="row"><span class="k">价值</span><span class="v">大陆团队做出的全球化 pSEO 教科书样本</span></div>
+        </div>
+      </aside>
+      <div class="case-body">
+        <p class="lead">「物种 × 属性 × 地区 × 问答 × 17 语言」的程序化页面矩阵，配合识别数据飞轮构成的 UGC 供给。网站自然搜索由 2022 年约 100 万 UV / 月做到 2025 年底约 300 万 UV / 月，<b>三年 3 倍</b>；2022 年后投放放缓而 Organic 继续增长，pSEO 资产进入自增长阶段。</p>
+        <div class="stats">
+          <div class="stat"><b>3<em>×</em></b><span>Organic 三年增长：约 100 万 → 约 300 万 UV / 月（A · Semrush 观测）</span></div>
+          <div class="stat"><b>10<em>亿元</em></b><span>年收入（2024 – 2025，O · GameLook 口径）</span></div>
+          <div class="stat"><b>$91.82<em>M</em></b><span>2024 海外收入，同比 +40%（O · 点点数据）</span></div>
+          <div class="stat"><b>17<em>个</em></b><span>语言版本，hreflang 矩阵</span></div>
+          <div class="stat"><b>1.2<em>亿+</em></b><span>真实植物照片回流数据库，构成识别模型壁垒</span></div>
+        </div>
+        <figure class="chart">
+          <div class="bars">
+            <div class="bar" style="height:33%"><span class="v">≈1.0M</span><span class="l">2022</span></div>
+            <div class="bar latest" style="height:100%"><span class="v">≈3.0M</span><span class="l">2025 底</span></div>
+          </div>
+          <figcaption>picturethisai.com 自然搜索 UV / 月（Aaron Semrush 观测口径，M = 百万）</figcaption>
+        </figure>
+        <div class="findings">
+          <h4>核心判断</h4>
+          <ol>
+            <li><b>一个模板吃多个搜索意图。</b>物种页标题同时覆盖通用名、学名、养护、特征、象征、图片、毒性五个关键词簇；属性集合页、地区页、问答页与 17 语言版本把矩阵放大到数万至十万级页面宇宙。</li>
+            <li><b>内容质量做到机构引用级。</b>美国高校 Extension、本土植物协会等 .edu / .org 站点直接引用物种页作为信息来源，外链自然获得，不靠购买。</li>
+            <li><b>UGC 的核心是数据飞轮，不是发帖。</b>用户拍照识别 → 1.2 亿张真实照片回流 → 模型更准 → 产品更好用 → 更多用户；高频问题沉淀为 /question 问答页，捕获长尾搜索。</li>
+            <li><b>对 1518 的直接参照：耐心。</b>这是「先做重内容资产、流量三年复利」的正面样本，也是权重恢复需要 3 至 6 个月起步的证据。</li>
+          </ol>
+        </div>
+        <div class="method">
+          <h5>方法论产出</h5>
+          <p><b>pSEO 多意图模板写法</b>（一个模板承接一类实体的全部属性词簇）与 <b>「买量起量 → pSEO 沉淀 → UGC 喂养 → 买量依赖下降」飞轮模型</b>，可直接映射到 1518 的起名页模板与问答页机制。</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================== 03 对 1518 的启示 ==================== -->
+<section class="takeaways" id="takeaways">
+  <div class="wrap">
+    <p class="sec-kicker">Section 03 · 对 1518 的启示</p>
+    <h2>五个案例，一套判断</h2>
+    <p class="sub">电商、DTC、工具、AI Infra 四条赛道，同一套增长逻辑反复成立。落到 1518.com，是三件可以立刻开工的事。</p>
+    <div class="tk-grid">
+      <div class="tk">
+        <h3>品牌词是结果，不是引擎</h3>
+        <p>DHgate 品牌词占自然流量 ≥70.88%，SHEIN 头部词同样高度品牌化。真正能持续创造新增用户的是<b>非品牌商业意图页面层</b>。1518 的对应资产是「姓氏 × 名字 × 八字 × 场景」模板集群，以及按五行、生肖、场景聚合的属性集合页。</p>
+        <p class="evi">证据：CASE 02 · CASE 04</p>
+      </div>
+      <div class="tk">
+        <h3>把供给数据产品化为可索引资产</h3>
+        <p>WaveSpeed 把 1,000+ 模型变成「可排名、可比较、可定价」的页面，PictureThis 把物种库变成多意图模板矩阵。1518 已有的<b>名字库、重名率、诗词出处、打分规则</b>，同等级地构成竞争对手拿不走的数据型页面资产。</p>
+        <p class="evi">证据：CASE 01 · CASE 05</p>
+      </div>
+      <div class="tk">
+        <h3>质量与底座决定复利曲线</h3>
+        <p>PictureThis 靠机构引用级内容获得自然外链，三年复利 3 倍；VIVAIA 靠统一数据底座让 ROI 翻倍。1518 的同等级动作是<b>口径全公开的算法文档与术语表</b>，以及 GA4 / GSC / 支付打通的归因底座。权重恢复以 3 至 6 个月起步，按三年复利曲线规划。</p>
+        <p class="evi">证据：CASE 03 · CASE 05</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p>这些案例的价值不在于流量数字本身，而在于每个数字都标了口径，每个结论都能被追问。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== footer ==================== -->
+<footer id="method-notes">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h6>完整研究报告（4 份）</h6>
+        <ul>
+          <li>2026-07-22-wavespeed-seo-growth-case-study.md</li>
+          <li>2026-07-23-picturethis-pseo-ugc-case-study.md</li>
+          <li>2026-07-24-dhgate-seo-traffic-case-study.md</li>
+          <li>2026-07-24-shein-traffic-seo-case-study.md</li>
+        </ul>
+        <p style="margin-top:14px">存放于 seasea-gtm-os / workspaces / 1518-gtm / outputs / case-studies /，每份含完整数据表、评分模型、90 天路线图与待人工复核清单。</p>
+        <div class="marks">
+          <span>O = 观测值</span><span>D = 推导值</span><span>E = 估算值</span><span>T = 工具快照</span><span>— = 未找到可靠公开值</span>
+        </div>
+      </div>
+      <div>
+        <h6>数据来源与口径提醒</h6>
+        <p>数据来源：Semrush、Similarweb、Ahrefs 公开页，Appfigures，Statista，点点数据，GameLook，36氪，公司公开口径与官网实测。</p>
+        <p style="margin-top:10px">口径提醒：第三方工具为模型估算，不是网站后台 GA4 数据；不同工具的绝对值不可相加或平均，应重视同一工具内的趋势、相对排名与结构变化。VIVAIA 营收为公司口径，未经第三方工具复核。</p>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>Source: Seasea Intelligence OS · Growth Case Library · 2026-07-24</span>
+      <span>Prepared for Wang Dongfeng</span>
+    </div>
+  </div>
+</footer>
+
+<div class="watermark">Privileged&amp;Confidential</div>
+
+</body>
+</html>
