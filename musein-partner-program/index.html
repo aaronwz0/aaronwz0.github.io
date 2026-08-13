@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Musein Partner Program | 合伙人计划</title>
-<meta name="description" content="Musein 合伙人体系，四级成长路径。从零门槛邀请到战略级绑定，你的内容产线终于有了合伙人体系。">
+<meta name="description" content="Musein 合伙人体系：四级成长路径，十百千万权益金字塔。从零门槛邀请到战略级绑定，你的内容产线终于有了合伙人体系。">
 <meta property="og:title" content="Musein Partner Program">
-<meta property="og:description" content="四个等级，从零门槛邀请到战略级绑定。">
+<meta property="og:description" content="四个等级，从零门槛邀请到战略级绑定。十百千万权益金字塔，激励按价值增长。">
 <meta property="og:image" content="logo-mark.png">
 <link rel="icon" href="logo-mark.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,7 +125,7 @@ body {
 .hero-sub {
   font-size: clamp(1rem, 2vw, 1.35rem);
   color: var(--muted-stone);
-  max-width: 540px;
+  max-width: 560px;
   line-height: 1.6;
   margin-bottom: 2.5rem;
 }
@@ -177,7 +177,7 @@ section { padding: 6rem 2rem; }
   font-size: 1.05rem;
   color: var(--muted-stone);
   line-height: 1.7;
-  max-width: 600px;
+  max-width: 620px;
 }
 
 /* ─── PHILOSOPHY (Timeline) ─── */
@@ -311,8 +311,109 @@ section { padding: 6rem 2rem; }
 .tier-card.card-t3 .card-tier { color: var(--electric-violet); }
 .tier-card.card-t3:hover::before { border-color: var(--electric-violet); }
 
+/* ─── PYRAMID (十百千万) ─── */
+.pyramid { background: var(--deep-black); position: relative; overflow: hidden; }
+.pyramid-glow {
+  position: absolute; top: 50%; left: 50%;
+  width: 900px; height: 500px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(255,107,107,0.06), transparent 65%);
+  pointer-events: none;
+}
+.pyramid-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+.pyramid-card {
+  position: relative;
+  background: linear-gradient(180deg, var(--charcoal), var(--deep-black));
+  border: 1px solid var(--graphite);
+  border-radius: 14px;
+  padding: 2.25rem 1.75rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.pyramid-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,107,107,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.pyramid-card .p-rank {
+  font-family: var(--font-display);
+  font-size: 2.6rem; font-weight: 700;
+  color: var(--off-white);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.pyramid-card .p-role {
+  font-size: 0.78rem;
+  color: var(--muted-stone);
+  line-height: 1.5;
+  min-height: 2.4em;
+  margin-bottom: 1.5rem;
+}
+.pyramid-card .p-seats {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; font-weight: 600;
+  color: var(--cinema-coral);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+.pyramid-card .p-value {
+  font-family: var(--font-mono);
+  font-size: 1.45rem; font-weight: 700;
+  color: var(--off-white);
+}
+.pyramid-card .p-value-label {
+  font-size: 0.72rem;
+  color: var(--muted-stone);
+  margin-top: 0.35rem;
+}
+.pyramid-base {
+  margin-top: 1.25rem;
+  background: var(--deep-black);
+  border: 1px dashed var(--graphite);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  display: flex; align-items: center; gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.pyramid-base .p-rank {
+  font-family: var(--font-display);
+  font-size: 2rem; font-weight: 700;
+  color: var(--muted-stone);
+  flex-shrink: 0;
+}
+.pyramid-base p {
+  font-size: 0.9rem;
+  color: var(--muted-stone);
+  line-height: 1.6;
+}
+.pyramid-note {
+  margin-top: 2.5rem;
+  padding: 1.5rem 1.75rem;
+  background: var(--coral-muted);
+  border-left: 3px solid var(--cinema-coral);
+  border-radius: 0 10px 10px 0;
+  font-size: 0.92rem;
+  color: var(--off-white);
+  line-height: 1.75;
+}
+.pyramid-note strong { color: var(--cinema-coral); font-weight: 600; }
+.pyramid-note .fine {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--muted-stone);
+}
+
 /* ─── COMMISSION PATH ─── */
-.commission { background: var(--deep-black); }
+.commission { background: var(--charcoal); }
 .commission-visual {
   margin-top: 3rem;
   display: flex;
@@ -352,6 +453,50 @@ section { padding: 6rem 2rem; }
   line-height: 1.6;
 }
 .commission-note strong { color: var(--off-white); font-weight: 600; }
+
+/* ─── PROMOTION PATH ─── */
+.promotion { background: var(--deep-black); }
+.promotion-track {
+  margin-top: 3rem;
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+.promotion-node {
+  flex: 1;
+  background: var(--charcoal);
+  border: 1px solid var(--graphite);
+  border-radius: 10px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.promotion-node .node-tier {
+  font-family: var(--font-mono);
+  font-size: 0.9rem; font-weight: 700;
+  color: var(--cinema-coral);
+  margin-bottom: 0.35rem;
+}
+.promotion-node:last-child .node-tier { color: var(--electric-violet); }
+.promotion-node .node-name {
+  font-size: 0.78rem;
+  color: var(--muted-stone);
+  line-height: 1.4;
+}
+.promotion-arrow {
+  display: flex; align-items: center;
+  color: var(--muted-stone);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.promotion-note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--muted-stone);
+  line-height: 1.7;
+}
+.promotion-note strong { color: var(--off-white); font-weight: 600; }
 
 /* ─── CTA ─── */
 .cta-section {
@@ -402,6 +547,9 @@ section { padding: 6rem 2rem; }
   .nav { padding: 1rem 1.5rem; }
   section { padding: 4rem 1.25rem; }
   .tier-grid { grid-template-columns: 1fr; }
+  .pyramid-grid { grid-template-columns: 1fr; }
+  .promotion-track { flex-direction: column; }
+  .promotion-arrow { justify-content: center; transform: rotate(90deg); }
   .commission-visual { flex-direction: column; align-items: center; }
   .commission-bar .bar { width: 200px; height: 40px !important; border-radius: 8px; }
   .footer { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -429,7 +577,7 @@ section { padding: 6rem 2rem; }
     <span>Partner Program 2026</span>
   </div>
   <h1>Musein <span class="italic-accent">Partner</span><br>Program</h1>
-  <p class="hero-sub">你的内容产线，终于有了合伙人体系。<br>四级成长路径，从零门槛邀请到战略级绑定。</p>
+  <p class="hero-sub">你的内容产线，终于有了合伙人体系。<br>四级成长路径，十百千万权益金字塔，从零门槛邀请到战略级绑定。</p>
   <a href="https://musein.ai" class="hero-cta" target="_blank">
     成为合伙人
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -525,11 +673,52 @@ section { padding: 6rem 2rem; }
         <div class="card-highlight-label">利益共同体</div>
         <ul class="card-features">
           <li>参与方向级决策</li>
-          <li>长期激励权益</li>
+          <li>业绩触发式长期激励</li>
           <li>核心团队延伸</li>
           <li>按业绩贡献分梯度</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUITY PYRAMID: 十百千万 -->
+<section class="pyramid">
+  <div class="pyramid-glow"></div>
+  <div class="container">
+    <div class="section-label">权益金字塔</div>
+    <h2 class="section-title">十百千万，激励随价值增长</h2>
+    <p class="section-desc">战略级伙伴的长期激励不按比例议价，按授予时点估值折算目标金额。公司价值上行，同样的激励对应更少的份额，但纸面价值随之放大。</p>
+    <div class="pyramid-grid">
+      <div class="pyramid-card">
+        <div class="p-rank">十席</div>
+        <div class="p-role">百亿级营收的战略生态合作伙伴</div>
+        <div class="p-seats">10 SEATS</div>
+        <div class="p-value">$800K - $1.2M</div>
+        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+      </div>
+      <div class="pyramid-card">
+        <div class="p-rank">百席</div>
+        <div class="p-role">亿级营收的商单、产业带、托盘商伙伴，仅晋升战略级的头部</div>
+        <div class="p-seats">TOP 10 SEATS</div>
+        <div class="p-value">$300K - $600K</div>
+        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+      </div>
+      <div class="pyramid-card">
+        <div class="p-rank">千席</div>
+        <div class="p-role">超级创作者与短剧工作室，仅头部超创</div>
+        <div class="p-seats">TOP 10 SEATS</div>
+        <div class="p-value">$200K - $500K</div>
+        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+      </div>
+    </div>
+    <div class="pyramid-base">
+      <div class="p-rank">万席</div>
+      <p>高消耗 OPC 伙伴走消耗返点与积分额度，不授长期激励。现金回报即刻兑现，增长飞轮的底座。</p>
+    </div>
+    <div class="pyramid-note">
+      <strong>定价原则：</strong>授予按授予时点最新一轮估值折算目标纸面金额，不按百分比议价，更不按绝对数量议价。估值上行过程中，同样的目标金额对应份额自动递减，但激励强度不降。
+      <span class="fine">以上为规划口径，最终以授予日董事会批准的结果为准。</span>
     </div>
   </div>
 </section>
@@ -561,6 +750,36 @@ section { padding: 6rem 2rem; }
       提成按<strong>实际到账金额</strong>结算，不是签约合同额。<br>
       实收才算，现金流健康，双方共赢。
     </p>
+  </div>
+</section>
+
+<!-- PROMOTION PATH -->
+<section class="promotion">
+  <div class="container">
+    <div class="section-label">晋升路径</div>
+    <h2 class="section-title">可升，不可降</h2>
+    <div class="promotion-track">
+      <div class="promotion-node">
+        <div class="node-tier">T0</div>
+        <div class="node-name">社区推广者</div>
+      </div>
+      <div class="promotion-arrow">→</div>
+      <div class="promotion-node">
+        <div class="node-tier">T1</div>
+        <div class="node-name">联盟合伙人</div>
+      </div>
+      <div class="promotion-arrow">→</div>
+      <div class="promotion-node">
+        <div class="node-tier">T2</div>
+        <div class="node-name">区域战略合伙人</div>
+      </div>
+      <div class="promotion-arrow">→</div>
+      <div class="promotion-node">
+        <div class="node-tier">T3</div>
+        <div class="node-name">战略合伙人</div>
+      </div>
+    </div>
+    <p class="promotion-note">持续引荐可申请 T1，带来可验证的区域或行业独特资源可晋升 T2，深度绑定并参与方向级贡献可晋升 T3。高价值资源方可从 T1 直接进入战略合伙人路径。不设自动降级。</p>
   </div>
 </section>
 
@@ -617,6 +836,23 @@ gsap.utils.toArray('.tier-card').forEach((card, i) => {
   });
 });
 
+/* ─── PYRAMID CARDS ─── */
+gsap.utils.toArray('.pyramid-card').forEach((card, i) => {
+  gsap.to(card, {
+    opacity: 1, y: 0, duration: 0.6,
+    delay: i * 0.15,
+    scrollTrigger: { trigger: '.pyramid-grid', start: 'top 82%', toggleActions: 'play none none reverse' }
+  });
+});
+gsap.to('.pyramid-base', {
+  opacity: 1, y: 0, duration: 0.6,
+  scrollTrigger: { trigger: '.pyramid-base', start: 'top 88%', toggleActions: 'play none none reverse' }
+});
+gsap.from('.pyramid-note', {
+  opacity: 0, y: 20, duration: 0.6,
+  scrollTrigger: { trigger: '.pyramid-note', start: 'top 90%', toggleActions: 'play none none reverse' }
+});
+
 /* ─── COMMISSION BARS + COUNTERS ─── */
 const commissionSection = document.querySelector('.commission');
 const bars = gsap.utils.toArray('.commission-bar');
@@ -643,6 +879,15 @@ bars.forEach((bar, i) => {
   });
 });
 
+/* ─── PROMOTION NODES ─── */
+gsap.utils.toArray('.promotion-node').forEach((node, i) => {
+  gsap.to(node, {
+    opacity: 1, y: 0, duration: 0.5,
+    delay: i * 0.15,
+    scrollTrigger: { trigger: '.promotion-track', start: 'top 85%', toggleActions: 'play none none reverse' }
+  });
+});
+
 /* ─── CTA SECTION ─── */
 gsap.from('.cta-section .section-label', { opacity: 0, y: 20, duration: 0.5, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
 gsap.from('.cta-section .section-title', { opacity: 0, y: 30, duration: 0.6, delay: 0.1, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
@@ -650,14 +895,14 @@ gsap.from('.cta-section .section-desc', { opacity: 0, y: 20, duration: 0.5, dela
 gsap.from('.cta-button', { opacity: 0, scale: 0.9, duration: 0.5, delay: 0.3, scrollTrigger: { trigger: '.cta-section', start: 'top 80%' }});
 
 /* ─── SECTION LABELS + TITLES ─── */
-gsap.utils.toArray('.philosophy .section-label, .tiers .section-label, .commission .section-label').forEach(el => {
-  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, scrollTrigger: { trigger: el, start: 'top 85%' }});
+gsap.utils.toArray('section .section-label').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, scrollTrigger: { trigger: el, start: 'top 88%' }});
 });
-gsap.utils.toArray('.philosophy .section-title, .tiers .section-title, .commission .section-title').forEach(el => {
-  gsap.from(el, { opacity: 0, y: 25, duration: 0.5, delay: 0.1, scrollTrigger: { trigger: el, start: 'top 85%' }});
+gsap.utils.toArray('section .section-title').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 25, duration: 0.5, delay: 0.1, scrollTrigger: { trigger: el, start: 'top 88%' }});
 });
-gsap.utils.toArray('.philosophy .section-desc, .tiers .section-desc, .commission .section-desc').forEach(el => {
-  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, delay: 0.2, scrollTrigger: { trigger: el, start: 'top 85%' }});
+gsap.utils.toArray('section .section-desc').forEach(el => {
+  gsap.from(el, { opacity: 0, y: 15, duration: 0.4, delay: 0.2, scrollTrigger: { trigger: el, start: 'top 88%' }});
 });
 </script>
 
