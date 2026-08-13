@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Musein Partner Program | 合伙人计划</title>
-<meta name="description" content="Musein 合伙人体系：四级成长路径，十百千万权益金字塔。从零门槛邀请到战略级绑定，你的内容产线终于有了合伙人体系。">
+<title data-i18n="meta.title">Musein Partner Program | 合伙人计划</title>
+<meta name="description" data-i18n="meta.desc" content="Musein 合伙人体系：四级成长路径与十百千万权益金字塔。从零门槛邀请到战略级绑定。">
 <meta property="og:title" content="Musein Partner Program">
 <meta property="og:description" content="四个等级，从零门槛邀请到战略级绑定。十百千万权益金字塔，激励按价值增长。">
 <meta property="og:image" content="logo-mark.png">
@@ -542,9 +542,79 @@ section { padding: 6rem 2rem; }
 .footer a { color: var(--cinema-coral); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
 
+/* ─── LANGUAGE SWITCHER ─── */
+.nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+.lang-switch { position: relative; }
+.lang-current {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--off-white);
+  background: transparent;
+  border: 1px solid var(--graphite);
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.lang-current:hover { border-color: var(--cinema-coral); }
+.lang-current .flag { font-size: 0.95rem; line-height: 1; }
+.lang-current .caret {
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--muted-stone);
+  border-bottom: 1.5px solid var(--muted-stone);
+  transform: rotate(45deg) translateY(-1px);
+  transition: transform 0.2s;
+}
+.lang-switch.open .lang-current .caret { transform: rotate(-135deg) translateY(-1px); }
+.lang-menu {
+  position: absolute; top: calc(100% + 0.5rem); right: 0;
+  min-width: 190px; max-height: 380px; overflow-y: auto;
+  background: var(--charcoal);
+  border: 1px solid var(--graphite);
+  border-radius: 10px;
+  padding: 0.35rem;
+  display: none;
+  z-index: 200;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+.lang-switch.open .lang-menu { display: block; }
+.lang-option {
+  width: 100%;
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--off-white);
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+.lang-option .flag { font-size: 1rem; line-height: 1; }
+.lang-option:hover { background: var(--coral-muted); }
+.lang-option.active { background: var(--coral-muted); color: var(--cinema-coral); }
+[dir="rtl"] .lang-menu { right: auto; left: 0; }
+[dir="rtl"] .lang-option { text-align: right; }
+
+/* ─── RTL LOGICAL FLIPS ─── */
+[dir="rtl"] .timeline { padding-left: 0; padding-right: 2rem; }
+[dir="rtl"] .timeline::before { left: auto; right: 0; }
+[dir="rtl"] .timeline-item { padding: 0 2rem 3rem 0; transform: translateX(20px); }
+[dir="rtl"] .timeline-item::before { left: auto; right: -2rem; }
+[dir="rtl"] .pyramid-note { border-left: none; border-right: 3px solid var(--cinema-coral); border-radius: 10px 0 0 10px; }
+[dir="rtl"] .hero-cta svg, [dir="rtl"] .cta-button svg { transform: scaleX(-1); }
+[dir="rtl"] .promotion-arrow { transform: scaleX(-1); }
+[dir="rtl"] .footer, [dir="rtl"] .nav-actions { direction: rtl; }
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  .nav { padding: 1rem 1.5rem; }
+  .nav { padding: 1rem 1.25rem; }
+  .nav-actions { gap: 0.5rem; }
+  .lang-current .lang-text { display: none; }
+  .lang-current { padding: 0.45rem 0.6rem; }
   section { padding: 4rem 1.25rem; }
   .tier-grid { grid-template-columns: 1fr; }
   .pyramid-grid { grid-template-columns: 1fr; }
@@ -561,7 +631,17 @@ section { padding: 6rem 2rem; }
 <!-- NAV -->
 <nav class="nav">
   <img src="logo-colorful.png" alt="Musein" class="nav-logo">
-  <a href="https://musein.ai" class="nav-cta" target="_blank">加入 Musein</a>
+  <div class="nav-actions">
+    <div class="lang-switch" id="langSwitch">
+      <button class="lang-current" id="langCurrent" aria-haspopup="listbox" aria-expanded="false">
+        <span class="flag" id="langFlag">🇨🇳</span>
+        <span class="lang-text" id="langText">中文</span>
+        <span class="caret"></span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="listbox"></div>
+    </div>
+    <a href="https://musein.ai" class="nav-cta" target="_blank" data-i18n="nav.join">加入 Musein</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -577,9 +657,9 @@ section { padding: 6rem 2rem; }
     <span>Partner Program 2026</span>
   </div>
   <h1>Musein <span class="italic-accent">Partner</span><br>Program</h1>
-  <p class="hero-sub">你的内容产线，终于有了合伙人体系。<br>四级成长路径，十百千万权益金字塔，从零门槛邀请到战略级绑定。</p>
+  <p class="hero-sub" data-i18n-html="hero.sub">你的内容产线，终于有了合伙人体系。<br>四级成长路径，十百千万权益金字塔，从零门槛邀请到战略级绑定。</p>
   <a href="https://musein.ai" class="hero-cta" target="_blank">
-    成为合伙人
+    <span data-i18n="hero.cta">成为合伙人</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
   <div class="hero-scroll-hint">
@@ -591,29 +671,29 @@ section { padding: 6rem 2rem; }
 <!-- PHILOSOPHY -->
 <section class="philosophy">
   <div class="container">
-    <div class="section-label">设计原则</div>
-    <h2 class="section-title">越往上，绑定越深</h2>
-    <p class="section-desc">等级越高，激励从现金结算逐步过渡到长期共同体。每一级的权益都指向同一个方向：和 Musein 一起增长。</p>
+    <div class="section-label" data-i18n="phi.label">设计原则</div>
+    <h2 class="section-title" data-i18n="phi.title">越往上，绑定越深</h2>
+    <p class="section-desc" data-i18n="phi.desc">等级越高，激励从现金结算逐步过渡到长期共同体。每一级的权益都指向同一个方向：和 Musein 一起增长。</p>
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-tier">T0</div>
-        <div class="timeline-name">社区推广者</div>
-        <div class="timeline-desc">所有注册用户均可参与。邀请好友注册并完成首次付费，双方获得积分、额度或优惠券奖励。零门槛，产品内自动结算。</div>
+        <div class="timeline-name" data-i18n="phi.t0.name">社区推广者</div>
+        <div class="timeline-desc" data-i18n="phi.t0.desc">所有注册用户均可参与。邀请好友注册并完成首次付费，双方获得积分、额度或优惠券奖励。零门槛，产品内自动结算。</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-tier">T1</div>
-        <div class="timeline-name">联盟合伙人</div>
-        <div class="timeline-desc">有社媒粉丝或自有课程体系的创作者，可申请成为联盟合伙人。生成裂变邀请码，按引荐实收现金获得阶梯提成。</div>
+        <div class="timeline-name" data-i18n="phi.t1.name">联盟合伙人</div>
+        <div class="timeline-desc" data-i18n="phi.t1.desc">有社媒粉丝或自有课程体系的创作者，可申请成为联盟合伙人。生成裂变邀请码，按引荐实收现金获得阶梯提成。</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-tier">T2</div>
-        <div class="timeline-name">区域战略资源合伙人</div>
-        <div class="timeline-desc">在特定区域或垂直行业拥有独特资源的合作方。区域独家授权，联合品牌活动，渠道级业务实收提成。</div>
+        <div class="timeline-name" data-i18n="phi.t2.name">区域战略资源合伙人</div>
+        <div class="timeline-desc" data-i18n="phi.t2.desc">在特定区域或垂直行业拥有独特资源的合作方。区域独家授权，联合品牌活动，渠道级业务实收提成。</div>
       </div>
       <div class="timeline-item">
         <div class="timeline-tier">T3</div>
-        <div class="timeline-name">战略合伙人</div>
-        <div class="timeline-desc">深度绑定的长期利益共同体。参与方向级决策，享有长期激励权益，是公司核心团队的延伸。</div>
+        <div class="timeline-name" data-i18n="phi.t3.name">战略合伙人</div>
+        <div class="timeline-desc" data-i18n="phi.t3.desc">深度绑定的长期利益共同体。参与方向级决策，享有长期激励权益，是公司核心团队的延伸。</div>
       </div>
     </div>
   </div>
@@ -622,60 +702,60 @@ section { padding: 6rem 2rem; }
 <!-- TIER CARDS -->
 <section class="tiers">
   <div class="container">
-    <div class="section-label">四级体系</div>
-    <h2 class="section-title">每一级都有清晰的回报</h2>
-    <p class="section-desc">不需要猜测，不需要谈判。体系透明，权益明确，晋升路径一目了然。</p>
+    <div class="section-label" data-i18n="tiers.label">四级体系</div>
+    <h2 class="section-title" data-i18n="tiers.title">每一级都有清晰的回报</h2>
+    <p class="section-desc" data-i18n="tiers.desc">不需要猜测，不需要谈判。体系透明，权益明确，晋升路径一目了然。</p>
     <div class="tier-grid">
       <div class="tier-card">
         <div class="card-tier">T0 / COMMUNITY</div>
-        <h3>社区推广者</h3>
-        <p class="card-subtitle">邀请好友，双向奖励</p>
-        <div class="card-highlight">0门槛</div>
-        <div class="card-highlight-label">注册即可参与</div>
+        <h3 data-i18n="card.t0.name">社区推广者</h3>
+        <p class="card-subtitle" data-i18n="card.t0.sub">邀请好友，双向奖励</p>
+        <div class="card-highlight" data-i18n="card.t0.hl">0门槛</div>
+        <div class="card-highlight-label" data-i18n="card.t0.hlLabel">注册即可参与</div>
         <ul class="card-features">
-          <li>生成个人邀请链接/码</li>
-          <li>邀请人和被邀请人各获奖励</li>
-          <li>积分、额度、优惠券</li>
-          <li>产品内自动结算</li>
+          <li data-i18n="card.t0.f1">生成个人邀请链接/码</li>
+          <li data-i18n="card.t0.f2">邀请人和被邀请人各获奖励</li>
+          <li data-i18n="card.t0.f3">积分、额度、优惠券</li>
+          <li data-i18n="card.t0.f4">产品内自动结算</li>
         </ul>
       </div>
       <div class="tier-card">
         <div class="card-tier">T1 / AFFILIATE</div>
-        <h3>联盟合伙人</h3>
-        <p class="card-subtitle">有粉丝就能赚，阶梯提成</p>
+        <h3 data-i18n="card.t1.name">联盟合伙人</h3>
+        <p class="card-subtitle" data-i18n="card.t1.sub">有粉丝就能赚，阶梯提成</p>
         <div class="card-highlight">8-15<span class="pct">%</span></div>
-        <div class="card-highlight-label">引荐实收阶梯提成</div>
+        <div class="card-highlight-label" data-i18n="card.t1.hlLabel">引荐实收阶梯提成</div>
         <ul class="card-features">
-          <li>裂变邀请码（可设有效期）</li>
-          <li>按实收现金结算，非签约额</li>
-          <li>业绩越好，档位越高</li>
-          <li>专属素材包 + 专属客服</li>
+          <li data-i18n="card.t1.f1">裂变邀请码（可设有效期）</li>
+          <li data-i18n="card.t1.f2">按实收现金结算，非签约额</li>
+          <li data-i18n="card.t1.f3">业绩越好，档位越高</li>
+          <li data-i18n="card.t1.f4">专属素材包 + 专属客服</li>
         </ul>
       </div>
       <div class="tier-card">
         <div class="card-tier">T2 / REGIONAL</div>
-        <h3>区域战略合伙人</h3>
-        <p class="card-subtitle">区域资源互补，联合品牌</p>
+        <h3 data-i18n="card.t2.name">区域战略合伙人</h3>
+        <p class="card-subtitle" data-i18n="card.t2.sub">区域资源互补，联合品牌</p>
         <div class="card-highlight">5-10<span class="pct">%</span></div>
-        <div class="card-highlight-label">渠道业务实收提成</div>
+        <div class="card-highlight-label" data-i18n="card.t2.hlLabel">渠道业务实收提成</div>
         <ul class="card-features">
-          <li>区域独家或半独家授权</li>
-          <li>联合品牌活动</li>
-          <li>课程/社群渠道分发</li>
-          <li>业务级会议参与权</li>
+          <li data-i18n="card.t2.f1">区域独家或半独家授权</li>
+          <li data-i18n="card.t2.f2">联合品牌活动</li>
+          <li data-i18n="card.t2.f3">课程/社群渠道分发</li>
+          <li data-i18n="card.t2.f4">业务级会议参与权</li>
         </ul>
       </div>
       <div class="tier-card card-t3">
         <div class="card-tier">T3 / STRATEGIC</div>
-        <h3>战略合伙人</h3>
-        <p class="card-subtitle">深度绑定，长期共同体</p>
-        <div class="card-highlight">长期</div>
-        <div class="card-highlight-label">利益共同体</div>
+        <h3 data-i18n="card.t3.name">战略合伙人</h3>
+        <p class="card-subtitle" data-i18n="card.t3.sub">深度绑定，长期共同体</p>
+        <div class="card-highlight" data-i18n="card.t3.hl">长期</div>
+        <div class="card-highlight-label" data-i18n="card.t3.hlLabel">利益共同体</div>
         <ul class="card-features">
-          <li>参与方向级决策</li>
-          <li>业绩触发式长期激励</li>
-          <li>核心团队延伸</li>
-          <li>按业绩贡献分梯度</li>
+          <li data-i18n="card.t3.f1">参与方向级决策</li>
+          <li data-i18n="card.t3.f2">业绩触发式长期激励</li>
+          <li data-i18n="card.t3.f3">核心团队延伸</li>
+          <li data-i18n="card.t3.f4">按业绩贡献分梯度</li>
         </ul>
       </div>
     </div>
@@ -686,37 +766,37 @@ section { padding: 6rem 2rem; }
 <section class="pyramid">
   <div class="pyramid-glow"></div>
   <div class="container">
-    <div class="section-label">权益金字塔</div>
-    <h2 class="section-title">十百千万，激励随价值增长</h2>
-    <p class="section-desc">战略级伙伴的长期激励不按比例议价，按授予时点估值折算目标金额。公司价值上行，同样的激励对应更少的份额，但纸面价值随之放大。</p>
+    <div class="section-label" data-i18n="pyr.label">权益金字塔</div>
+    <h2 class="section-title" data-i18n="pyr.title">十百千万，激励随价值增长</h2>
+    <p class="section-desc" data-i18n="pyr.desc">战略级伙伴的长期激励不按比例议价，按授予时点估值折算目标金额。公司价值上行，同样的激励对应更少的份额，但纸面价值随之放大。</p>
     <div class="pyramid-grid">
       <div class="pyramid-card">
-        <div class="p-rank">十席</div>
-        <div class="p-role">百亿级营收的战略生态合作伙伴</div>
+        <div class="p-rank" data-i18n="pyr.r10.rank">十席</div>
+        <div class="p-role" data-i18n="pyr.r10.role">百亿级营收的战略生态合作伙伴</div>
         <div class="p-seats">10 SEATS</div>
         <div class="p-value">$800K - $1.2M</div>
-        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+        <div class="p-value-label" data-i18n="pyr.valueLabel">单席长期激励（规划口径纸面价值）</div>
       </div>
       <div class="pyramid-card">
-        <div class="p-rank">百席</div>
-        <div class="p-role">亿级营收的商单、产业带、托盘商伙伴，仅晋升战略级的头部</div>
+        <div class="p-rank" data-i18n="pyr.r100.rank">百席</div>
+        <div class="p-role" data-i18n="pyr.r100.role">亿级营收的商单、产业带、托盘商伙伴，仅晋升战略级的头部</div>
         <div class="p-seats">TOP 10 SEATS</div>
         <div class="p-value">$300K - $600K</div>
-        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+        <div class="p-value-label" data-i18n="pyr.valueLabel">单席长期激励（规划口径纸面价值）</div>
       </div>
       <div class="pyramid-card">
-        <div class="p-rank">千席</div>
-        <div class="p-role">超级创作者与短剧工作室，仅头部超创</div>
+        <div class="p-rank" data-i18n="pyr.r1000.rank">千席</div>
+        <div class="p-role" data-i18n="pyr.r1000.role">超级创作者与短剧工作室，仅头部超创</div>
         <div class="p-seats">TOP 10 SEATS</div>
         <div class="p-value">$200K - $500K</div>
-        <div class="p-value-label">单席长期激励（规划口径纸面价值）</div>
+        <div class="p-value-label" data-i18n="pyr.valueLabel">单席长期激励（规划口径纸面价值）</div>
       </div>
     </div>
     <div class="pyramid-base">
-      <div class="p-rank">万席</div>
-      <p>高消耗 OPC 伙伴走消耗返点与积分额度，不授长期激励。现金回报即刻兑现，增长飞轮的底座。</p>
+      <div class="p-rank" data-i18n="pyr.base.rank">万席</div>
+      <p data-i18n="pyr.base">高消耗 OPC 伙伴走消耗返点与积分额度，不授长期激励。现金回报即刻兑现，增长飞轮的底座。</p>
     </div>
-    <div class="pyramid-note">
+    <div class="pyramid-note" data-i18n-html="pyr.note">
       <strong>定价原则：</strong>授予按授予时点最新一轮估值折算目标纸面金额，不按百分比议价，更不按绝对数量议价。估值上行过程中，同样的目标金额对应份额自动递减，但激励强度不降。
       <span class="fine">以上为规划口径，最终以授予日董事会批准的结果为准。</span>
     </div>
@@ -726,27 +806,27 @@ section { padding: 6rem 2rem; }
 <!-- COMMISSION PATH -->
 <section class="commission">
   <div class="container">
-    <div class="section-label">成长路径</div>
-    <h2 class="section-title">业绩驱动，档位递增</h2>
-    <p class="section-desc">T1 联盟合伙人的提成比例随累计引荐实收递增。做得越多，赚得越多，没有天花板。</p>
+    <div class="section-label" data-i18n="com.label">成长路径</div>
+    <h2 class="section-title" data-i18n="com.title">业绩驱动，档位递增</h2>
+    <p class="section-desc" data-i18n="com.desc">T1 联盟合伙人的提成比例随累计引荐实收递增。做得越多，赚得越多，没有天花板。</p>
     <div class="commission-visual">
       <div class="commission-bar">
         <div class="bar-value"><span class="counter" data-target="8">0</span><span class="pct">%</span></div>
         <div class="bar" data-height="120"></div>
-        <div class="bar-label">入门</div>
+        <div class="bar-label" data-i18n="com.b1">入门</div>
       </div>
       <div class="commission-bar">
         <div class="bar-value"><span class="counter" data-target="12">0</span><span class="pct">%</span></div>
         <div class="bar" data-height="200"></div>
-        <div class="bar-label">进阶</div>
+        <div class="bar-label" data-i18n="com.b2">进阶</div>
       </div>
       <div class="commission-bar">
         <div class="bar-value"><span class="counter" data-target="15">0</span><span class="pct">%</span></div>
         <div class="bar" data-height="280"></div>
-        <div class="bar-label">头部 + 冲刺奖</div>
+        <div class="bar-label" data-i18n="com.b3">头部 + 冲刺奖</div>
       </div>
     </div>
-    <p class="commission-note">
+    <p class="commission-note" data-i18n-html="com.note">
       提成按<strong>实际到账金额</strong>结算，不是签约合同额。<br>
       实收才算，现金流健康，双方共赢。
     </p>
@@ -756,40 +836,40 @@ section { padding: 6rem 2rem; }
 <!-- PROMOTION PATH -->
 <section class="promotion">
   <div class="container">
-    <div class="section-label">晋升路径</div>
-    <h2 class="section-title">可升，不可降</h2>
+    <div class="section-label" data-i18n="pro.label">晋升路径</div>
+    <h2 class="section-title" data-i18n="pro.title">可升，不可降</h2>
     <div class="promotion-track">
       <div class="promotion-node">
         <div class="node-tier">T0</div>
-        <div class="node-name">社区推广者</div>
+        <div class="node-name" data-i18n="card.t0.name">社区推广者</div>
       </div>
       <div class="promotion-arrow">→</div>
       <div class="promotion-node">
         <div class="node-tier">T1</div>
-        <div class="node-name">联盟合伙人</div>
+        <div class="node-name" data-i18n="card.t1.name">联盟合伙人</div>
       </div>
       <div class="promotion-arrow">→</div>
       <div class="promotion-node">
         <div class="node-tier">T2</div>
-        <div class="node-name">区域战略合伙人</div>
+        <div class="node-name" data-i18n="card.t2.name">区域战略合伙人</div>
       </div>
       <div class="promotion-arrow">→</div>
       <div class="promotion-node">
         <div class="node-tier">T3</div>
-        <div class="node-name">战略合伙人</div>
+        <div class="node-name" data-i18n="card.t3.name">战略合伙人</div>
       </div>
     </div>
-    <p class="promotion-note">持续引荐可申请 T1，带来可验证的区域或行业独特资源可晋升 T2，深度绑定并参与方向级贡献可晋升 T3。高价值资源方可从 T1 直接进入战略合伙人路径。不设自动降级。</p>
+    <p class="promotion-note" data-i18n="pro.note">持续引荐可申请 T1，带来可验证的区域或行业独特资源可晋升 T2，深度绑定并参与方向级贡献可晋升 T3。高价值资源方可从 T1 直接进入战略合伙人路径。不设自动降级。</p>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="section-label">开始</div>
-  <h2 class="section-title">成为 Musein 合伙人</h2>
-  <p class="section-desc">无论你是内容创作者、社群主、区域渠道方，还是战略级合作方，这里都有属于你的位置。</p>
+  <div class="section-label" data-i18n="cta.label">开始</div>
+  <h2 class="section-title" data-i18n="cta.title">成为 Musein 合伙人</h2>
+  <p class="section-desc" data-i18n="cta.desc">无论你是内容创作者、社群主、区域渠道方，还是战略级合作方，这里都有属于你的位置。</p>
   <a href="https://musein.ai" class="cta-button" target="_blank">
-    立即加入
+    <span data-i18n="cta.btn">立即加入</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </a>
 </section>
@@ -800,6 +880,78 @@ section { padding: 6rem 2rem; }
   <span><a href="https://musein.ai" target="_blank">musein.ai</a></span>
 </footer>
 
+<script src="translations.js"></script>
+<script>
+/* ─── I18N ENGINE ─── */
+(function () {
+  const STORE_KEY = 'musein-pp-lang';
+  const RTL = ['ar'];
+
+  function detectLang() {
+    const saved = localStorage.getItem(STORE_KEY);
+    if (saved && MUSEIN_PP_I18N[saved]) return saved;
+    const nav = (navigator.language || 'zh').toLowerCase();
+    const exact = MUSEIN_PP_LOCALES.find(l => nav === l.code || nav.startsWith(l.code + '-'));
+    return exact ? exact.code : 'en';
+  }
+
+  function applyLang(code) {
+    const dict = MUSEIN_PP_I18N[code] || MUSEIN_PP_I18N.en;
+    const meta = MUSEIN_PP_LOCALES.find(l => l.code === code) || MUSEIN_PP_LOCALES[0];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] != null) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (dict[key] != null) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = meta.htmlLang;
+    document.documentElement.dir = RTL.includes(code) ? 'rtl' : 'ltr';
+    document.title = dict['meta.title'];
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc && dict['meta.desc']) desc.setAttribute('content', dict['meta.desc']);
+    document.getElementById('langFlag').textContent = meta.flag;
+    document.getElementById('langText').textContent = meta.label;
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === code);
+    });
+    localStorage.setItem(STORE_KEY, code);
+  }
+
+  /* Build dropdown */
+  const menu = document.getElementById('langMenu');
+  MUSEIN_PP_LOCALES.forEach(l => {
+    const btn = document.createElement('button');
+    btn.className = 'lang-option';
+    btn.setAttribute('data-lang', l.code);
+    btn.setAttribute('role', 'option');
+    btn.innerHTML = '<span class="flag">' + l.flag + '</span><span>' + l.label + '</span>';
+    btn.addEventListener('click', () => {
+      applyLang(l.code);
+      switcher.classList.remove('open');
+      current.setAttribute('aria-expanded', 'false');
+    });
+    menu.appendChild(btn);
+  });
+
+  const switcher = document.getElementById('langSwitch');
+  const current = document.getElementById('langCurrent');
+  current.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = switcher.classList.toggle('open');
+    current.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('click', e => {
+    if (!switcher.contains(e.target)) {
+      switcher.classList.remove('open');
+      current.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  applyLang(detectLang());
+})();
+</script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
