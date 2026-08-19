@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正大慈溪 AI OPC 小镇 × Musein · 预算审批汇报</title>
+  <meta name="description" content="正大慈溪春风蓝湾转型 AI OPC 小镇：冠名首届正大杯 OPC 黑客松的预算审批汇报。现金 10 万元，P&L 与 ROI 三档测算，供正大中心 CEO 向集团财务长提报。">
+  <meta property="og:image" content="logo-mark.png">
+  <link rel="icon" href="logo-mark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --charcoal: #1A1A1A;
+      --graphite: #2A2A2A;
+      --offwhite: #F5F4EF;
+      --stone: #9A9A9A;
+      --coral: #FF6B6B;
+      --coral-hover: #FF8585;
+      --coral-muted: rgba(255,107,107,0.15);
+    }
+
+    html, body {
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--black);
+      color: var(--offwhite);
+      overflow: hidden;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      font-feature-settings: "tnum";
+    }
+
+    .deck { width: 100%; height: 100vh; min-height: 560px; position: relative; overflow: hidden; }
+
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      opacity: 0; transform: translateX(48px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1);
+      pointer-events: none;
+      padding: 44px 64px 48px;
+      overflow-y: auto;
+      background: var(--black);
+    }
+    .slide.active { opacity: 1; transform: translateX(0); pointer-events: all; }
+    .slide.prev { opacity: 0; transform: translateX(-48px); }
+
+    /* typography */
+    .kicker {
+      font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--stone); font-weight: 500; margin-bottom: 10px;
+    }
+    .action-title {
+      font-family: 'Noto Serif SC', 'Playfair Display', serif;
+      font-weight: 600; font-size: 29px; line-height: 1.3;
+      color: var(--offwhite); max-width: 1040px;
+    }
+    .action-title .num-em { font-family: 'JetBrains Mono', monospace; font-size: .9em; color: var(--coral); font-weight: 500; }
+    .coral-rule { width: 72px; height: 2px; background: var(--coral); margin: 16px 0 22px; }
+    .body-text { font-size: 14.5px; line-height: 1.75; color: var(--offwhite); opacity: .88; font-weight: 300; }
+    .body-text strong { font-weight: 500; color: var(--offwhite); }
+    .body-text .hl { color: var(--coral); font-weight: 500; }
+    .caption { font-size: 12.5px; line-height: 1.6; color: var(--stone); font-weight: 300; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+    .serif-it { font-family: 'Playfair Display', serif; font-style: italic; }
+
+    /* layout */
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; flex: 1; min-height: 0; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* KPI tiles */
+    .kpi {
+      background: var(--charcoal);
+      border: 1px solid var(--graphite);
+      border-radius: 8px;
+      padding: 20px 22px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .kpi .v { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 30px; font-weight: 500; color: var(--coral); line-height: 1.1; }
+    .kpi .v.plain { color: var(--offwhite); }
+    .kpi .l { font-size: 12.5px; color: var(--stone); line-height: 1.5; }
+
+    /* tables */
+    table.data {
+      width: 100%; border-collapse: collapse;
+      font-size: 13px; color: var(--offwhite);
+    }
+    table.data th {
+      text-align: left; font-weight: 500; font-size: 11.5px;
+      letter-spacing: .08em; color: var(--stone);
+      padding: 8px 12px; border-bottom: 1px solid var(--graphite);
+    }
+    table.data td {
+      padding: 10px 12px; border-bottom: 1px solid var(--graphite);
+      font-weight: 300; line-height: 1.55; vertical-align: top;
+    }
+    table.data tr:nth-child(even) td { background: var(--charcoal); }
+    table.data .m { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    table.data .hl-cell { color: var(--coral); font-weight: 500; }
+    table.data .dim { color: var(--stone); }
+    table.data .rowhead { font-weight: 500; color: var(--offwhite); white-space: nowrap; }
+
+    /* panels */
+    .panel {
+      background: var(--charcoal);
+      border: 1px solid var(--graphite);
+      border-radius: 8px;
+      padding: 22px 24px;
+    }
+    .panel-title { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--stone); font-weight: 500; margin-bottom: 14px; }
+
+    .flow-node {
+      background: var(--charcoal); border: 1px solid var(--graphite);
+      border-radius: 8px; padding: 14px 16px;
+      font-size: 13px; line-height: 1.6; color: var(--offwhite); font-weight: 300;
+    }
+    .flow-node.active { border-color: var(--coral); }
+    .flow-node .t { font-weight: 500; font-size: 13.5px; display: block; margin-bottom: 4px; }
+    .flow-node.active .t { color: var(--coral); }
+    .flow-arrow { color: var(--stone); text-align: center; font-size: 18px; line-height: 1; padding: 6px 0; }
+
+    /* watermark & footer */
+    .wm {
+      position: absolute; bottom: 26px; right: 64px;
+      font-size: 9px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--stone); opacity: .55;
+    }
+    .pageno {
+      position: absolute; bottom: 24px; left: 64px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--stone); opacity: .6;
+    }
+    .srcline {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-size: 9.5px; color: var(--stone); opacity: .6; white-space: nowrap;
+    }
+    .brandmark { position: absolute; top: 36px; right: 64px; height: 26px; opacity: .9; }
+
+    /* cover */
+    .cover { justify-content: center; }
+    .cover .spectrum {
+      position: absolute; top: 8%; left: 46%;
+      width: 480px; height: 120px; pointer-events: none;
+      background:
+        radial-gradient(ellipse 45% 60% at 20% 50%, rgba(255,155,80,.30), transparent 70%),
+        radial-gradient(ellipse 40% 55% at 55% 45%, rgba(244,95,168,.26), transparent 70%),
+        radial-gradient(ellipse 40% 60% at 85% 55%, rgba(155,107,255,.22), transparent 70%);
+      filter: blur(26px);
+      transform: rotate(-6deg);
+      opacity: .8;
+    }
+    .cover h1 {
+      font-family: 'Noto Serif SC', serif; font-weight: 700;
+      font-size: 52px; line-height: 1.22; letter-spacing: .01em;
+      margin-top: 20px;
+    }
+    .cover .sub { font-size: 16px; color: var(--stone); margin-top: 18px; font-weight: 300; line-height: 1.7; }
+    .cover .meta { margin-top: 44px; font-size: 12.5px; color: var(--stone); letter-spacing: .06em; line-height: 2; }
+    .cover .meta b { color: var(--offwhite); font-weight: 500; }
+    .letterbox-top, .letterbox-bottom {
+      position: absolute; left: 0; right: 0; height: 5.5%;
+      background: #050505; pointer-events: none;
+    }
+    .letterbox-top { top: 0; } .letterbox-bottom { bottom: 0; }
+
+    .bullets { list-style: none; }
+    .bullets li {
+      position: relative; padding-left: 22px; margin-bottom: 12px;
+      font-size: 14px; line-height: 1.7; color: var(--offwhite); opacity: .88; font-weight: 300;
+    }
+    .bullets li::before {
+      content: ''; position: absolute; left: 2px; top: .68em;
+      width: 8px; height: 2px; background: var(--coral);
+    }
+    .bullets .m { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; color: var(--coral); font-weight: 500; }
+
+    /* nav */
+    .nav {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+      background: rgba(10,10,10,.92); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 100; border-top: 1px solid var(--graphite);
+    }
+    .nav-dots { display: flex; gap: 7px; }
+    .nav-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(245,244,239,.18); border: none; padding: 0; cursor: pointer;
+      transition: all .25s;
+    }
+    .nav-dot.active { background: var(--coral); width: 22px; border-radius: 4px; }
+    .nav-btn {
+      background: none; border: 1px solid var(--graphite); color: var(--stone);
+      padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer;
+      font-family: 'Noto Sans SC', sans-serif; transition: all .2s;
+    }
+    .nav-btn:hover { border-color: var(--coral); color: var(--offwhite); }
+    .nav-label { color: var(--stone); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+
+    @media (max-width: 900px) {
+      .slide { padding: 32px 22px 60px; }
+      .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
+      .cover h1 { font-size: 32px; }
+      .action-title { font-size: 21px; }
+      .srcline, .brandmark { display: none; }
+      table.data { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- 01 COVER -->
+  <div class="slide cover active" data-i="0">
+    <div class="letterbox-top"></div><div class="letterbox-bottom"></div>
+    <div class="spectrum"></div>
+    <img src="logo-colorful.png" alt="Musein" class="brandmark" style="top:52px;">
+    <div style="max-width:860px;">
+      <p class="kicker">预算审批汇报 · Budget Approval Brief · 2026-08-19</p>
+      <h1>正大慈溪 AI OPC 小镇<br>× 首届「正大杯」OPC 黑客松</h1>
+      <p class="sub">春风蓝湾转型的内容、人才与品牌启动方案。<br>一页结论，三档测算，两种成本口径。</p>
+      <div class="meta">
+        汇报对象：<b>正大集团财务长 冯鑫</b><br>
+        提报：正大中心 CEO ｜ 内容合作方：目音 Musein（Musein.cn）
+      </div>
+    </div>
+    <div class="wm">Privileged&amp;Confidential</div>
+  </div>
+
+  <!-- 02 EXEC SUMMARY -->
+  <div class="slide" data-i="1">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">01 · 一页结论</p>
+    <h2 class="action-title">现金支出 <span class="num-em">10 万元</span>，换回至少 100 条小镇 TVC、20 位入驻 OPC 与一轮精准人群曝光</h2>
+    <div class="coral-rule"></div>
+    <div class="grid4" style="margin-bottom:20px;">
+      <div class="kpi"><div class="v">¥100,000</div><div class="l">现金申请额<br>唯一动用集团现金的科目</div></div>
+      <div class="kpi"><div class="v">≥100 条</div><div class="l">小镇 TVC 宣传视频<br>平均 2 分钟/条</div></div>
+      <div class="kpi"><div class="v">≥20 位</div><div class="l">高潜 OPC 免费入住<br>10 月小镇整修完成后</div></div>
+      <div class="kpi"><div class="v">288%–1300%</div><div class="l">现金口径 ROI 区间<br>保守 / 基准 / 乐观</div></div>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="panel-title">申请三项授权</p>
+        <ul class="bullets">
+          <li>现金赞助 <span class="m">10 万元</span>（对公），冠名首届「正大杯」OPC 黑客松</li>
+          <li>实物资源：慈溪 9 套别墅（27 间房、约 1002 ㎡）6 个月入住权；北京正大中心 35 楼会客厅 60 天使用权</li>
+          <li>洪波总个人赞助 <span class="m">2 万元</span> 不占集团预算，协议总额 12 万，此处仅作说明</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <p class="panel-title">给财务长的一句话</p>
+        <p class="body-text">现金 10 万，实物是闲置资产的顺势利用，边际现金成本接近于零。<span class="hl">最坏口径（保守产出 + 全额加载实物成本）仍为正</span>，财务风险敞口很小。</p>
+      </div>
+    </div>
+    <span class="pageno">02</span><span class="srcline">Source: Musein × 正大合作方案 v0.1 与赞助协议 v1，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 03 BACKGROUND -->
+  <div class="slide" data-i="2">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">02 · 项目背景与目的</p>
+    <h2 class="action-title">转型期最缺的不是楼，是人气、内容和「这里值得来」的证据</h2>
+    <div class="coral-rule"></div>
+    <p class="body-text" style="max-width:920px;margin-bottom:22px;">春风蓝湾从地产项目转向以 AI 原生创作者（OPC，One-Person Company）为核心人群的产业小镇。用一场线上黑客松，把人气、内容、证据三样一次性买齐。</p>
+    <div class="grid4">
+      <div class="kpi"><div class="v plain" style="font-size:22px;">众筹脑爆共创</div><div class="l">OPC 群体聚到「AI OPC 小镇」主题下，为转型共创出点子</div></div>
+      <div class="kpi"><div class="v plain" style="font-size:22px;">品牌曝光</div><div class="l">借设计师 OPC 群体宣传，效果对标 4A 互联网营销 CPM</div></div>
+      <div class="kpi"><div class="v">≥100 条</div><div class="l">平均 2 分钟的小镇 TVC，可长期复用的内容资产</div></div>
+      <div class="kpi"><div class="v">≥20 位</div><div class="l">OPC 于 10 月整修完成后免费入住，落脚、推广、引流</div></div>
+    </div>
+    <span class="pageno">03</span><span class="srcline">Source: 正大慈溪春风蓝湾转型目标，Musein 整理，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 04 STRUCTURE -->
+  <div class="slide" data-i="3">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">03 · 合作结构</p>
+    <h2 class="action-title">正大出资源，Musein 出主办能力，成果全部沉淀回小镇</h2>
+    <div class="coral-rule"></div>
+    <div class="grid2">
+      <div>
+        <table class="data">
+          <tr><th>正大投入</th><th>形式</th><th>Musein 交付</th></tr>
+          <tr><td class="rowhead">现金 10 万元</td><td class="dim">对公赞助</td><td>主办赛事、招募评审、品牌曝光</td></tr>
+          <tr><td class="rowhead">9 套别墅 6 个月</td><td class="dim">入住权·选拔发放</td><td>筛选高潜 OPC 入驻，首批常住创作者</td></tr>
+          <tr><td class="rowhead">会客厅 60 天</td><td class="dim">场地使用权</td><td>OPC 线下活动运营、发布会</td></tr>
+          <tr><td class="rowhead">洪波总个人 2 万</td><td class="dim">个人赞助·不占预算</td><td>计入 Musein 侧总额，用于奖金与执行</td></tr>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;justify-content:center;">
+        <div class="flow-node active"><span class="t">正大 · 资源与品牌</span>现金 + 别墅 + 会客厅 + 冠名身份</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node"><span class="t">Musein · 主办与网络</span>赛事执行、OPC 创作者网络、内容筹划</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node active"><span class="t">小镇 · 成果沉淀</span>TVC 素材归小镇宣传；入驻 OPC 成为园区内容与流量源；发布会为招商造势</div>
+      </div>
+    </div>
+    <span class="pageno">04</span><span class="srcline">Source: 赞助协议 v1 附件 1 资源清单，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 05 COST SPLIT -->
+  <div class="slide" data-i="4">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">04 · 投入明细</p>
+    <h2 class="action-title">全口径估值约 <span class="num-em">35 万</span>，实际现金支出只有 <span class="num-em">10 万</span>，其余是闲置资产的顺势利用</h2>
+    <div class="coral-rule"></div>
+    <div class="grid2">
+      <div>
+        <table class="data">
+          <tr><th>投入项</th><th>口径</th><th>估值</th><th>边际现金成本</th></tr>
+          <tr><td class="rowhead">现金赞助</td><td class="dim">现金流出</td><td class="m">100,000</td><td class="m hl-cell">100,000</td></tr>
+          <tr><td class="rowhead">慈溪别墅 6 个月</td><td class="dim">实物·机会成本</td><td class="m">≈150,000</td><td class="m">≈0</td></tr>
+          <tr><td class="rowhead">北京会客厅 60 天</td><td class="dim">实物·机会成本</td><td class="m">≈100,000</td><td class="m">≈0</td></tr>
+          <tr><td class="rowhead">合计</td><td class="dim"></td><td class="m hl-cell">≈350,000</td><td class="m hl-cell">≈100,000</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <p class="panel-title">为什么实物成本接近于零</p>
+        <ul class="bullets">
+          <li>别墅估值：1002 ㎡ × 约 25 元/㎡/月 × 6 个月 ≈ <span class="m">15 万</span></li>
+          <li>会客厅估值：约 1700 元/天 × 60 天 ≈ <span class="m">10 万</span></li>
+          <li>两者均为整修期 / 未开业的闲置库存，本就无租金收入</li>
+          <li>投进这次合作，等于<span class="hl">提前把小镇住起来、用起来</span>，本身就是转型动作</li>
+        </ul>
+      </div>
+    </div>
+    <span class="pageno">05</span><span class="srcline">Source: 内部估值假设，供财务长按集团口径调整，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 06 DELIVERABLES -->
+  <div class="slide" data-i="5">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">05 · 交付与产出</p>
+    <h2 class="action-title">四项产出全部指向小镇：内容库、首批住户、精准曝光、品牌卡位</h2>
+    <div class="coral-rule"></div>
+    <table class="data" style="max-width:1040px;">
+      <tr><th style="width:180px;">产出</th><th style="width:260px;">量化承诺</th><th>对小镇的意义</th></tr>
+      <tr><td class="rowhead">小镇 TVC</td><td class="m">≥100 条 · 平均 2 分钟</td><td>可长期复用的内容资产库，覆盖社媒、招商、售楼</td></tr>
+      <tr><td class="rowhead">入驻 OPC</td><td class="m">≥20 位高潜创作者</td><td>园区首批常住创作者，落脚 + 推广 + 引流</td></tr>
+      <tr><td class="rowhead">品牌曝光</td><td>设计师 / OPC 人群，对标 4A CPM</td><td>在精准人群里建立「AI OPC 小镇」认知</td></tr>
+      <tr><td class="rowhead">品牌资产</td><td>冠名 · 发布会 · 展位 · workshop</td><td>正大在创作者赛道的品牌卡位</td></tr>
+    </table>
+    <p class="caption" style="max-width:1040px;margin-top:16px;">说明：按协议，Musein 对报名数、曝光量、转化不作硬性保证。以下测算基于合理商业努力的场景估算，非承诺值；所有数字均为假设，供财务长调整。</p>
+    <span class="pageno">06</span><span class="srcline">Source: 合作方案 v0.1 四个量化目的，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 07 VALUE -->
+  <div class="slide" data-i="6">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">06 · 品牌价值测算</p>
+    <h2 class="action-title">三个可市场比价的维度：内容、曝光、OPC 种子，合计 <span class="num-em">38.75 万 / 73 万 / 140 万</span></h2>
+    <div class="coral-rule"></div>
+    <table class="data" style="max-width:1040px;margin-bottom:18px;">
+      <tr><th style="width:220px;">价值维度</th><th>计价方法</th><th style="width:110px;">保守</th><th style="width:110px;">基准</th><th style="width:110px;">乐观</th></tr>
+      <tr><td class="rowhead">内容资产（100 条 TVC）</td><td class="dim">单条 2000 / 3500 / 6000 元，低于 4A 与 MCN 报价区间</td><td class="m">200,000</td><td class="m">350,000</td><td class="m">600,000</td></tr>
+      <tr><td class="rowhead">媒体曝光（对标 4A CPM）</td><td class="dim">曝光 250 / 400 / 800 万次 × CPM 35 / 45 / 55 元</td><td class="m">87,500</td><td class="m">180,000</td><td class="m">440,000</td></tr>
+      <tr><td class="rowhead">OPC 种子（≥20 位入驻）</td><td class="dim">按获客与招商价值，每位 5000 / 10000 / 18000 元</td><td class="m">100,000</td><td class="m">200,000</td><td class="m">360,000</td></tr>
+      <tr><td class="rowhead">合计</td><td class="dim"></td><td class="m hl-cell">387,500</td><td class="m hl-cell">730,000</td><td class="m hl-cell">1,400,000</td></tr>
+    </table>
+    <p class="caption" style="max-width:1040px;">CPM 基准：国内优质品牌视频内容约 30–60 元/千次曝光（4A 互联网营销活动口径）。</p>
+    <span class="pageno">07</span><span class="srcline">Source: Musein 三档场景假设，2026-08 [ASSUMPTIONS]</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 08 P&L -->
+  <div class="slide" data-i="7">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">07 · P&amp;L 测算</p>
+    <h2 class="action-title">两条线：现金口径 ROI 288%–1300%；全额加载实物后，最坏档仍为正</h2>
+    <div class="coral-rule"></div>
+    <div class="grid2">
+      <div>
+        <div class="panel-title">现金口径（成本 = 现金 10 万）</div>
+        <table class="data">
+          <tr><th>档位</th><th>产出价值</th><th>净收益</th><th>ROI</th></tr>
+          <tr><td class="rowhead">保守</td><td class="m">387,500</td><td class="m">+287,500</td><td class="m hl-cell">288%</td></tr>
+          <tr><td class="rowhead">基准</td><td class="m">730,000</td><td class="m">+630,000</td><td class="m hl-cell">630%</td></tr>
+          <tr><td class="rowhead">乐观</td><td class="m">1,400,000</td><td class="m">+1,300,000</td><td class="m hl-cell">1,300%</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="panel-title">全经济口径（成本 = 现金 + 实物 ≈ 35 万）</div>
+        <table class="data">
+          <tr><th>档位</th><th>产出价值</th><th>净收益</th><th>ROI</th></tr>
+          <tr><td class="rowhead">保守</td><td class="m">387,500</td><td class="m">+37,500</td><td class="m hl-cell">11%</td></tr>
+          <tr><td class="rowhead">基准</td><td class="m">730,000</td><td class="m">+380,000</td><td class="m hl-cell">109%</td></tr>
+          <tr><td class="rowhead">乐观</td><td class="m">1,400,000</td><td class="m">+1,050,000</td><td class="m hl-cell">300%</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="body-text" style="margin-top:18px;max-width:1000px;">结论：<span class="hl">最坏情况仍小幅为正</span>。实际现金支出只有 10 万，实物是闲置资产的顺势利用，财务风险敞口很小。</p>
+    <span class="pageno">08</span><span class="srcline">Source: Musein 财务模型，三档场景假设，2026-08 [ASSUMPTIONS]</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 09 UNIT ECONOMICS -->
+  <div class="slide" data-i="8">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">08 · 单位经济</p>
+    <h2 class="action-title">单位成本全面低于外采市场价，这是本次合作在财务上最硬的理由</h2>
+    <div class="coral-rule"></div>
+    <div class="grid3" style="margin-bottom:20px;">
+      <div class="kpi"><div class="v">¥1,000</div><div class="l">每条 TVC 成本<br>市场对标：4A / MCN 单条 5000–20000 元</div></div>
+      <div class="kpi"><div class="v">¥5,000</div><div class="l">每位入驻 OPC 成本<br>显著低于常规创作者获客与招商成本</div></div>
+      <div class="kpi"><div class="v">12.5–40</div><div class="l">有效 CPM（元/千次）<br>对标 4A 优质内容 30–60 元，持平到更低</div></div>
+    </div>
+    <div class="panel" style="max-width:1000px;">
+      <table class="data">
+        <tr><th>指标</th><th>本次（现金口径）</th><th>市场对标</th><th>结论</th></tr>
+        <tr><td class="rowhead">每条 TVC 成本</td><td class="m hl-cell">1,000 元</td><td class="dim">4A / MCN 5,000–20,000 元</td><td>低一个数量级</td></tr>
+        <tr><td class="rowhead">每位入驻 OPC 成本</td><td class="m hl-cell">5,000 元</td><td class="dim">常规创作者获客 / 招商成本</td><td>显著偏低</td></tr>
+        <tr><td class="rowhead">有效 CPM</td><td class="m hl-cell">40 / 25 / 12.5 元</td><td class="dim">4A 优质内容 30–60 元</td><td>持平到低于基准</td></tr>
+      </table>
+    </div>
+    <span class="pageno">09</span><span class="srcline">Source: Musein 财务模型 vs 4A 互联网营销市场区间，2026-08 [ASSUMPTIONS]</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 10 STRATEGIC & RISK -->
+  <div class="slide" data-i="9">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">09 · 战略价值与风险</p>
+    <h2 class="action-title">这不是一次性营销费用，而是小镇转型的启动资产；风险均有对应缓释</h2>
+    <div class="coral-rule"></div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="panel-title">战略价值</p>
+        <ul class="bullets">
+          <li>内容库、首批住户、品牌卡位全部留在正大侧，长期复用</li>
+          <li>闲置资产被提前激活：整修期就开始产生人气和内容，沉没成本转成蓄客动作</li>
+          <li>正大以冠名方身份进入 OPC 人群心智，为产业基金与园区招商埋线</li>
+        </ul>
+      </div>
+      <div>
+        <table class="data">
+          <tr><th>风险</th><th>缓释</th></tr>
+          <tr><td class="rowhead">产出不达标</td><td>按里程碑付款，交付验收后才付尾款；协议设补救期与替代履约</td></tr>
+          <tr><td class="rowhead">实物占用影响销售</td><td>仅用整修期 / 未开业库存；6 个月限期、选拔发放</td></tr>
+          <tr><td class="rowhead">现金敞口</td><td>现金仅 10 万，分期支付，最坏口径仍为正</td></tr>
+          <tr><td class="rowhead">数据与知识产权</td><td>协议约定选手数据不得用于模型训练，作品 IP 归创作者</td></tr>
+        </table>
+      </div>
+    </div>
+    <span class="pageno">10</span><span class="srcline">Source: 赞助协议 v1 第五条至第八条，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+  <!-- 11 ASK -->
+  <div class="slide" data-i="10">
+    <img src="logo-colorful.png" alt="" class="brandmark">
+    <p class="kicker">10 · 预算审批建议</p>
+    <h2 class="action-title">请批准现金 <span class="num-em">10 万</span> 与两项实物授权，付款与成果交付绑定，分期支付</h2>
+    <div class="coral-rule"></div>
+    <div class="grid2">
+      <div class="panel">
+        <p class="panel-title">审批事项</p>
+        <ul class="bullets">
+          <li>批准现金赞助 <span class="m">10 万元</span>，列入 AI OPC 小镇转型的市场 / 内容预算科目</li>
+          <li>授权慈溪 9 套别墅 6 个月入住权（2026.10–2027.6 按选拔进度交付）与北京正大中心 35 楼会客厅 60 天使用权</li>
+          <li>确认洪波总个人 2 万元不占集团预算，仅作协议总额说明</li>
+        </ul>
+      </div>
+      <div>
+        <div class="panel-title">建议付款节奏（现金 10 万元）</div>
+        <table class="data">
+          <tr><th>里程碑</th><th>比例</th><th>金额</th><th>触发条件</th></tr>
+          <tr><td class="rowhead">签约</td><td class="m">40%</td><td class="m hl-cell">40,000</td><td class="dim">协议双方盖章生效</td></tr>
+          <tr><td class="rowhead">开赛</td><td class="m">30%</td><td class="m hl-cell">30,000</td><td class="dim">活动正式启动</td></tr>
+          <tr><td class="rowhead">交付验收</td><td class="m">30%</td><td class="m hl-cell">30,000</td><td class="dim">100 条 TVC + 20 位 OPC 验收通过</td></tr>
+        </table>
+      </div>
+    </div>
+    <span class="pageno">11</span><span class="srcline">Source: Musein 建议付款结构，待双方确认，2026-08</span><span class="wm">Privileged&amp;Confidential</span>
+  </div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button class="nav-btn" onclick="go(-1)">&#8592; 上一页</button>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="nav-dots" id="dots"></div>
+    <span class="nav-label" id="counter">01 / 11</span>
+  </div>
+  <button class="nav-btn" onclick="go(1)">下一页 &#8594;</button>
+</div>
+
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsEl = document.getElementById('dots');
+  const counterEl = document.getElementById('counter');
+
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('button');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    if (n < 0 || n >= total || n === cur) return;
+    slides[cur].classList.remove('active', 'prev');
+    if (n < cur) slides[cur].classList.add('prev');
+    cur = n;
+    slides[cur].classList.remove('prev');
+    slides[cur].classList.add('active');
+    slides[cur].scrollTop = 0;
+    dotsEl.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === cur));
+    counterEl.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  }
+  function go(dir) { goTo(cur + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 50) go(diff < 0 ? 1 : -1);
+  });
+</script>
+</body>
+</html>
